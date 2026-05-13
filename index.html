@@ -163,6 +163,19 @@
             gap: 12px;
         }
 
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-title-text {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
         .device-row {
             display: flex;
             flex-direction: column;
@@ -215,7 +228,7 @@
             cursor: pointer;
             text-align: center;
             font-weight: bold;
-            display: none; /* Показываем только на iOS */
+            display: none;
         }
         .airplay-btn:active {
             background: #2c1a0a;
@@ -320,6 +333,17 @@
         }
         .reset-btn:active { background: #333; }
 
+        .refresh-btn {
+            background: none;
+            border: 1px solid #444;
+            color: #888;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 10px;
+            cursor: pointer;
+        }
+        .refresh-btn:active { background: #333; }
+
         .install-prompt {
             position: fixed;
             bottom: 25px;
@@ -354,19 +378,6 @@
             font-size: 18px;
             cursor: pointer;
         }
-
-        /* Кнопка обновления списка */
-        .refresh-btn {
-            background: none;
-            border: 1px solid #444;
-            color: #888;
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 10px;
-            cursor: pointer;
-            align-self: flex-end;
-        }
-        .refresh-btn:active { background: #333; }
     </style>
 </head>
 <body>
@@ -391,8 +402,8 @@
 
         <!-- ВЫБОР УСТРОЙСТВ -->
         <div class="devices-section">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span style="font-size:11px; color:#888; text-transform:uppercase; letter-spacing:2px;">Устройства</span>
+            <div class="section-title">
+                <span class="section-title-text">Устройства</span>
                 <button class="refresh-btn" id="refreshDevices">🔄 Обновить</button>
             </div>
             
@@ -401,10 +412,9 @@
                     <span class="device-icon">🎤</span> Микрофон (ВХОД)
                 </div>
                 <select class="device-select" id="micSelect">
-                    <option value="default">По умолчанию</option>
-                    <option value="" disabled>Загрузка...</option>
+                    <option value="default">📱 По умолчанию</option>
                 </select>
-                <div class="device-status" id="micStatus">Выберите наушники</div>
+                <div class="device-status" id="micStatus"></div>
             </div>
             
             <div class="device-row">
@@ -412,13 +422,11 @@
                     <span class="device-icon">🔊</span> Динамик (ВЫХОД)
                 </div>
                 <select class="device-select" id="speakerSelect">
-                    <option value="default">По умолчанию</option>
-                    <option value="" disabled>Загрузка...</option>
+                    <option value="default">🔊 По умолчанию</option>
                 </select>
-                <div class="device-status" id="speakerStatus">Выберите колонку</div>
+                <div class="device-status" id="speakerStatus"></div>
             </div>
             
-            <!-- AirPlay кнопка для iOS -->
             <button class="airplay-btn" id="airplayBtn">
                 📡 Выбрать колонку через AirPlay
             </button>
@@ -454,18 +462,17 @@
     </div>
 
     <script>
-        // ==================== ОПРЕДЕЛЕНИЕ ПЛАТФОРМЫ ====================
+        // ==================== ПЛАТФОРМА ====================
         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                       (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-        const isChrome = /Chrome/i.test(navigator.userAgent) && !/Edge/i.test(navigator.userAgent);
         const hasSetSinkId = typeof HTMLAudioElement.prototype.setSinkId === 'function';
         
-        console.log('📱 iOS:', isIOS, '| Chrome:', isChrome, '| setSinkId:', hasSetSinkId);
+        console.log('📱 iOS:', isIOS, '| setSinkId:', hasSetSinkId);
 
         // ==================== SERVICE WORKER ====================
         if ('serviceWorker' in navigator) {
             const swCode = `
-                const CACHE_NAME = 'megafon-pro-v1';
+                const CACHE_NAME = 'megafon-pro-v2';
                 self.addEventListener('install', e => {
                     e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(['/'])).then(() => self.skipWaiting()));
                 });
@@ -528,7 +535,8 @@
         let isLocked = false;
         let isMicOn = false;
         let isInitialized = false;
-        let allDevices = [];
+        let selectedMicId = 'default';  // СОХРАНЯЕМ ВЫБРАННЫЙ МИКРОФОН
+        let selectedSpId = 'default';   // СОХРАНЯЕМ ВЫБРАННЫЙ ДИНАМИК
 
         // ==================== ФУНКЦИИ ====================
 
@@ -560,60 +568,64 @@
 
         async function enumerateDevices() {
             try {
-                // Нужен активный стрим чтобы получить labels
                 let tempStream = null;
                 try {
                     tempStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                } catch(e) {
-                    console.warn('Не удалось получить временный стрим:', e);
-                }
+                } catch(e) {}
                 
-                allDevices = await navigator.mediaDevices.enumerateDevices();
+                const devices = await navigator.mediaDevices.enumerateDevices();
                 
                 if (tempStream) {
                     tempStream.getTracks().forEach(t => t.stop());
                 }
                 
+                // Сохраняем текущий выбор
+                const currentMic = micSelect.value || selectedMicId;
+                const currentSp = speakerSelect.value || selectedSpId;
+                
                 // Микрофоны
-                const mics = allDevices.filter(d => d.kind === 'audioinput');
+                const mics = devices.filter(d => d.kind === 'audioinput');
                 micSelect.innerHTML = '<option value="default">📱 По умолчанию</option>';
-                if (mics.length === 0) {
-                    micSelect.innerHTML += '<option value="" disabled>Микрофоны не найдены</option>';
-                } else {
-                    mics.forEach((mic, i) => {
-                        const label = mic.label || `Микрофон ${i + 1}`;
-                        const icon = label.toLowerCase().includes('bluetooth') || 
-                                     label.toLowerCase().includes('наушник') || 
-                                     label.toLowerCase().includes('headphone') ||
-                                     label.toLowerCase().includes('airpod') ? '🎧 ' : '🎤 ';
-                        micSelect.innerHTML += `<option value="${mic.deviceId}">${icon}${label}</option>`;
-                    });
-                }
+                mics.forEach((mic, i) => {
+                    const label = mic.label || `Микрофон ${i + 1}`;
+                    const isHeadphones = label.toLowerCase().includes('bluetooth') || 
+                                        label.toLowerCase().includes('наушник') || 
+                                        label.toLowerCase().includes('headphone') ||
+                                        label.toLowerCase().includes('airpod');
+                    const icon = isHeadphones ? '🎧 ' : '🎤 ';
+                    micSelect.innerHTML += `<option value="${mic.deviceId}">${icon}${label}</option>`;
+                });
                 
                 // Динамики
-                const speakers = allDevices.filter(d => d.kind === 'audiooutput');
+                const speakers = devices.filter(d => d.kind === 'audiooutput');
                 speakerSelect.innerHTML = '<option value="default">🔊 По умолчанию</option>';
-                if (speakers.length === 0) {
-                    speakerSelect.innerHTML += '<option value="" disabled>Колонки не найдены</option>';
-                } else {
-                    speakers.forEach((sp, i) => {
-                        const label = sp.label || `Динамик ${i + 1}`;
-                        const isSpeaker = label.toLowerCase().includes('speaker') || 
-                                         label.toLowerCase().includes('колонк') ||
-                                         label.toLowerCase().includes('динамик') ||
-                                         label.toLowerCase().includes('jbl') ||
-                                         label.toLowerCase().includes('bose') ||
-                                         label.toLowerCase().includes('sony') ||
-                                         label.toLowerCase().includes('marshall');
-                        const icon = isSpeaker ? '🔊 ' : '🔈 ';
-                        speakerSelect.innerHTML += `<option value="${sp.deviceId}">${icon}${label}</option>`;
-                    });
+                speakers.forEach((sp, i) => {
+                    const label = sp.label || `Динамик ${i + 1}`;
+                    const isSpeaker = label.toLowerCase().includes('speaker') || 
+                                     label.toLowerCase().includes('колонк') ||
+                                     label.toLowerCase().includes('динамик') ||
+                                     label.toLowerCase().includes('jbl') ||
+                                     label.toLowerCase().includes('bose') ||
+                                     label.toLowerCase().includes('sony') ||
+                                     label.toLowerCase().includes('marshall');
+                    const icon = isSpeaker ? '🔊 ' : '🔈 ';
+                    speakerSelect.innerHTML += `<option value="${sp.deviceId}">${icon}${label}</option>`;
+                });
+                
+                // Восстанавливаем выбор
+                if (currentMic && micSelect.querySelector(`option[value="${currentMic}"]`)) {
+                    micSelect.value = currentMic;
                 }
+                if (currentSp && speakerSelect.querySelector(`option[value="${currentSp}"]`)) {
+                    speakerSelect.value = currentSp;
+                }
+                
+                selectedMicId = micSelect.value;
+                selectedSpId = speakerSelect.value;
                 
                 console.log('📋 Устройства обновлены:', {
                     микрофоны: mics.length,
-                    динамики: speakers.length,
-                    все: allDevices.map(d => `${d.kind}: ${d.label || 'без имени'}`)
+                    динамики: speakers.length
                 });
                 
                 updateDeviceStatus();
@@ -627,12 +639,16 @@
             const micId = micSelect.value;
             const spId = speakerSelect.value;
             
+            selectedMicId = micId;
+            selectedSpId = spId;
+            
             if (micId === 'default') {
                 micStatus.textContent = 'Системный микрофон';
                 micStatus.className = 'device-status';
             } else {
                 const opt = micSelect.selectedOptions[0];
-                micStatus.textContent = '✅ ' + (opt?.textContent?.replace(/^[🎤🎧]\s/, '') || 'Выбран');
+                const name = opt?.textContent?.replace(/^[🎤🎧]\s*/, '') || 'Выбран';
+                micStatus.textContent = '✅ ' + name;
                 micStatus.className = 'device-status ok';
             }
             
@@ -641,7 +657,8 @@
                 speakerStatus.className = 'device-status';
             } else {
                 const opt = speakerSelect.selectedOptions[0];
-                speakerStatus.textContent = '✅ ' + (opt?.textContent?.replace(/^[🔊🔈]\s/, '') || 'Выбран');
+                const name = opt?.textContent?.replace(/^[🔊🔈]\s*/, '') || 'Выбран';
+                speakerStatus.textContent = '✅ ' + name;
                 speakerStatus.className = 'device-status ok';
             }
         }
@@ -667,7 +684,8 @@
                 }
                 
                 const opt = speakerSelect.selectedOptions[0];
-                speakerStatus.textContent = '✅ Вывод: ' + (opt?.textContent?.replace(/^[🔊🔈]\s/, '') || 'Колонка');
+                const name = opt?.textContent?.replace(/^[🔊🔈]\s*/, '') || 'Колонка';
+                speakerStatus.textContent = '✅ Вывод: ' + name;
                 speakerStatus.className = 'device-status ok';
                 
             } catch (err) {
@@ -779,15 +797,15 @@
                 talkBtn.disabled = true;
                 btnText.textContent = '...';
                 
-                // Выбранный микрофон
-                const micId = micSelect.value;
+                // ИСПОЛЬЗУЕМ СОХРАНЕННЫЙ ВЫБОР МИКРОФОНА
+                const micId = selectedMicId;
                 const constraints = {
                     audio: micId !== 'default' 
                         ? { deviceId: { exact: micId } } 
                         : true
                 };
                 
-                console.log('🎤 Запрашиваю микрофон:', micId === 'default' ? 'по умолчанию' : micId);
+                console.log('🎤 Инициализация с микрофоном:', micId === 'default' ? 'по умолчанию' : micId);
                 
                 mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -795,13 +813,10 @@
                 gainNode = audioContext.createGain();
                 gainNode.gain.value = parseFloat(gainSlider.value);
                 
-                // Создаем промежуточный узел для перенаправления
                 audioDestNode = audioContext.createMediaStreamDestination();
                 
                 sourceNode.connect(gainNode);
                 
-                // На Android Chrome — направляем через audioDestNode для setSinkId
-                // На iOS — просто на destination (система сама разрулит)
                 if (hasSetSinkId && !isIOS) {
                     gainNode.connect(audioDestNode);
                     
@@ -813,7 +828,6 @@
                     
                     await applySpeakerOutput();
                 } else {
-                    // iOS / нет setSinkId — обычный вывод
                     gainNode.connect(audioContext.destination);
                 }
                 
@@ -822,8 +836,8 @@
                 isInitialized = true;
                 talkBtn.disabled = false;
                 
-                const micName = micSelect.selectedOptions[0]?.textContent?.replace(/^[🎤🎧]\s/, '') || 'микрофон';
-                const spName = speakerSelect.selectedOptions[0]?.textContent?.replace(/^[🔊🔈]\s/, '') || 'динамик';
+                const micName = micSelect.selectedOptions[0]?.textContent?.replace(/^[🎤🎧]\s*/, '') || 'микрофон';
+                const spName = speakerSelect.selectedOptions[0]?.textContent?.replace(/^[🔊🔈]\s*/, '') || 'динамик';
                 setStatus(`✅ ${micName} → ${spName}`, '');
                 updateUI();
                 
@@ -906,27 +920,48 @@
             else gainValue.style.color = '#2ecc71';
         });
 
+        // При изменении микрофона НЕ сбрасываем, а сохраняем выбор
         micSelect.addEventListener('change', () => {
+            selectedMicId = micSelect.value;
             updateDeviceStatus();
+            
+            // Если уже инициализировано — предлагаем перезапустить
             if (isInitialized) {
-                // Переинициализация с новым микрофоном
-                fullReset();
-                setStatus('Микрофон изменен. Нажмите СТАРТ', '');
+                setStatus('⚠️ Микрофон изменен. Нажмите СТАРТ заново', '');
+                // Мягкий сброс без потери выбора
+                stopKeepAlive();
+                isMicOn = false;
+                if (outputAudioEl) {
+                    outputAudioEl.pause();
+                    outputAudioEl.srcObject = null;
+                    outputAudioEl = null;
+                }
+                if (mediaStream) {
+                    mediaStream.getTracks().forEach(t => t.stop());
+                    mediaStream = null;
+                }
+                if (audioContext && audioContext.state !== 'closed') {
+                    audioContext.close();
+                    audioContext = null;
+                }
+                sourceNode = null;
+                gainNode = null;
+                audioDestNode = null;
+                isInitialized = false;
+                updateUI();
             }
         });
 
         speakerSelect.addEventListener('change', () => {
+            selectedSpId = speakerSelect.value;
             updateDeviceStatus();
-            applySpeakerOutput();
-            if (isInitialized && isMicOn) {
-                // Применить новый выход на лету
+            if (isInitialized) {
                 applySpeakerOutput();
             }
         });
 
-        // AirPlay кнопка (iOS)
+        // AirPlay для iOS
         airplayBtn.addEventListener('click', () => {
-            // Создаем временный video элемент с AirPlay
             const tempVideo = document.createElement('video');
             tempVideo.setAttribute('playsinline', '');
             tempVideo.setAttribute('webkit-playsinline', '');
@@ -934,7 +969,6 @@
             tempVideo.style.display = 'none';
             document.body.appendChild(tempVideo);
             
-            // Пытаемся показать AirPlay picker
             if (tempVideo.webkitShowPlaybackTargetPicker) {
                 tempVideo.webkitShowPlaybackTargetPicker();
             }
@@ -946,7 +980,6 @@
             hintText.innerHTML = '📡 Выберите колонку в открывшемся меню AirPlay';
         });
 
-        // Обновить список устройств
         refreshBtn.addEventListener('click', async () => {
             setStatus('Обновляю список устройств...', '');
             await enumerateDevices();
@@ -962,7 +995,6 @@
             if (audioContext && audioContext.state !== 'closed') audioContext.close();
         });
 
-        // Слушаем изменения устройств
         navigator.mediaDevices?.addEventListener('devicechange', () => {
             console.log('🔄 Обнаружено изменение устройств');
             enumerateDevices();
@@ -971,21 +1003,17 @@
         document.addEventListener('dblclick', (e) => e.preventDefault(), {passive: false});
 
         // ==================== ЗАПУСК ====================
-
-        // Показываем AirPlay кнопку только на iOS
+        
         if (isIOS) {
             airplayBtn.style.display = 'block';
             hintText.innerHTML = '💡 <b>iOS:</b> выберите микрофон ниже, затем нажмите AirPlay для выбора колонки';
         }
         
-        // Сразу загружаем список устройств
         enumerateDevices().then(() => {
             console.log('✅ Начальный список устройств загружен');
         });
 
         console.log('✅ Мегафон Pro загружен');
-        console.log('   iOS:', isIOS);
-        console.log('   setSinkId:', hasSetSinkId);
     </script>
 </body>
 </html>
