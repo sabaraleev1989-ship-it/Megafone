@@ -2,149 +2,667 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Мегафон Web</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Мегафон">
+    <title>Мегафон</title>
+    
+    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D0%9C%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD%22%2C%22short_name%22%3A%22%D0%9C%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%231a1a1a%22%2C%22theme_color%22%3A%22%231a1a1a%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%253E%253Crect%20width%3D'512'%20height%3D'512'%20rx%3D'100'%20fill%3D'%23e74c3c'%2F%253E%253Cpath%20d%3D'M256%20120c-75%200-136%2061-136%20136s61%20136%20136%20136%20136-61%20136-136-61-136-136-136zm0%20240c-57%200-104-47-104-104s47-104%20104-104%20104%2047%20104%20104-47%20104-104%20104z'%20fill%3D'white'%2F%253E%253Cpath%20d%3D'M256%20160c-53%200-96%2043-96%2096s43%2096%2096%2096%2096-43%2096-96-43-96-96-96zm40%2080h-56v56h-24v-56h-56v-24h56v-56h24v56h56v24z'%20fill%3D'white'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%23e74c3c'/%3E%3Cpath d='M256 120c-75 0-136 61-136 136s61 136 136 136 136-61 136-136-61-136-136-136zm0 240c-57 0-104-47-104-104s47-104 104-104 104 47 104 104-47 104-104 104z' fill='white'/%3E%3Cpath d='M256 160c-53 0-96 43-96 96s43 96 96 96 96-43 96-96-43-96-96-96zm40 80h-56v56h-24v-56h-56v-24h56v-56h24v56h56v24z' fill='white'/%3E%3C/svg%3E">
+    
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html, body {
+            height: 100%;
+            background: #1a1a1a;
+            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+        }
+        
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background: #1a1a1a;
+            min-height: 100vh;
             color: white;
-            font-family: Arial, sans-serif;
-            touch-action: manipulation; /* Убирает двойное нажатие */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            touch-action: manipulation;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
-        .btn {
-            width: 200px;
-            height: 200px;
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            padding: 20px;
+        }
+
+        /* Заголовок */
+        .title {
+            font-size: 13px;
+            color: #888;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        /* Кнопка Говорить */
+        .talk-btn {
+            width: 170px;
+            height: 170px;
             border-radius: 50%;
-            background: #333;
+            background: #2c2c2c;
             border: 4px solid #555;
             color: white;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.15s ease;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            outline: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
             user-select: none;
         }
-        .btn:active, .btn.active {
+        
+        /* Микрофон активен */
+        .talk-btn.active {
             background: #e74c3c;
             border-color: #ff6b6b;
             transform: scale(0.95);
-            box-shadow: 0 0 30px rgba(255,0,0,0.5);
+            box-shadow: 0 0 45px rgba(231, 76, 60, 0.7);
         }
-        .status {
-            margin-top: 30px;
+        
+        /* Режим фиксации (постоянно горит) */
+        .talk-btn.locked {
+            animation: pulse 1.8s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(231, 76, 60, 0.3); }
+            50% { box-shadow: 0 0 55px rgba(231, 76, 60, 0.9); }
+        }
+
+        .btn-text {
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .lock-icon {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            font-size: 20px;
+            opacity: 0;
+            transition: 0.2s;
+            pointer-events: none;
+        }
+        .talk-btn.locked .lock-icon { opacity: 1; }
+
+        /* Переключатель режима */
+        .mode-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #2c2c2c;
+            padding: 10px 18px;
+            border-radius: 30px;
+        }
+        
+        .mode-label-text {
+            font-size: 13px;
             color: #aaa;
         }
-        .warning {
-            margin-top: 20px;
-            color: #f1c40f;
-            font-size: 14px;
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 26px;
+        }
+        
+        .switch input { opacity: 0; width: 0; height: 0; }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #444;
+            border-radius: 26px;
+            transition: 0.3s;
+        }
+        
+        .slider:before {
+            content: "";
+            position: absolute;
+            height: 20px; width: 20px;
+            left: 3px; bottom: 3px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        
+        input:checked + .slider { background-color: #e67e22; }
+        input:checked + .slider:before { transform: translateX(22px); }
+
+        .mode-indicator {
+            font-size: 12px;
+            font-weight: bold;
+            color: #e67e22;
+            min-width: 38px;
+            text-align: right;
+        }
+
+        /* Ползунок усиления */
+        .gain-section {
+            width: 100%;
+            background: #2c2c2c;
+            border-radius: 16px;
+            padding: 16px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .gain-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .gain-title {
+            font-size: 12px;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        .gain-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #f39c12;
+            font-family: 'SF Mono', 'Menlo', monospace;
+        }
+        
+        .gain-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, #27ae60, #f39c12 40%, #e74c3c);
+            outline: none;
+            cursor: pointer;
+        }
+        
+        .gain-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #f39c12;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .gain-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #555;
+        }
+
+        /* Статус */
+        .status {
+            font-size: 13px;
+            color: #777;
             text-align: center;
-            padding: 0 20px;
+            min-height: 18px;
+            transition: 0.3s;
+        }
+        .status.active { color: #2ecc71; font-weight: bold; }
+        .status.error { color: #e74c3c; }
+
+        /* Подсказка */
+        .hint {
+            font-size: 11px;
+            color: #e67e22;
+            text-align: center;
+            line-height: 1.6;
+            background: rgba(230, 126, 34, 0.1);
+            padding: 12px 16px;
+            border-radius: 10px;
+            border-left: 3px solid #e67e22;
+            width: 100%;
+        }
+
+        /* Кнопка сброса */
+        .reset-btn {
+            background: none;
+            border: 1px solid #555;
+            color: #888;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .reset-btn:active { background: #333; }
+
+        /* Уведомление установки */
+        .install-prompt {
+            position: fixed;
+            bottom: 25px;
+            left: 20px; right: 20px;
+            background: #2c3e50;
+            color: white;
+            padding: 14px 18px;
+            border-radius: 12px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            font-size: 13px;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+        .install-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 13px;
+            margin-left: auto;
+        }
+        .close-install {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 18px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <button id="talkBtn" class="btn">ГОВОРИ</button>
-    <div class="status" id="status">Нажмите кнопку и говорите</div>
-    <div class="warning">⚠️ Подключите Bluetooth-колонку ДО нажатия.<br>Держите телефон на расстоянии от колонки!</div>
+    <div class="container">
+        <div class="title">📢 МЕГАФОН</div>
+
+        <!-- Переключатель Рация / Фиксация -->
+        <div class="mode-row">
+            <span class="mode-label-text">Режим:</span>
+            <label class="switch">
+                <input type="checkbox" id="modeSwitch">
+                <span class="slider"></span>
+            </label>
+            <span class="mode-indicator" id="modeIndicator">Рация</span>
+        </div>
+
+        <!-- Главная кнопка -->
+        <button id="talkBtn" class="talk-btn" disabled>
+            <span class="btn-text">СТАРТ</span>
+            <span class="lock-icon">🔒</span>
+        </button>
+
+        <div class="status" id="status">Нажмите СТАРТ для активации</div>
+
+        <!-- Ползунок усиления -->
+        <div class="gain-section">
+            <div class="gain-header">
+                <span class="gain-title">🔊 Усиление</span>
+                <span class="gain-value" id="gainValue">2.0x</span>
+            </div>
+            <input type="range" class="gain-slider" id="gainSlider" 
+                   min="0.5" max="5.0" step="0.1" value="2.0">
+            <div class="gain-labels">
+                <span>0.5x</span>
+                <span>Уровень громкости</span>
+                <span>5.0x</span>
+            </div>
+        </div>
+
+        <div class="hint">
+            💡 <b>Вывод на колонку (iOS):</b><br>
+            Смахните вниз → AirPlay → выберите колонку
+        </div>
+        
+        <button class="reset-btn" id="resetBtn">🔄 Сбросить</button>
+    </div>
+    
+    <div class="install-prompt" id="installPrompt">
+        <button class="close-install" id="closeInstall">✕</button>
+        <span>Установить приложение</span>
+        <button class="install-btn" id="installBtn">Установить</button>
+    </div>
 
     <script>
+        // ==================== ПЛАТФОРМА ====================
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        console.log('📱 Платформа:', isIOS ? 'iOS' : 'Другая');
+
+        // ==================== SERVICE WORKER ====================
+        if ('serviceWorker' in navigator) {
+            const swCode = `
+                const CACHE_NAME = 'megafon-v8';
+                self.addEventListener('install', e => {
+                    e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(['/'])).then(() => self.skipWaiting()));
+                });
+                self.addEventListener('activate', e => {
+                    e.waitUntil(caches.keys().then(keys => Promise.all(keys.map(k => k !== CACHE_NAME ? caches.delete(k) : null))).then(() => self.clients.claim()));
+                });
+                self.addEventListener('fetch', e => {
+                    e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
+                });
+            `;
+            navigator.serviceWorker.register(
+                URL.createObjectURL(new Blob([swCode], {type: 'application/javascript'})), 
+                {scope: '/'}
+            ).then(() => console.log('✅ SW OK'));
+        }
+
+        // ==================== УСТАНОВКА PWA ====================
+        let deferredPrompt;
+        const installPrompt = document.getElementById('installPrompt');
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installPrompt.style.display = 'flex';
+        });
+        document.getElementById('installBtn').addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            deferredPrompt.prompt();
+            await deferredPrompt.userChoice;
+            deferredPrompt = null;
+            installPrompt.style.display = 'none';
+        });
+        document.getElementById('closeInstall').addEventListener('click', () => {
+            installPrompt.style.display = 'none';
+        });
+
+        // ==================== DOM ====================
+        const talkBtn = document.getElementById('talkBtn');
+        const btnText = talkBtn.querySelector('.btn-text');
+        const statusDiv = document.getElementById('status');
+        const modeSwitch = document.getElementById('modeSwitch');
+        const modeIndicator = document.getElementById('modeIndicator');
+        const gainSlider = document.getElementById('gainSlider');
+        const gainValue = document.getElementById('gainValue');
+        const resetBtn = document.getElementById('resetBtn');
+
+        // ==================== СОСТОЯНИЕ ====================
         let audioContext = null;
         let mediaStream = null;
-        let isActive = false;
-        const btn = document.getElementById('talkBtn');
-        const statusDiv = document.getElementById('status');
+        let gainNode = null;
+        let sourceNode = null;
+        let keepAliveTimer = null;
+        
+        let isLocked = false;        // Режим фиксации включен?
+        let isMicOn = false;         // Микрофон реально работает?
+        let isInitialized = false;   // getUserMedia выполнен?
 
-        // Функция старта аудио (обязательно по жесту пользователя)
-        async function startAudio() {
+        // ==================== ФУНКЦИИ ====================
+
+        function setStatus(text, cls = '') {
+            statusDiv.textContent = text;
+            statusDiv.className = 'status ' + cls;
+        }
+
+        function updateUI() {
+            // Визуал кнопки
+            talkBtn.classList.toggle('active', isMicOn);
+            talkBtn.classList.toggle('locked', isMicOn && isLocked);
+            
+            // Текст
+            if (!isInitialized) {
+                btnText.textContent = 'СТАРТ';
+            } else if (isLocked && isMicOn) {
+                btnText.textContent = 'ВЫКЛ';
+            } else if (isLocked && !isMicOn) {
+                btnText.textContent = 'ВКЛ';
+            } else if (!isLocked && isMicOn) {
+                btnText.textContent = '📢';
+            } else {
+                btnText.textContent = 'ГОВОРИ';
+            }
+            
+            // Индикатор режима
+            modeIndicator.textContent = isLocked ? 'Фикс' : 'Рация';
+        }
+
+        // ==================== KEEP-ALIVE (iOS) ====================
+        
+        function startKeepAlive() {
+            stopKeepAlive();
+            keepAliveTimer = setInterval(() => {
+                if (!isMicOn) return;
+                if (!audioContext || audioContext.state === 'closed') return;
+                
+                // Если система приостановила — восстанавливаем
+                if (audioContext.state === 'suspended') {
+                    console.warn('⚠️ AudioContext suspended системой, пробуждаю...');
+                    audioContext.resume().catch(() => {});
+                }
+                
+                // Тихий щелчок для поддержания активности
+                if (audioContext.state === 'running') {
+                    try {
+                        const osc = audioContext.createOscillator();
+                        const g = audioContext.createGain();
+                        g.gain.value = 0.001; // неслышно
+                        osc.connect(g);
+                        g.connect(audioContext.destination);
+                        osc.frequency.value = 30;
+                        osc.start();
+                        osc.stop(audioContext.currentTime + 0.03);
+                        osc.onended = () => { osc.disconnect(); g.disconnect(); };
+                    } catch(e) {}
+                }
+            }, 1500);
+        }
+
+        function stopKeepAlive() {
+            if (keepAliveTimer) {
+                clearInterval(keepAliveTimer);
+                keepAliveTimer = null;
+            }
+        }
+
+        // ==================== МИКРОФОН ВКЛ/ВЫКЛ ====================
+
+        function micOn() {
+            if (!isInitialized) return;
+            if (!audioContext || audioContext.state === 'closed') return;
+            
+            audioContext.resume().then(() => {
+                console.log('🎤 Микрофон ВКЛ');
+                isMicOn = true;
+                startKeepAlive();
+                setStatus('📢 Говорите!', 'active');
+                updateUI();
+            }).catch(err => {
+                console.error('❌ Не удалось включить:', err);
+                setStatus('❌ Ошибка', 'error');
+            });
+        }
+
+        function micOff() {
+            if (!isInitialized) return;
+            if (!audioContext || audioContext.state === 'closed') return;
+            
+            audioContext.suspend().then(() => {
+                console.log('🔇 Микрофон ВЫКЛ');
+                isMicOn = false;
+                stopKeepAlive();
+                setStatus('🔇 Микрофон заглушен', '');
+                updateUI();
+            }).catch(err => {
+                console.error('❌ Не удалось выключить:', err);
+            });
+        }
+
+        // ==================== ОБРАБОТЧИКИ КНОПКИ ====================
+
+        function pressButton() {
+            if (!isInitialized) {
+                // Первое нажатие = инициализация
+                initAudio();
+                return;
+            }
+            
+            if (isLocked) {
+                // Фиксация: переключаем
+                if (isMicOn) {
+                    micOff();
+                } else {
+                    micOn();
+                }
+            } else {
+                // Рация: включаем пока держат
+                micOn();
+            }
+        }
+
+        function releaseButton() {
+            if (!isInitialized) return;
+            if (isLocked) return; // В фиксации не выключаем
+            micOff();
+        }
+
+        // ==================== ИНИЦИАЛИЗАЦИЯ ====================
+
+        async function initAudio() {
+            if (isInitialized) return;
+            
             try {
-                // 1. Создаем аудиоконтекст
+                setStatus('Запрашиваю микрофон...', '');
+                talkBtn.disabled = true;
+                btnText.textContent = '...';
+                
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
                 
-                // 2. Получаем микрофон
                 mediaStream = await navigator.mediaDevices.getUserMedia({ 
                     audio: {
-                        echoCancellation: false, // ВАЖНО: Выключаем эхоподавление, иначе режет громкость
-                        noiseSuppression: false, // Выключаем шумодав
-                        autoGainControl: false    // Выключаем авторегулировку чувствительности
+                        echoCancellation: false,
+                        noiseSuppression: false,
+                        autoGainControl: false,
                     } 
                 });
                 
-                // 3. Создаем источник из микрофона
-                const source = audioContext.createMediaStreamSource(mediaStream);
+                sourceNode = audioContext.createMediaStreamSource(mediaStream);
+                gainNode = audioContext.createGain();
+                gainNode.gain.value = parseFloat(gainSlider.value);
                 
-                // 4. Усилитель (делаем громче)
-                const gainNode = audioContext.createGain();
-                gainNode.gain.value = 3.0; // Усиление в 3 раза (осторожно с эхом!)
-                
-                // 5. Подключаем к выходу (колонки/наушники)
-                source.connect(gainNode);
+                sourceNode.connect(gainNode);
                 gainNode.connect(audioContext.destination);
                 
-                statusDiv.textContent = "Готово! Нажмите и держите кнопку.";
-                btn.disabled = false;
+                // Сразу выключаем — ждём команды
+                await audioContext.suspend();
+                
+                isInitialized = true;
+                talkBtn.disabled = false;
+                setStatus('✅ Готово!', '');
+                updateUI();
                 
             } catch (err) {
-                console.error(err);
-                statusDiv.textContent = "Ошибка доступа к микрофону: " + err.message;
+                console.error('❌ Ошибка:', err);
+                let msg = 'Ошибка';
+                if (err.name === 'NotAllowedError') msg = '❌ Доступ к микрофону отклонен';
+                else if (err.name === 'NotFoundError') msg = '❌ Микрофон не найден';
+                else msg = '❌ ' + err.message;
+                setStatus(msg, 'error');
+                talkBtn.disabled = false;
+                btnText.textContent = 'СТАРТ';
             }
         }
 
-        // События кнопки (Touch + Mouse для телефонов)
-        function activate() {
-            if (isActive) return;
-            isActive = true;
+        // ==================== СБРОС ====================
+
+        function fullReset() {
+            stopKeepAlive();
+            isMicOn = false;
+            isLocked = false;
+            modeSwitch.checked = false;
             
-            // Возобновляем контекст (правила браузеров)
-            if (audioContext.state === 'suspended') {
-                audioContext.resume();
+            if (mediaStream) {
+                mediaStream.getTracks().forEach(t => t.stop());
+                mediaStream = null;
+            }
+            if (audioContext && audioContext.state !== 'closed') {
+                audioContext.close();
+                audioContext = null;
             }
             
-            btn.classList.add('active');
-            statusDiv.textContent = "📢 ГОВОРИТЕ! (Отпустите для тишины)";
+            sourceNode = null;
+            gainNode = null;
+            isInitialized = false;
+            talkBtn.disabled = true;
+            
+            setStatus('Нажмите СТАРТ для активации', '');
+            updateUI();
         }
 
-        function deactivate() {
-            if (!isActive) return;
-            isActive = false;
-            btn.classList.remove('active');
-            statusDiv.textContent = "🔇 Микрофон заглушен";
-            
-            // Вместо отключения микрофона мы просто "суспендим" контекст, 
-            // чтобы убить эхо, когда не говорим.
-            // Это быстрее, чем пересоздавать поток.
-            audioContext.suspend();
-        }
+        // ==================== ПРИВЯЗКА СОБЫТИЙ ====================
 
-        // Обработчики
-        btn.addEventListener('mousedown', activate);
-        btn.addEventListener('touchstart', activate, {passive: false});
-        
-        btn.addEventListener('mouseup', deactivate);
-        btn.addEventListener('touchend', deactivate);
-        btn.addEventListener('mouseleave', deactivate); // если палец соскользнул
-        btn.addEventListener('touchcancel', deactivate);
-
-        // Первый клик для запроса разрешения
-        window.addEventListener('load', () => {
-            btn.disabled = true;
-            btn.textContent = "СТАРТ";
-            statusDiv.textContent = "Нажмите 1 раз для включения микрофона";
-            
-            btn.addEventListener('click', function init() {
-                startAudio();
-                btn.textContent = "ГОВОРИ";
-            }, { once: true }); // Только первый клик
+        talkBtn.addEventListener('pointerdown', (e) => {
+            e.preventDefault();
+            talkBtn.setPointerCapture(e.pointerId);
+            pressButton();
         });
+
+        talkBtn.addEventListener('pointerup', (e) => {
+            e.preventDefault();
+            releaseButton();
+        });
+
+        talkBtn.addEventListener('pointerleave', () => releaseButton());
+        talkBtn.addEventListener('pointercancel', () => releaseButton());
+        talkBtn.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Переключатель режима
+        modeSwitch.addEventListener('change', () => {
+            isLocked = modeSwitch.checked;
+            // При переключении всегда выключаем микрофон
+            if (isMicOn) micOff();
+            setStatus(isLocked ? '🔒 Фиксация: нажмите ВКЛ' : '📻 Рация: держите кнопку', '');
+            updateUI();
+        });
+
+        // Усиление
+        gainSlider.addEventListener('input', () => {
+            const v = parseFloat(gainSlider.value);
+            gainValue.textContent = v.toFixed(1) + 'x';
+            if (gainNode) gainNode.gain.value = v;
+            
+            if (v > 3.5) gainValue.style.color = '#e74c3c';
+            else if (v > 2.0) gainValue.style.color = '#f39c12';
+            else gainValue.style.color = '#2ecc71';
+        });
+
+        // Сброс
+        resetBtn.addEventListener('click', fullReset);
+
+        // Очистка при закрытии
+        window.addEventListener('beforeunload', () => {
+            stopKeepAlive();
+            if (mediaStream) mediaStream.getTracks().forEach(t => t.stop());
+            if (audioContext && audioContext.state !== 'closed') audioContext.close();
+        });
+
+        document.addEventListener('dblclick', (e) => e.preventDefault(), {passive: false});
+
+        console.log('✅ Мегафон загружен. Режим:', isLocked ? 'Фиксация' : 'Рация');
     </script>
 </body>
 </html>
