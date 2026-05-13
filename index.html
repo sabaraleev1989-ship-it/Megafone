@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Мегафон">
+    <title>Мегафон PWA</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D0%9C%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD%22%2C%22short_name%22%3A%22%D0%9C%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD%22%2C%22description%22%3A%22%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BC%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD%20%D1%87%D0%B5%D1%80%D0%B5%D0%B7%20%D0%BA%D0%BE%D0%BB%D0%BE%D0%BD%D0%BA%D1%83%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22portrait%22%2C%22background_color%22%3A%22%231a1a1a%22%2C%22theme_color%22%3A%22%231a1a1a%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%253E%253Crect%20width%3D'512'%20height%3D'512'%20rx%3D'100'%20fill%3D'%23e74c3c'%2F%253E%253Cpath%20d%3D'M256%20120c-75%200-136%2061-136%20136s61%20136%20136%20136%20136-61%20136-136-61-136-136-136zm0%20240c-57%200-104-47-104-104s47-104%20104-104%20104%2047%20104%20104-47%20104-104%20104z'%20fill%3D'white'%2F%253E%253Cpath%20d%3D'M256%20160c-53%200-96%2043-96%2096s43%2096%2096%2096%2096-43%2096-96-43-96-96-96zm40%2080h-56v56h-24v-56h-56v-24h56v-56h24v56h56v24z'%20fill%3D'white'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+    
+    <!-- iOS мета-теги -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%23e74c3c'/%3E%3Cpath d='M256 120c-75 0-136 61-136 136s61 136 136 136 136-61 136-136-61-136-136-136zm0 240c-57 0-104-47-104-104s47-104 104-104 104 47 104 104-47 104-104 104z' fill='white'/%3E%3Cpath d='M256 160c-53 0-96 43-96 96s43 96 96 96 96-43 96-96-43-96-96-96zm40 80h-56v56h-24v-56h-56v-24h56v-56h24v56h56v24z' fill='white'/%3E%3C/svg%3E">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            background: #1a1a1a;
+            /* Безопасная зона для iPhone с челкой */
+            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            touch-action: manipulation;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Кнопка Говорить */
+        .talk-btn {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: #2c2c2c;
+            border: 4px solid #555;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.15s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            position: relative;
+            outline: none;
+            -webkit-touch-callout: none;
+        }
+        
+        .talk-btn:active, .talk-btn.active {
+            background: #e74c3c;
+            border-color: #ff6b6b;
+            transform: scale(0.94);
+            box-shadow: 0 0 40px rgba(231, 76, 60, 0.6);
+        }
+        
+        .talk-btn.locked {
+            background: #c0392b;
+            border-color: #e74c3c;
+            animation: pulse 2s infinite;
+        }
+        
+        .talk-btn.locked:active {
+            transform: scale(0.97);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(231, 76, 60, 0.4); }
+            50% { box-shadow: 0 0 50px rgba(231, 76, 60, 0.8); }
+        }
+
+        .lock-icon {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            font-size: 22px;
+            opacity: 0;
+            transition: 0.2s;
+        }
+        
+        .talk-btn.locked .lock-icon {
+            opacity: 1;
+        }
+
+        /* Индикатор офлайн */
+        .offline-badge {
+            font-size: 11px;
+            background: #27ae60;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            opacity: 0.9;
+            transition: 0.3s;
+        }
+        
+        .offline-badge.hidden {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        /* Переключатель режима */
+        .mode-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .mode-label {
+            font-size: 12px;
+            color: #888;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 32px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #444;
+            border-radius: 32px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 11px;
+            color: #aaa;
+            justify-content: space-between;
+            font-weight: bold;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        .slider:before {
+            content: "";
+            position: absolute;
+            height: 26px;
+            width: 26px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.3s;
+            z-index: 2;
+        }
+        
+        input:checked + .slider {
+            background-color: #e67e22;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(28px);
+        }
+        
+        .mode-text-ra, .mode-text-fix {
+            z-index: 1;
+            transition: 0.3s;
+        }
+
+        /* Ползунок усиления */
+        .gain-section {
+            width: 100%;
+            background: #2c2c2c;
+            border-radius: 16px;
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .gain-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .gain-title {
+            font-size: 13px;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        .gain-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #f39c12;
+            min-width: 45px;
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+            font-family: 'SF Mono', 'Menlo', monospace;
+        }
+        
+        .gain-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, #27ae60, #f39c12 40%, #e74c3c);
+            outline: none;
+            cursor: pointer;
+        }
+        
+        .gain-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #f39c12;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            transition: 0.1s;
+        }
+        
+        .gain-slider::-webkit-slider-thumb:active {
+            transform: scale(1.1);
+            border-color: #e74c3c;
+        }
+
+        .gain-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #555;
+        }
+
+        .status {
+            font-size: 13px;
+            color: #777;
+            text-align: center;
+            min-height: 18px;
+            transition: 0.3s;
+            padding: 0 10px;
+        }
+        
+        .status.active-status {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+        
+        .status.error-status {
+            color: #e74c3c;
+        }
+
+        .warning {
+            font-size: 11px;
+            color: #e67e22;
+            text-align: center;
+            line-height: 1.7;
+            background: rgba(230, 126, 34, 0.1);
+            padding: 12px 16px;
+            border-radius: 10px;
+            border-left: 3px solid #e67e22;
+            width: 100%;
+        }
+
+        /* Уведомление об установке */
+        .install-prompt {
+            position: fixed;
+            bottom: 30px;
+            left: 20px;
+            right: 20px;
+            background: #2c3e50;
+            color: white;
+            padding: 16px 20px;
+            border-radius: 14px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            z-index: 1000;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            font-size: 14px;
+            animation: slideUp 0.3s ease;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .install-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 14px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .install-btn:active {
+            background: #2980b9;
+        }
+        
+        .close-install {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0 4px;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Индикатор офлайн-режима -->
+        <div class="offline-badge hidden" id="offlineBadge">📡 Офлайн</div>
+        
+        <!-- Переключатель режима -->
+        <div class="mode-section">
+            <span class="mode-label">Режим</span>
+            <label class="switch">
+                <input type="checkbox" id="modeSwitch">
+                <span class="slider">
+                    <span class="mode-text-ra">РАЦИЯ</span>
+                    <span class="mode-text-fix">ФИКС</span>
+                </span>
+            </label>
+        </div>
+
+        <!-- Кнопка Говорить -->
+        <button id="talkBtn" class="talk-btn" disabled>
+            СТАРТ
+            <span class="lock-icon">🔒</span>
+        </button>
+
+        <div class="status" id="status">Нажмите СТАРТ для активации</div>
+
+        <!-- Ползунок усиления -->
+        <div class="gain-section">
+            <div class="gain-header">
+                <span class="gain-title">🔊 Усиление</span>
+                <span class="gain-value" id="gainValue">2.0x</span>
+            </div>
+            <input type="range" class="gain-slider" id="gainSlider" 
+                   min="0.5" max="5.0" step="0.1" value="2.0">
+            <div class="gain-labels">
+                <span>0.5x</span>
+                <span>Уровень громкости</span>
+                <span>5.0x</span>
+            </div>
+        </div>
+
+        <div class="warning">
+            ⚠️ Подключите Bluetooth-колонку до старта<br>
+            Держите телефон на расстоянии от колонки
+        </div>
+    </div>
+    
+    <!-- Предложение установки -->
+    <div class="install-prompt" id="installPrompt">
+        <button class="close-install" id="closeInstall">✕</button>
+        <span>Установить приложение</span>
+        <button class="install-btn" id="installBtn">Установить</button>
+    </div>
+
+    <!-- Service Worker регистрация -->
+    <script>
+        // ==================== SERVICE WORKER ====================
+        if ('serviceWorker' in navigator) {
+            // Создаем Service Worker из Blob (не нужен отдельный файл)
+            const swCode = `
+                const CACHE_NAME = 'megafon-pwa-v3';
+                const urlsToCache = ['/'];
+
+                self.addEventListener('install', (event) => {
+                    event.waitUntil(
+                        caches.open(CACHE_NAME)
+                            .then((cache) => cache.addAll(urlsToCache))
+                            .then(() => self.skipWaiting())
+                    );
+                });
+
+                self.addEventListener('activate', (event) => {
+                    event.waitUntil(
+                        caches.keys().then((cacheNames) => {
+                            return Promise.all(
+                                cacheNames.map((cacheName) => {
+                                    if (cacheName !== CACHE_NAME) {
+                                        return caches.delete(cacheName);
+                                    }
+                                })
+                            );
+                        }).then(() => self.clients.claim())
+                    );
+                });
+
+                self.addEventListener('fetch', (event) => {
+                    event.respondWith(
+                        caches.match(event.request)
+                            .then((response) => {
+                                // Возвращаем из кэша или пробуем сеть
+                                return response || fetch(event.request).then((fetchResponse) => {
+                                    // Кэшируем успешные GET-запросы
+                                    if (event.request.method === 'GET' && fetchResponse.status === 200) {
+                                        const responseClone = fetchResponse.clone();
+                                        caches.open(CACHE_NAME).then((cache) => {
+                                            cache.put(event.request, responseClone);
+                                        });
+                                    }
+                                    return fetchResponse;
+                                });
+                            })
+                            .catch(() => {
+                                // Если нет сети и нет в кэше — отдаем офлайн-страницу
+                                // (для нашего SPA это не критично, так как весь код уже загружен)
+                                return new Response('Offline', {status: 503});
+                            })
+                    );
+                });
+            `;
+
+            const blob = new Blob([swCode], { type: 'application/javascript' });
+            const swUrl = URL.createObjectURL(blob);
+            
+            navigator.serviceWorker.register(swUrl, { scope: '/' })
+                .then((registration) => {
+                    console.log('✅ Service Worker зарегистрирован');
+                    
+                    // Слушаем обновления
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                // Есть новая версия — предлагаем обновиться
+                                console.log('🔄 Доступна новая версия');
+                            }
+                        });
+                    });
+                })
+                .catch((err) => {
+                    console.warn('⚠️ Service Worker не зарегистрирован:', err);
+                });
+        }
+
+        // ==================== ОФЛАЙН-ИНДИКАТОР ====================
+        const offlineBadge = document.getElementById('offlineBadge');
+        
+        function updateOnlineStatus() {
+            if (navigator.onLine) {
+                offlineBadge.classList.add('hidden');
+            } else {
+                offlineBadge.classList.remove('hidden');
+            }
+        }
+        
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        updateOnlineStatus();
+
+        // ==================== УСТАНОВКА PWA ====================
+        let deferredPrompt = null;
+        const installPrompt = document.getElementById('installPrompt');
+        const installBtn = document.getElementById('installBtn');
+        const closeInstall = document.getElementById('closeInstall');
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Предотвращаем автоматическое появление мини-баннера
+            e.preventDefault();
+            // Сохраняем событие
+            deferredPrompt = e;
+            // Показываем наше красивое предложение
+            installPrompt.style.display = 'flex';
+        });
+        
+        installBtn.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            
+            console.log(`Пользователь ${outcome === 'accepted' ? 'установил' : 'отклонил'} PWA`);
+            deferredPrompt = null;
+            installPrompt.style.display = 'none';
+        });
+        
+        closeInstall.addEventListener('click', () => {
+            installPrompt.style.display = 'none';
+        });
+        
+        // Скрываем предложение если уже установлено (в standalone режиме)
+        if (window.matchMedia('(display-mode: standalone)').matches || 
+            navigator.standalone) {
+            installPrompt.style.display = 'none';
+        }
+        
+        window.addEventListener('appinstalled', () => {
+            installPrompt.style.display = 'none';
+            deferredPrompt = null;
+            console.log('✅ PWA установлено!');
+        });
+
+        // ==================== ОСНОВНАЯ ЛОГИКА ПРИЛОЖЕНИЯ ====================
+        const talkBtn = document.getElementById('talkBtn');
+        const statusDiv = document.getElementById('status');
+        const modeSwitch = document.getElementById('modeSwitch');
+        const gainSlider = document.getElementById('gainSlider');
+        const gainValue = document.getElementById('gainValue');
+
+        let audioContext = null;
+        let mediaStream = null;
+        let gainNode = null;
+        let sourceNode = null;
+        
+        let isLocked = false;
+        let isPTTActive = false;
+        let isInitialized = false;
+
+        function updateStatus(text, type = '') {
+            statusDiv.textContent = text;
+            statusDiv.className = 'status';
+            if (type) statusDiv.classList.add(type + '-status');
+        }
+
+        function updateButtonVisual() {
+            const isActiveNow = isPTTActive || isLocked;
+            
+            talkBtn.classList.toggle('active', isActiveNow);
+            talkBtn.classList.toggle('locked', isActiveNow && isLocked);
+            
+            if (!isInitialized) {
+                talkBtn.textContent = 'СТАРТ';
+            } else if (isLocked) {
+                talkBtn.innerHTML = 'ВЫКЛ<span class="lock-icon">🔒</span>';
+            } else if (isPTTActive) {
+                talkBtn.textContent = '📢';
+            } else {
+                talkBtn.textContent = 'ГОВОРИ';
+            }
+        }
+
+        function startBroadcast() {
+            if (!audioContext || audioContext.state === 'closed') return;
+            
+            if (audioContext.state === 'suspended') {
+                audioContext.resume().then(() => {
+                    updateStatus('📢 Микрофон активен', 'active');
+                });
+            }
+            
+            updateStatus('📢 Говорите!', 'active');
+            updateButtonVisual();
+        }
+
+        function stopBroadcast() {
+            if (!audioContext || audioContext.state === 'closed') return;
+            
+            audioContext.suspend().then(() => {
+                updateStatus('🔇 Микрофон заглушен', '');
+            });
+            
+            updateButtonVisual();
+        }
+
+        function activateMic() {
+            if (!isInitialized) return;
+            
+            if (isLocked) {
+                if (audioContext.state === 'running') {
+                    stopBroadcast();
+                } else {
+                    startBroadcast();
+                }
+            } else {
+                isPTTActive = true;
+                startBroadcast();
+            }
+        }
+
+        function deactivateMic() {
+            if (!isInitialized) return;
+            
+            if (isLocked) return;
+            
+            isPTTActive = false;
+            stopBroadcast();
+        }
+
+        async function initAudio() {
+            if (isInitialized) return;
+            
+            try {
+                updateStatus('Запрашиваю микрофон...', '');
+                
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                mediaStream = await navigator.mediaDevices.getUserMedia({ 
+                    audio: {
+                        echoCancellation: false,
+                        noiseSuppression: false,
+                        autoGainControl: false,
+                    } 
+                });
+                
+                sourceNode = audioContext.createMediaStreamSource(mediaStream);
+                
+                gainNode = audioContext.createGain();
+                gainNode.gain.value = parseFloat(gainSlider.value);
+                
+                sourceNode.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                await audioContext.suspend();
+                
+                isInitialized = true;
+                talkBtn.disabled = false;
+                updateStatus('✅ Готово! Выберите режим', '');
+                updateButtonVisual();
+                
+            } catch (err) {
+                console.error(err);
+                let msg = 'Ошибка';
+                if (err.name === 'NotAllowedError') {
+                    msg = '❌ Доступ к микрофону отклонен';
+                } else if (err.name === 'NotFoundError') {
+                    msg = '❌ Микрофон не найден';
+                } else {
+                    msg = '❌ ' + err.message;
+                }
+                updateStatus(msg, 'error');
+            }
+        }
+
+        // Обработчики кнопки
+        talkBtn.addEventListener('pointerdown', (e) => {
+            e.preventDefault();
+            talkBtn.setPointerCapture(e.pointerId);
+            
+            if (!isInitialized) {
+                initAudio();
+                return;
+            }
+            activateMic();
+        });
+        
+        talkBtn.addEventListener('pointerup', (e) => {
+            e.preventDefault();
+            deactivateMic();
+        });
+        
+        talkBtn.addEventListener('pointerleave', () => {
+            deactivateMic();
+        });
+        
+        talkBtn.addEventListener('pointercancel', () => {
+            deactivateMic();
+        });
+
+        // Предотвращаем контекстное меню на долгом нажатии
+        talkBtn.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Переключатель режима
+        modeSwitch.addEventListener('change', () => {
+            isLocked = modeSwitch.checked;
+            
+            if (audioContext && audioContext.state === 'running') {
+                audioContext.suspend();
+                isPTTActive = false;
+            }
+            
+            if (isLocked) {
+                updateStatus('🔒 Режим фиксации: нажмите для вкл/выкл', '');
+            } else {
+                updateStatus('📻 Режим рации: держите кнопку', '');
+                isPTTActive = false;
+            }
+            
+            updateButtonVisual();
+        });
+
+        // Ползунок усиления
+        gainSlider.addEventListener('input', () => {
+            const value = parseFloat(gainSlider.value);
+            gainValue.textContent = value.toFixed(1) + 'x';
+            
+            if (gainNode) {
+                gainNode.gain.value = value;
+            }
+            
+            if (value > 3.5) {
+                gainValue.style.color = '#e74c3c';
+            } else if (value > 2.0) {
+                gainValue.style.color = '#f39c12';
+            } else {
+                gainValue.style.color = '#2ecc71';
+            }
+        });
+
+        // Очистка при уходе
+        window.addEventListener('beforeunload', () => {
+            if (mediaStream) {
+                mediaStream.getTracks().forEach(track => track.stop());
+            }
+            if (audioContext) {
+                audioContext.close();
+            }
+        });
+
+        // Предотвращение масштабирования двойным тапом
+        document.addEventListener('dblclick', (e) => {
+            e.preventDefault();
+        }, {passive: false});
+        
+        // Блокировка pull-to-refresh на мобильных
+        document.addEventListener('touchmove', function(e) {
+            if (e.target.closest('.gain-slider')) return; // Разрешаем скролл ползунка
+        }, {passive: false});
+    </script>
+</body>
+</html>
