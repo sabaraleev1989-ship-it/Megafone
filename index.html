@@ -9,24 +9,17 @@
     <meta name="apple-mobile-web-app-title" content="Мегафон">
     <title>Мегафон PWA</title>
     
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D0%9C%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD%22%2C%22short_name%22%3A%22%D0%9C%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD%22%2C%22description%22%3A%22%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BC%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD%20%D1%87%D0%B5%D1%80%D0%B5%D0%B7%20%D0%BA%D0%BE%D0%BB%D0%BE%D0%BD%D0%BA%D1%83%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22portrait%22%2C%22background_color%22%3A%22%231a1a1a%22%2C%22theme_color%22%3A%22%231a1a1a%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%253E%253Crect%20width%3D'512'%20height%3D'512'%20rx%3D'100'%20fill%3D'%23e74c3c'%2F%253E%253Cpath%20d%3D'M256%20120c-75%200-136%2061-136%20136s61%20136%20136%20136%20136-61%20136-136-61-136-136-136zm0%20240c-57%200-104-47-104-104s47-104%20104-104%20104%2047%20104%20104-47%20104-104%20104z'%20fill%3D'white'%2F%253E%253Cpath%20d%3D'M256%20160c-53%200-96%2043-96%2096s43%2096%2096%2096%2096-43%2096-96-43-96-96-96zm40%2080h-56v56h-24v-56h-56v-24h56v-56h24v56h56v24z'%20fill%3D'white'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
-    
-    <!-- iOS мета-теги -->
+    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D0%9C%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD%22%2C%22short_name%22%3A%22%D0%9C%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%231a1a1a%22%2C%22theme_color%22%3A%22%231a1a1a%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%253E%253Crect%20width%3D'512'%20height%3D'512'%20rx%3D'100'%20fill%3D'%23e74c3c'%2F%253E%253Cpath%20d%3D'M256%20120c-75%200-136%2061-136%20136s61%20136%20136%20136%20136-61%20136-136-61-136-136-136zm0%20240c-57%200-104-47-104-104s47-104%20104-104%20104%2047%20104%20104-47%20104-104%20104z'%20fill%3D'white'%2F%253E%253Cpath%20d%3D'M256%20160c-53%200-96%2043-96%2096s43%2096%2096%2096%2096-43%2096-96-43-96-96-96zm40%2080h-56v56h-24v-56h-56v-24h56v-56h24v56h56v24z'%20fill%3D'white'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%23e74c3c'/%3E%3Cpath d='M256 120c-75 0-136 61-136 136s61 136 136 136 136-61 136-136-61-136-136-136zm0 240c-57 0-104-47-104-104s47-104 104-104 104 47 104 104-47 104-104 104z' fill='white'/%3E%3Cpath d='M256 160c-53 0-96 43-96 96s43 96 96 96 96-43 96-96-43-96-96-96zm40 80h-56v56h-24v-56h-56v-24h56v-56h24v56h56v24z' fill='white'/%3E%3C/svg%3E">
     
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         
         html, body {
             height: 100%;
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
             background: #1a1a1a;
-            /* Безопасная зона для iPhone с челкой */
             padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
         }
         
@@ -35,6 +28,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
             color: white;
             font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
             touch-action: manipulation;
@@ -49,19 +43,19 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 16px;
             padding: 20px;
         }
 
         /* Кнопка Говорить */
         .talk-btn {
-            width: 180px;
-            height: 180px;
+            width: 170px;
+            height: 170px;
             border-radius: 50%;
             background: #2c2c2c;
             border: 4px solid #555;
             color: white;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             transition: 0.15s ease;
@@ -89,10 +83,6 @@
             animation: pulse 2s infinite;
         }
         
-        .talk-btn.locked:active {
-            transform: scale(0.97);
-        }
-        
         @keyframes pulse {
             0%, 100% { box-shadow: 0 0 20px rgba(231, 76, 60, 0.4); }
             50% { box-shadow: 0 0 50px rgba(231, 76, 60, 0.8); }
@@ -100,43 +90,37 @@
 
         .lock-icon {
             position: absolute;
-            top: 12px;
-            right: 18px;
-            font-size: 22px;
+            top: 10px;
+            right: 16px;
+            font-size: 20px;
             opacity: 0;
             transition: 0.2s;
         }
         
-        .talk-btn.locked .lock-icon {
-            opacity: 1;
-        }
+        .talk-btn.locked .lock-icon { opacity: 1; }
 
-        /* Индикатор офлайн */
+        /* Офлайн бейдж */
         .offline-badge {
-            font-size: 11px;
+            font-size: 10px;
             background: #27ae60;
             color: white;
-            padding: 4px 10px;
-            border-radius: 12px;
+            padding: 3px 8px;
+            border-radius: 10px;
             opacity: 0.9;
             transition: 0.3s;
         }
-        
-        .offline-badge.hidden {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
+        .offline-badge.hidden { opacity: 0; transform: translateY(-10px); }
 
         /* Переключатель режима */
         .mode-section {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
         }
         
         .mode-label {
-            font-size: 12px;
+            font-size: 10px;
             color: #888;
             letter-spacing: 1.5px;
             text-transform: uppercase;
@@ -145,69 +129,136 @@
         .switch {
             position: relative;
             display: inline-block;
-            width: 60px;
-            height: 32px;
+            width: 56px;
+            height: 28px;
         }
         
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
+        .switch input { opacity: 0; width: 0; height: 0; }
         
         .slider {
             position: absolute;
             cursor: pointer;
             top: 0; left: 0; right: 0; bottom: 0;
             background-color: #444;
-            border-radius: 32px;
+            border-radius: 28px;
             transition: 0.3s;
             display: flex;
             align-items: center;
-            padding: 0 10px;
-            font-size: 11px;
-            color: #aaa;
             justify-content: space-between;
+            padding: 0 8px;
+            font-size: 10px;
+            color: #aaa;
             font-weight: bold;
-            -webkit-user-select: none;
-            user-select: none;
         }
         
         .slider:before {
             content: "";
             position: absolute;
-            height: 26px;
-            width: 26px;
-            left: 3px;
-            bottom: 3px;
+            height: 22px; width: 22px;
+            left: 3px; bottom: 3px;
             background-color: white;
             border-radius: 50%;
             transition: 0.3s;
             z-index: 2;
         }
         
-        input:checked + .slider {
-            background-color: #e67e22;
+        input:checked + .slider { background-color: #e67e22; }
+        input:checked + .slider:before { transform: translateX(28px); }
+
+        /* Выбор аудиовыхода */
+        .audio-section {
+            width: 100%;
+            background: #2c2c2c;
+            border-radius: 14px;
+            padding: 14px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
         
-        input:checked + .slider:before {
-            transform: translateX(28px);
+        .audio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        .mode-text-ra, .mode-text-fix {
-            z-index: 1;
-            transition: 0.3s;
+        .audio-title {
+            font-size: 12px;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        .audio-device-name {
+            font-size: 11px;
+            color: #666;
+            max-width: 180px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .audio-select {
+            width: 100%;
+            padding: 10px 12px;
+            background: #1a1a1a;
+            color: white;
+            border: 1px solid #444;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%23888'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+        }
+        
+        .audio-select option {
+            background: #1a1a1a;
+            color: white;
+        }
+        
+        .audio-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .audio-btn {
+            flex: 1;
+            padding: 10px 8px;
+            background: #1a1a1a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: #aaa;
+            font-size: 11px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+            white-space: nowrap;
+        }
+        
+        .audio-btn.active {
+            background: #2c3e50;
+            border-color: #3498db;
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .audio-btn:active {
+            background: #34495e;
         }
 
         /* Ползунок усиления */
         .gain-section {
             width: 100%;
             background: #2c2c2c;
-            border-radius: 16px;
-            padding: 18px 20px;
+            border-radius: 14px;
+            padding: 14px 18px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
         
         .gain-header {
@@ -217,27 +268,26 @@
         }
         
         .gain-title {
-            font-size: 13px;
+            font-size: 12px;
             color: #aaa;
             text-transform: uppercase;
             letter-spacing: 1.5px;
         }
         
         .gain-value {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             color: #f39c12;
-            min-width: 45px;
+            min-width: 40px;
             text-align: right;
-            font-variant-numeric: tabular-nums;
             font-family: 'SF Mono', 'Menlo', monospace;
         }
         
         .gain-slider {
             -webkit-appearance: none;
             width: 100%;
-            height: 8px;
-            border-radius: 4px;
+            height: 6px;
+            border-radius: 3px;
             background: linear-gradient(to right, #27ae60, #f39c12 40%, #e74c3c);
             outline: none;
             cursor: pointer;
@@ -245,78 +295,63 @@
         
         .gain-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 32px;
-            height: 32px;
+            width: 28px; height: 28px;
             border-radius: 50%;
             background: white;
             border: 3px solid #f39c12;
             cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            transition: 0.1s;
-        }
-        
-        .gain-slider::-webkit-slider-thumb:active {
-            transform: scale(1.1);
-            border-color: #e74c3c;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
 
         .gain-labels {
             display: flex;
             justify-content: space-between;
-            font-size: 10px;
+            font-size: 9px;
             color: #555;
         }
 
         .status {
-            font-size: 13px;
+            font-size: 12px;
             color: #777;
             text-align: center;
-            min-height: 18px;
+            min-height: 16px;
             transition: 0.3s;
             padding: 0 10px;
         }
         
-        .status.active-status {
-            color: #2ecc71;
-            font-weight: bold;
-        }
-        
-        .status.error-status {
-            color: #e74c3c;
-        }
+        .status.active-status { color: #2ecc71; font-weight: bold; }
+        .status.error-status { color: #e74c3c; }
 
         .warning {
-            font-size: 11px;
+            font-size: 10px;
             color: #e67e22;
             text-align: center;
-            line-height: 1.7;
+            line-height: 1.6;
             background: rgba(230, 126, 34, 0.1);
-            padding: 12px 16px;
-            border-radius: 10px;
+            padding: 10px 14px;
+            border-radius: 8px;
             border-left: 3px solid #e67e22;
             width: 100%;
         }
 
-        /* Уведомление об установке */
         .install-prompt {
             position: fixed;
             bottom: 30px;
-            left: 20px;
-            right: 20px;
+            left: 20px; right: 20px;
             background: #2c3e50;
             color: white;
-            padding: 16px 20px;
-            border-radius: 14px;
+            padding: 14px 18px;
+            border-radius: 12px;
             display: none;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
+            gap: 10px;
             z-index: 1000;
             box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-            font-size: 14px;
-            animation: slideUp 0.3s ease;
-            max-width: 400px;
+            font-size: 13px;
+            max-width: 380px;
             margin: 0 auto;
+            animation: slideUp 0.3s ease;
         }
         
         @keyframes slideUp {
@@ -328,48 +363,36 @@
             background: #3498db;
             color: white;
             border: none;
-            padding: 10px 18px;
-            border-radius: 8px;
+            padding: 8px 16px;
+            border-radius: 6px;
             font-weight: bold;
             white-space: nowrap;
             cursor: pointer;
-            font-size: 14px;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        .install-btn:active {
-            background: #2980b9;
+            font-size: 13px;
         }
         
         .close-install {
             background: none;
             border: none;
             color: #aaa;
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
             padding: 0 4px;
-            line-height: 1;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Индикатор офлайн-режима -->
         <div class="offline-badge hidden" id="offlineBadge">📡 Офлайн</div>
         
-        <!-- Переключатель режима -->
         <div class="mode-section">
             <span class="mode-label">Режим</span>
             <label class="switch">
                 <input type="checkbox" id="modeSwitch">
-                <span class="slider">
-                    <span class="mode-text-ra">РАЦИЯ</span>
-                    <span class="mode-text-fix">ФИКС</span>
-                </span>
+                <span class="slider">РАЦИЯ<span style="z-index:1">ФИКС</span></span>
             </label>
         </div>
 
-        <!-- Кнопка Говорить -->
         <button id="talkBtn" class="talk-btn" disabled>
             СТАРТ
             <span class="lock-icon">🔒</span>
@@ -377,7 +400,21 @@
 
         <div class="status" id="status">Нажмите СТАРТ для активации</div>
 
-        <!-- Ползунок усиления -->
+        <!-- ВЫБОР АУДИОВЫХОДА -->
+        <div class="audio-section">
+            <div class="audio-header">
+                <span class="audio-title">🔈 Вывод звука</span>
+                <span class="audio-device-name" id="audioDeviceName">Авто</span>
+            </div>
+            <select class="audio-select" id="audioOutput"></select>
+            <div class="audio-buttons">
+                <button class="audio-btn active" data-mode="auto">🔄 Авто</button>
+                <button class="audio-btn" data-mode="speaker">📢 Колонка</button>
+                <button class="audio-btn" data-mode="headphones">🎧 Наушники</button>
+            </div>
+        </div>
+
+        <!-- УСИЛЕНИЕ -->
         <div class="gain-section">
             <div class="gain-header">
                 <span class="gain-title">🔊 Усиление</span>
@@ -387,175 +424,217 @@
                    min="0.5" max="5.0" step="0.1" value="2.0">
             <div class="gain-labels">
                 <span>0.5x</span>
-                <span>Уровень громкости</span>
+                <span>Уровень</span>
                 <span>5.0x</span>
             </div>
         </div>
 
         <div class="warning">
-            ⚠️ Подключите Bluetooth-колонку до старта<br>
-            Держите телефон на расстоянии от колонки
+            💡 Говорите в микрофон телефона<br>
+            Выберите "Колонка" для вывода на Bluetooth
         </div>
     </div>
     
-    <!-- Предложение установки -->
     <div class="install-prompt" id="installPrompt">
         <button class="close-install" id="closeInstall">✕</button>
         <span>Установить приложение</span>
         <button class="install-btn" id="installBtn">Установить</button>
     </div>
 
-    <!-- Service Worker регистрация -->
     <script>
         // ==================== SERVICE WORKER ====================
         if ('serviceWorker' in navigator) {
-            // Создаем Service Worker из Blob (не нужен отдельный файл)
             const swCode = `
-                const CACHE_NAME = 'megafon-pwa-v3';
-                const urlsToCache = ['/'];
-
+                const CACHE_NAME = 'megafon-pwa-v4';
                 self.addEventListener('install', (event) => {
-                    event.waitUntil(
-                        caches.open(CACHE_NAME)
-                            .then((cache) => cache.addAll(urlsToCache))
-                            .then(() => self.skipWaiting())
-                    );
+                    event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(['/'])).then(() => self.skipWaiting()));
                 });
-
                 self.addEventListener('activate', (event) => {
-                    event.waitUntil(
-                        caches.keys().then((cacheNames) => {
-                            return Promise.all(
-                                cacheNames.map((cacheName) => {
-                                    if (cacheName !== CACHE_NAME) {
-                                        return caches.delete(cacheName);
-                                    }
-                                })
-                            );
-                        }).then(() => self.clients.claim())
-                    );
+                    event.waitUntil(caches.keys().then((keys) => Promise.all(keys.map((key) => key !== CACHE_NAME ? caches.delete(key) : null))).then(() => self.clients.claim()));
                 });
-
                 self.addEventListener('fetch', (event) => {
-                    event.respondWith(
-                        caches.match(event.request)
-                            .then((response) => {
-                                // Возвращаем из кэша или пробуем сеть
-                                return response || fetch(event.request).then((fetchResponse) => {
-                                    // Кэшируем успешные GET-запросы
-                                    if (event.request.method === 'GET' && fetchResponse.status === 200) {
-                                        const responseClone = fetchResponse.clone();
-                                        caches.open(CACHE_NAME).then((cache) => {
-                                            cache.put(event.request, responseClone);
-                                        });
-                                    }
-                                    return fetchResponse;
-                                });
-                            })
-                            .catch(() => {
-                                // Если нет сети и нет в кэше — отдаем офлайн-страницу
-                                // (для нашего SPA это не критично, так как весь код уже загружен)
-                                return new Response('Offline', {status: 503});
-                            })
-                    );
+                    event.respondWith(caches.match(event.request).then((resp) => resp || fetch(event.request).then((fetchResp) => {
+                        if (event.request.method === 'GET' && fetchResp.status === 200) {
+                            const clone = fetchResp.clone();
+                            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+                        }
+                        return fetchResp;
+                    })).catch(() => new Response('Offline', {status: 503})));
                 });
             `;
-
-            const blob = new Blob([swCode], { type: 'application/javascript' });
-            const swUrl = URL.createObjectURL(blob);
-            
-            navigator.serviceWorker.register(swUrl, { scope: '/' })
-                .then((registration) => {
-                    console.log('✅ Service Worker зарегистрирован');
-                    
-                    // Слушаем обновления
-                    registration.addEventListener('updatefound', () => {
-                        const newWorker = registration.installing;
-                        newWorker.addEventListener('statechange', () => {
-                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                // Есть новая версия — предлагаем обновиться
-                                console.log('🔄 Доступна новая версия');
-                            }
-                        });
-                    });
-                })
-                .catch((err) => {
-                    console.warn('⚠️ Service Worker не зарегистрирован:', err);
-                });
+            navigator.serviceWorker.register(URL.createObjectURL(new Blob([swCode], {type: 'application/javascript'})), {scope: '/'})
+                .then(() => console.log('✅ SW registered'));
         }
 
-        // ==================== ОФЛАЙН-ИНДИКАТОР ====================
+        // ==================== ОФЛАЙН И УСТАНОВКА ====================
         const offlineBadge = document.getElementById('offlineBadge');
-        
-        function updateOnlineStatus() {
-            if (navigator.onLine) {
-                offlineBadge.classList.add('hidden');
-            } else {
-                offlineBadge.classList.remove('hidden');
-            }
-        }
-        
-        window.addEventListener('online', updateOnlineStatus);
-        window.addEventListener('offline', updateOnlineStatus);
-        updateOnlineStatus();
+        window.addEventListener('online', () => offlineBadge.classList.add('hidden'));
+        window.addEventListener('offline', () => offlineBadge.classList.remove('hidden'));
+        if (!navigator.onLine) offlineBadge.classList.remove('hidden');
 
-        // ==================== УСТАНОВКА PWA ====================
-        let deferredPrompt = null;
+        let deferredPrompt;
         const installPrompt = document.getElementById('installPrompt');
-        const installBtn = document.getElementById('installBtn');
-        const closeInstall = document.getElementById('closeInstall');
-        
         window.addEventListener('beforeinstallprompt', (e) => {
-            // Предотвращаем автоматическое появление мини-баннера
             e.preventDefault();
-            // Сохраняем событие
             deferredPrompt = e;
-            // Показываем наше красивое предложение
             installPrompt.style.display = 'flex';
         });
-        
-        installBtn.addEventListener('click', async () => {
+        document.getElementById('installBtn').addEventListener('click', async () => {
             if (!deferredPrompt) return;
-            
             deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            
-            console.log(`Пользователь ${outcome === 'accepted' ? 'установил' : 'отклонил'} PWA`);
+            await deferredPrompt.userChoice;
             deferredPrompt = null;
             installPrompt.style.display = 'none';
         });
-        
-        closeInstall.addEventListener('click', () => {
-            installPrompt.style.display = 'none';
-        });
-        
-        // Скрываем предложение если уже установлено (в standalone режиме)
-        if (window.matchMedia('(display-mode: standalone)').matches || 
-            navigator.standalone) {
-            installPrompt.style.display = 'none';
-        }
-        
-        window.addEventListener('appinstalled', () => {
-            installPrompt.style.display = 'none';
-            deferredPrompt = null;
-            console.log('✅ PWA установлено!');
-        });
+        document.getElementById('closeInstall').addEventListener('click', () => installPrompt.style.display = 'none');
+        window.addEventListener('appinstalled', () => { installPrompt.style.display = 'none'; deferredPrompt = null; });
 
-        // ==================== ОСНОВНАЯ ЛОГИКА ПРИЛОЖЕНИЯ ====================
+        // ==================== АУДИО ЛОГИКА ====================
         const talkBtn = document.getElementById('talkBtn');
         const statusDiv = document.getElementById('status');
         const modeSwitch = document.getElementById('modeSwitch');
         const gainSlider = document.getElementById('gainSlider');
         const gainValue = document.getElementById('gainValue');
+        const audioOutput = document.getElementById('audioOutput');
+        const audioDeviceName = document.getElementById('audioDeviceName');
+        const audioModeBtns = document.querySelectorAll('.audio-btn');
 
         let audioContext = null;
         let mediaStream = null;
         let gainNode = null;
         let sourceNode = null;
+        let audioDestNode = null; // MediaStreamAudioDestinationNode для перенаправления
+        let audioEl = null;       // HTML5 Audio элемент для вывода на выбранное устройство
         
         let isLocked = false;
         let isPTTActive = false;
         let isInitialized = false;
+        let selectedOutputMode = 'auto'; // auto | speaker | headphones
+
+        // ==================== УПРАВЛЕНИЕ АУДИОВЫХОДОМ ====================
+
+        async function enumerateAudioDevices() {
+            try {
+                // Запрашиваем разрешение на enumerateDevices (нужен активный stream)
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                const audioOutputs = devices.filter(d => d.kind === 'audiooutput');
+                
+                audioOutput.innerHTML = '<option value="default">Автоматически (по умолчанию)</option>';
+                
+                audioOutputs.forEach((device, index) => {
+                    const option = document.createElement('option');
+                    option.value = device.deviceId;
+                    option.textContent = device.label || `Аудиовыход ${index + 1}`;
+                    audioOutput.appendChild(option);
+                });
+
+                // Если есть setSinkId — используем его для audioEl
+                if (audioEl && audioEl.setSinkId) {
+                    console.log('✅ setSinkId поддерживается');
+                }
+            } catch (e) {
+                console.warn('Не удалось получить список устройств:', e);
+            }
+        }
+
+        function updateAudioModeUI(mode) {
+            audioModeBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.mode === mode);
+            });
+            
+            switch(mode) {
+                case 'speaker':
+                    audioDeviceName.textContent = '📢 Колонка';
+                    break;
+                case 'headphones':
+                    audioDeviceName.textContent = '🎧 Наушники';
+                    break;
+                default:
+                    audioDeviceName.textContent = 'Авто';
+            }
+        }
+
+        async function setAudioOutput(mode) {
+            selectedOutputMode = mode;
+            updateAudioModeUI(mode);
+            
+            if (!audioEl || !audioEl.setSinkId) {
+                updateStatus('⚠️ Браузер не поддерживает выбор вывода', '');
+                return;
+            }
+
+            try {
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                const outputs = devices.filter(d => d.kind === 'audiooutput');
+                
+                if (mode === 'speaker') {
+                    // Ищем устройство, похожее на колонку
+                    const speaker = outputs.find(d => 
+                        d.label.toLowerCase().includes('speaker') || 
+                        d.label.toLowerCase().includes('колонк') ||
+                        d.label.toLowerCase().includes('динамик') ||
+                        d.label.toLowerCase().includes('built-in')
+                    );
+                    if (speaker) {
+                        await audioEl.setSinkId(speaker.deviceId);
+                        updateStatus('📢 Звук направлен на колонку', 'active');
+                        audioDeviceName.textContent = speaker.label.substring(0, 25) || '📢 Колонка';
+                    } else {
+                        updateStatus('⚠️ Колонка не найдена', '');
+                    }
+                } else if (mode === 'headphones') {
+                    // Ищем наушники/Bluetooth
+                    const hp = outputs.find(d => 
+                        d.label.toLowerCase().includes('headphone') || 
+                        d.label.toLowerCase().includes('bluetooth') ||
+                        d.label.toLowerCase().includes('наушник') ||
+                        d.label.toLowerCase().includes('гарнитур')
+                    );
+                    if (hp) {
+                        await audioEl.setSinkId(hp.deviceId);
+                        updateStatus('🎧 Звук направлен на наушники', 'active');
+                        audioDeviceName.textContent = hp.label.substring(0, 25) || '🎧 Наушники';
+                    } else {
+                        updateStatus('⚠️ Наушники не найдены', '');
+                    }
+                } else {
+                    // Авто — сбрасываем на дефолт
+                    await audioEl.setSinkId('');
+                    updateStatus('🔄 Автовыбор вывода', '');
+                    audioDeviceName.textContent = 'Авто';
+                }
+            } catch (e) {
+                console.error('Ошибка setSinkId:', e);
+                updateStatus('❌ Не удалось переключить вывод', 'error');
+            }
+        }
+
+        // Ручной выбор из списка
+        audioOutput.addEventListener('change', async () => {
+            const deviceId = audioOutput.value;
+            if (!audioEl || !audioEl.setSinkId) return;
+            
+            try {
+                if (deviceId === 'default') {
+                    await audioEl.setSinkId('');
+                } else {
+                    await audioEl.setSinkId(deviceId);
+                }
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                const selected = devices.find(d => d.deviceId === deviceId);
+                audioDeviceName.textContent = selected?.label?.substring(0, 25) || 'Выбрано';
+                updateStatus('🔈 Вывод переключен', 'active');
+            } catch (e) {
+                updateStatus('❌ Ошибка переключения', 'error');
+            }
+        });
+
+        // Кнопки быстрого выбора
+        audioModeBtns.forEach(btn => {
+            btn.addEventListener('click', () => setAudioOutput(btn.dataset.mode));
+        });
+
+        // ==================== ОСНОВНАЯ ЛОГИКА ====================
 
         function updateStatus(text, type = '') {
             statusDiv.textContent = text;
@@ -565,7 +644,6 @@
 
         function updateButtonVisual() {
             const isActiveNow = isPTTActive || isLocked;
-            
             talkBtn.classList.toggle('active', isActiveNow);
             talkBtn.classList.toggle('locked', isActiveNow && isLocked);
             
@@ -582,36 +660,24 @@
 
         function startBroadcast() {
             if (!audioContext || audioContext.state === 'closed') return;
-            
             if (audioContext.state === 'suspended') {
-                audioContext.resume().then(() => {
-                    updateStatus('📢 Микрофон активен', 'active');
-                });
+                audioContext.resume();
             }
-            
             updateStatus('📢 Говорите!', 'active');
             updateButtonVisual();
         }
 
         function stopBroadcast() {
             if (!audioContext || audioContext.state === 'closed') return;
-            
-            audioContext.suspend().then(() => {
-                updateStatus('🔇 Микрофон заглушен', '');
-            });
-            
+            audioContext.suspend();
+            updateStatus('🔇 Микрофон заглушен', '');
             updateButtonVisual();
         }
 
         function activateMic() {
             if (!isInitialized) return;
-            
             if (isLocked) {
-                if (audioContext.state === 'running') {
-                    stopBroadcast();
-                } else {
-                    startBroadcast();
-                }
+                audioContext.state === 'running' ? stopBroadcast() : startBroadcast();
             } else {
                 isPTTActive = true;
                 startBroadcast();
@@ -619,10 +685,7 @@
         }
 
         function deactivateMic() {
-            if (!isInitialized) return;
-            
-            if (isLocked) return;
-            
+            if (!isInitialized || isLocked) return;
             isPTTActive = false;
             stopBroadcast();
         }
@@ -645,17 +708,41 @@
                 
                 sourceNode = audioContext.createMediaStreamSource(mediaStream);
                 
+                // Усилитель
                 gainNode = audioContext.createGain();
                 gainNode.gain.value = parseFloat(gainSlider.value);
                 
+                // СОЗДАЕМ ПРОМЕЖУТОЧНЫЙ УЗЕЛ ДЛЯ ПЕРЕНАПРАВЛЕНИЯ
+                // MediaStreamAudioDestinationNode создает stream, который можно
+                // воспроизвести через отдельный Audio элемент с setSinkId
+                audioDestNode = audioContext.createMediaStreamDestination();
+                
+                // Подключаем: микрофон -> усилитель -> оба выхода
                 sourceNode.connect(gainNode);
+                
+                // 1. Основной выход (audioContext.destination)
                 gainNode.connect(audioContext.destination);
+                
+                // 2. Альтернативный выход через HTML5 Audio (для setSinkId)
+                gainNode.connect(audioDestNode);
+                
+                // Создаем скрытый audio элемент для управления выводом
+                audioEl = new Audio();
+                audioEl.srcObject = audioDestNode.stream;
+                audioEl.autoplay = true;
+                audioEl.muted = false;
+                
+                // Перечисляем устройства и пытаемся применить выбранный режим
+                await enumerateAudioDevices();
+                if (selectedOutputMode !== 'auto') {
+                    await setAudioOutput(selectedOutputMode);
+                }
                 
                 await audioContext.suspend();
                 
                 isInitialized = true;
                 talkBtn.disabled = false;
-                updateStatus('✅ Готово! Выберите режим', '');
+                updateStatus('✅ Готово!', '');
                 updateButtonVisual();
                 
             } catch (err) {
@@ -672,90 +759,44 @@
             }
         }
 
-        // Обработчики кнопки
+        // Кнопка
         talkBtn.addEventListener('pointerdown', (e) => {
             e.preventDefault();
             talkBtn.setPointerCapture(e.pointerId);
-            
-            if (!isInitialized) {
-                initAudio();
-                return;
-            }
+            if (!isInitialized) { initAudio(); return; }
             activateMic();
         });
-        
-        talkBtn.addEventListener('pointerup', (e) => {
-            e.preventDefault();
-            deactivateMic();
-        });
-        
-        talkBtn.addEventListener('pointerleave', () => {
-            deactivateMic();
-        });
-        
-        talkBtn.addEventListener('pointercancel', () => {
-            deactivateMic();
-        });
-
-        // Предотвращаем контекстное меню на долгом нажатии
+        talkBtn.addEventListener('pointerup', () => deactivateMic());
+        talkBtn.addEventListener('pointerleave', () => deactivateMic());
+        talkBtn.addEventListener('pointercancel', () => deactivateMic());
         talkBtn.addEventListener('contextmenu', (e) => e.preventDefault());
 
-        // Переключатель режима
+        // Режим
         modeSwitch.addEventListener('change', () => {
             isLocked = modeSwitch.checked;
-            
             if (audioContext && audioContext.state === 'running') {
                 audioContext.suspend();
                 isPTTActive = false;
             }
-            
-            if (isLocked) {
-                updateStatus('🔒 Режим фиксации: нажмите для вкл/выкл', '');
-            } else {
-                updateStatus('📻 Режим рации: держите кнопку', '');
-                isPTTActive = false;
-            }
-            
+            updateStatus(isLocked ? '🔒 Фиксация: нажмите для вкл/выкл' : '📻 Рация: держите кнопку', '');
             updateButtonVisual();
         });
 
-        // Ползунок усиления
+        // Усиление
         gainSlider.addEventListener('input', () => {
-            const value = parseFloat(gainSlider.value);
-            gainValue.textContent = value.toFixed(1) + 'x';
-            
-            if (gainNode) {
-                gainNode.gain.value = value;
-            }
-            
-            if (value > 3.5) {
-                gainValue.style.color = '#e74c3c';
-            } else if (value > 2.0) {
-                gainValue.style.color = '#f39c12';
-            } else {
-                gainValue.style.color = '#2ecc71';
-            }
+            const v = parseFloat(gainSlider.value);
+            gainValue.textContent = v.toFixed(1) + 'x';
+            if (gainNode) gainNode.gain.value = v;
+            gainValue.style.color = v > 3.5 ? '#e74c3c' : v > 2 ? '#f39c12' : '#2ecc71';
         });
 
-        // Очистка при уходе
+        // Очистка
         window.addEventListener('beforeunload', () => {
-            if (mediaStream) {
-                mediaStream.getTracks().forEach(track => track.stop());
-            }
-            if (audioContext) {
-                audioContext.close();
-            }
+            if (mediaStream) mediaStream.getTracks().forEach(t => t.stop());
+            if (audioContext) audioContext.close();
         });
 
-        // Предотвращение масштабирования двойным тапом
-        document.addEventListener('dblclick', (e) => {
-            e.preventDefault();
-        }, {passive: false});
-        
-        // Блокировка pull-to-refresh на мобильных
-        document.addEventListener('touchmove', function(e) {
-            if (e.target.closest('.gain-slider')) return; // Разрешаем скролл ползунка
-        }, {passive: false});
+        document.addEventListener('dblclick', (e) => e.preventDefault(), {passive: false});
     </script>
 </body>
 </html>
