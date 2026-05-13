@@ -39,18 +39,30 @@
 
         .container {
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
             padding: 20px;
         }
 
+        /* Офлайн бейдж */
+        .offline-badge {
+            font-size: 10px;
+            background: #27ae60;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            opacity: 0.9;
+            transition: 0.3s;
+        }
+        .offline-badge.hidden { opacity: 0; transform: translateY(-10px); }
+
         /* Кнопка Говорить */
         .talk-btn {
-            width: 170px;
-            height: 170px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             background: #2c2c2c;
             border: 4px solid #555;
@@ -62,9 +74,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            -webkit-user-select: none;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
             position: relative;
             outline: none;
             -webkit-touch-callout: none;
@@ -96,20 +105,7 @@
             opacity: 0;
             transition: 0.2s;
         }
-        
         .talk-btn.locked .lock-icon { opacity: 1; }
-
-        /* Офлайн бейдж */
-        .offline-badge {
-            font-size: 10px;
-            background: #27ae60;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 10px;
-            opacity: 0.9;
-            transition: 0.3s;
-        }
-        .offline-badge.hidden { opacity: 0; transform: translateY(-10px); }
 
         /* Переключатель режима */
         .mode-section {
@@ -165,47 +161,45 @@
         input:checked + .slider { background-color: #e67e22; }
         input:checked + .slider:before { transform: translateX(28px); }
 
-        /* Выбор аудиовыхода */
-        .audio-section {
+        /* Секция выбора устройств */
+        .devices-section {
             width: 100%;
             background: #2c2c2c;
             border-radius: 14px;
-            padding: 14px 18px;
+            padding: 16px 18px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 12px;
         }
-        
-        .audio-header {
+
+        .device-row {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 6px;
         }
-        
-        .audio-title {
-            font-size: 12px;
-            color: #aaa;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-        
-        .audio-device-name {
+
+        .device-label {
             font-size: 11px;
-            color: #666;
-            max-width: 180px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
-        
-        .audio-select {
+
+        .device-icon {
+            font-size: 16px;
+        }
+
+        .device-select {
             width: 100%;
             padding: 10px 12px;
             background: #1a1a1a;
             color: white;
             border: 1px solid #444;
             border-radius: 8px;
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
             outline: none;
             -webkit-appearance: none;
@@ -214,41 +208,20 @@
             background-repeat: no-repeat;
             background-position: right 12px center;
         }
-        
-        .audio-select option {
+
+        .device-select option {
             background: #1a1a1a;
             color: white;
         }
-        
-        .audio-buttons {
-            display: flex;
-            gap: 8px;
+
+        .device-status {
+            font-size: 10px;
+            color: #555;
+            min-height: 14px;
         }
-        
-        .audio-btn {
-            flex: 1;
-            padding: 10px 8px;
-            background: #1a1a1a;
-            border: 1px solid #444;
-            border-radius: 8px;
-            color: #aaa;
-            font-size: 11px;
-            cursor: pointer;
-            transition: 0.2s;
-            text-align: center;
-            white-space: nowrap;
-        }
-        
-        .audio-btn.active {
-            background: #2c3e50;
-            border-color: #3498db;
-            color: #3498db;
-            font-weight: bold;
-        }
-        
-        .audio-btn:active {
-            background: #34495e;
-        }
+
+        .device-status.ok { color: #2ecc71; }
+        .device-status.warn { color: #e67e22; }
 
         /* Ползунок усиления */
         .gain-section {
@@ -400,17 +373,26 @@
 
         <div class="status" id="status">Нажмите СТАРТ для активации</div>
 
-        <!-- ВЫБОР АУДИОВЫХОДА -->
-        <div class="audio-section">
-            <div class="audio-header">
-                <span class="audio-title">🔈 Вывод звука</span>
-                <span class="audio-device-name" id="audioDeviceName">Авто</span>
+        <!-- ВЫБОР УСТРОЙСТВ ВВОДА/ВЫВОДА -->
+        <div class="devices-section">
+            <div class="device-row">
+                <div class="device-label">
+                    <span class="device-icon">🎤</span> Микрофон (вход)
+                </div>
+                <select class="device-select" id="micSelect">
+                    <option value="default">По умолчанию</option>
+                </select>
+                <div class="device-status" id="micStatus"></div>
             </div>
-            <select class="audio-select" id="audioOutput"></select>
-            <div class="audio-buttons">
-                <button class="audio-btn active" data-mode="auto">🔄 Авто</button>
-                <button class="audio-btn" data-mode="speaker">📢 Колонка</button>
-                <button class="audio-btn" data-mode="headphones">🎧 Наушники</button>
+            
+            <div class="device-row">
+                <div class="device-label">
+                    <span class="device-icon">🔊</span> Динамик (выход)
+                </div>
+                <select class="device-select" id="speakerSelect">
+                    <option value="default">По умолчанию</option>
+                </select>
+                <div class="device-status" id="speakerStatus"></div>
             </div>
         </div>
 
@@ -430,8 +412,8 @@
         </div>
 
         <div class="warning">
-            💡 Говорите в микрофон телефона<br>
-            Выберите "Колонка" для вывода на Bluetooth
+            💡 Выберите микрофон (наушники) и динамик (колонку)<br>
+            Затем нажмите СТАРТ и говорите
         </div>
     </div>
     
@@ -445,7 +427,7 @@
         // ==================== SERVICE WORKER ====================
         if ('serviceWorker' in navigator) {
             const swCode = `
-                const CACHE_NAME = 'megafon-pwa-v4';
+                const CACHE_NAME = 'megafon-pwa-v6';
                 self.addEventListener('install', (event) => {
                     event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(['/'])).then(() => self.skipWaiting()));
                 });
@@ -489,152 +471,30 @@
         document.getElementById('closeInstall').addEventListener('click', () => installPrompt.style.display = 'none');
         window.addEventListener('appinstalled', () => { installPrompt.style.display = 'none'; deferredPrompt = null; });
 
-        // ==================== АУДИО ЛОГИКА ====================
+        // ==================== DOM ЭЛЕМЕНТЫ ====================
         const talkBtn = document.getElementById('talkBtn');
         const statusDiv = document.getElementById('status');
         const modeSwitch = document.getElementById('modeSwitch');
         const gainSlider = document.getElementById('gainSlider');
         const gainValue = document.getElementById('gainValue');
-        const audioOutput = document.getElementById('audioOutput');
-        const audioDeviceName = document.getElementById('audioDeviceName');
-        const audioModeBtns = document.querySelectorAll('.audio-btn');
+        const micSelect = document.getElementById('micSelect');
+        const speakerSelect = document.getElementById('speakerSelect');
+        const micStatus = document.getElementById('micStatus');
+        const speakerStatus = document.getElementById('speakerStatus');
 
+        // ==================== АУДИО ПЕРЕМЕННЫЕ ====================
         let audioContext = null;
         let mediaStream = null;
         let gainNode = null;
         let sourceNode = null;
-        let audioDestNode = null; // MediaStreamAudioDestinationNode для перенаправления
-        let audioEl = null;       // HTML5 Audio элемент для вывода на выбранное устройство
+        let audioDestNode = null;   // Промежуточный узел для перенаправления
+        let outputAudioEl = null;   // HTML5 Audio для принудительного вывода на колонку
         
         let isLocked = false;
         let isPTTActive = false;
         let isInitialized = false;
-        let selectedOutputMode = 'auto'; // auto | speaker | headphones
 
-        // ==================== УПРАВЛЕНИЕ АУДИОВЫХОДОМ ====================
-
-        async function enumerateAudioDevices() {
-            try {
-                // Запрашиваем разрешение на enumerateDevices (нужен активный stream)
-                const devices = await navigator.mediaDevices.enumerateDevices();
-                const audioOutputs = devices.filter(d => d.kind === 'audiooutput');
-                
-                audioOutput.innerHTML = '<option value="default">Автоматически (по умолчанию)</option>';
-                
-                audioOutputs.forEach((device, index) => {
-                    const option = document.createElement('option');
-                    option.value = device.deviceId;
-                    option.textContent = device.label || `Аудиовыход ${index + 1}`;
-                    audioOutput.appendChild(option);
-                });
-
-                // Если есть setSinkId — используем его для audioEl
-                if (audioEl && audioEl.setSinkId) {
-                    console.log('✅ setSinkId поддерживается');
-                }
-            } catch (e) {
-                console.warn('Не удалось получить список устройств:', e);
-            }
-        }
-
-        function updateAudioModeUI(mode) {
-            audioModeBtns.forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.mode === mode);
-            });
-            
-            switch(mode) {
-                case 'speaker':
-                    audioDeviceName.textContent = '📢 Колонка';
-                    break;
-                case 'headphones':
-                    audioDeviceName.textContent = '🎧 Наушники';
-                    break;
-                default:
-                    audioDeviceName.textContent = 'Авто';
-            }
-        }
-
-        async function setAudioOutput(mode) {
-            selectedOutputMode = mode;
-            updateAudioModeUI(mode);
-            
-            if (!audioEl || !audioEl.setSinkId) {
-                updateStatus('⚠️ Браузер не поддерживает выбор вывода', '');
-                return;
-            }
-
-            try {
-                const devices = await navigator.mediaDevices.enumerateDevices();
-                const outputs = devices.filter(d => d.kind === 'audiooutput');
-                
-                if (mode === 'speaker') {
-                    // Ищем устройство, похожее на колонку
-                    const speaker = outputs.find(d => 
-                        d.label.toLowerCase().includes('speaker') || 
-                        d.label.toLowerCase().includes('колонк') ||
-                        d.label.toLowerCase().includes('динамик') ||
-                        d.label.toLowerCase().includes('built-in')
-                    );
-                    if (speaker) {
-                        await audioEl.setSinkId(speaker.deviceId);
-                        updateStatus('📢 Звук направлен на колонку', 'active');
-                        audioDeviceName.textContent = speaker.label.substring(0, 25) || '📢 Колонка';
-                    } else {
-                        updateStatus('⚠️ Колонка не найдена', '');
-                    }
-                } else if (mode === 'headphones') {
-                    // Ищем наушники/Bluetooth
-                    const hp = outputs.find(d => 
-                        d.label.toLowerCase().includes('headphone') || 
-                        d.label.toLowerCase().includes('bluetooth') ||
-                        d.label.toLowerCase().includes('наушник') ||
-                        d.label.toLowerCase().includes('гарнитур')
-                    );
-                    if (hp) {
-                        await audioEl.setSinkId(hp.deviceId);
-                        updateStatus('🎧 Звук направлен на наушники', 'active');
-                        audioDeviceName.textContent = hp.label.substring(0, 25) || '🎧 Наушники';
-                    } else {
-                        updateStatus('⚠️ Наушники не найдены', '');
-                    }
-                } else {
-                    // Авто — сбрасываем на дефолт
-                    await audioEl.setSinkId('');
-                    updateStatus('🔄 Автовыбор вывода', '');
-                    audioDeviceName.textContent = 'Авто';
-                }
-            } catch (e) {
-                console.error('Ошибка setSinkId:', e);
-                updateStatus('❌ Не удалось переключить вывод', 'error');
-            }
-        }
-
-        // Ручной выбор из списка
-        audioOutput.addEventListener('change', async () => {
-            const deviceId = audioOutput.value;
-            if (!audioEl || !audioEl.setSinkId) return;
-            
-            try {
-                if (deviceId === 'default') {
-                    await audioEl.setSinkId('');
-                } else {
-                    await audioEl.setSinkId(deviceId);
-                }
-                const devices = await navigator.mediaDevices.enumerateDevices();
-                const selected = devices.find(d => d.deviceId === deviceId);
-                audioDeviceName.textContent = selected?.label?.substring(0, 25) || 'Выбрано';
-                updateStatus('🔈 Вывод переключен', 'active');
-            } catch (e) {
-                updateStatus('❌ Ошибка переключения', 'error');
-            }
-        });
-
-        // Кнопки быстрого выбора
-        audioModeBtns.forEach(btn => {
-            btn.addEventListener('click', () => setAudioOutput(btn.dataset.mode));
-        });
-
-        // ==================== ОСНОВНАЯ ЛОГИКА ====================
+        // ==================== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ====================
 
         function updateStatus(text, type = '') {
             statusDiv.textContent = text;
@@ -658,10 +518,116 @@
             }
         }
 
+        // ==================== ПЕРЕЧИСЛЕНИЕ УСТРОЙСТВ ====================
+
+        async function populateDeviceLists() {
+            try {
+                // Сначала запрашиваем базовое разрешение (нужен активный стрим)
+                const tempStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                tempStream.getTracks().forEach(t => t.stop()); // Сразу останавливаем
+                
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                
+                // Заполняем список микрофонов
+                const mics = devices.filter(d => d.kind === 'audioinput');
+                micSelect.innerHTML = '<option value="default">По умолчанию</option>';
+                mics.forEach((mic, i) => {
+                    const label = mic.label || `Микрофон ${i + 1}`;
+                    micSelect.innerHTML += `<option value="${mic.deviceId}">${label}</option>`;
+                });
+                
+                // Заполняем список динамиков
+                const speakers = devices.filter(d => d.kind === 'audiooutput');
+                speakerSelect.innerHTML = '<option value="default">По умолчанию</option>';
+                speakers.forEach((sp, i) => {
+                    const label = sp.label || `Динамик ${i + 1}`;
+                    speakerSelect.innerHTML += `<option value="${sp.deviceId}">${label}</option>`;
+                });
+
+                // Отмечаем выбранные устройства
+                updateDeviceStatus();
+                
+                console.log('📋 Устройства:', { mics: mics.length, speakers: speakers.length });
+                
+            } catch (err) {
+                console.error('Ошибка перечисления устройств:', err);
+                updateStatus('⚠️ Не удалось получить список устройств', '');
+            }
+        }
+
+        function updateDeviceStatus() {
+            const micId = micSelect.value;
+            const spId = speakerSelect.value;
+            
+            if (micId === 'default') {
+                micStatus.textContent = 'Системный микрофон';
+                micStatus.className = 'device-status';
+            } else {
+                const option = micSelect.selectedOptions[0];
+                micStatus.textContent = '✅ ' + (option?.textContent || 'Выбран');
+                micStatus.className = 'device-status ok';
+            }
+            
+            if (spId === 'default') {
+                speakerStatus.textContent = 'Системный динамик';
+                speakerStatus.className = 'device-status';
+            } else {
+                const option = speakerSelect.selectedOptions[0];
+                speakerStatus.textContent = '✅ ' + (option?.textContent || 'Выбран');
+                speakerStatus.className = 'device-status ok';
+            }
+        }
+
+        micSelect.addEventListener('change', updateDeviceStatus);
+        speakerSelect.addEventListener('change', updateDeviceStatus);
+
+        // ==================== НАСТРОЙКА ВЫХОДА ====================
+
+        async function applySpeakerOutput() {
+            if (!outputAudioEl) return;
+            
+            const speakerId = speakerSelect.value;
+            
+            // Проверяем поддержку setSinkId
+            if (!outputAudioEl.setSinkId) {
+                speakerStatus.textContent = '⚠️ Браузер не поддерживает выбор выхода';
+                speakerStatus.className = 'device-status warn';
+                return;
+            }
+            
+            try {
+                if (speakerId === 'default') {
+                    await outputAudioEl.setSinkId('');
+                    speakerStatus.textContent = 'Системный динамик';
+                    speakerStatus.className = 'device-status';
+                } else {
+                    await outputAudioEl.setSinkId(speakerId);
+                    const option = speakerSelect.selectedOptions[0];
+                    speakerStatus.textContent = '✅ Вывод: ' + (option?.textContent || 'Колонка');
+                    speakerStatus.className = 'device-status ok';
+                }
+            } catch (err) {
+                console.error('Ошибка установки выхода:', err);
+                speakerStatus.textContent = '❌ Не удалось переключить вывод';
+                speakerStatus.className = 'device-status warn';
+            }
+        }
+
+        speakerSelect.addEventListener('change', () => {
+            applySpeakerOutput();
+            updateDeviceStatus();
+        });
+
+        // ==================== ОСНОВНАЯ ЛОГИКА ====================
+
         function startBroadcast() {
             if (!audioContext || audioContext.state === 'closed') return;
             if (audioContext.state === 'suspended') {
                 audioContext.resume();
+            }
+            // Убеждаемся что audioEl играет
+            if (outputAudioEl && outputAudioEl.paused) {
+                outputAudioEl.play().catch(() => {});
             }
             updateStatus('📢 Говорите!', 'active');
             updateButtonVisual();
@@ -670,6 +636,10 @@
         function stopBroadcast() {
             if (!audioContext || audioContext.state === 'closed') return;
             audioContext.suspend();
+            // Приостанавливаем audioEl чтобы не шумел
+            if (outputAudioEl && !outputAudioEl.paused) {
+                outputAudioEl.pause();
+            }
             updateStatus('🔇 Микрофон заглушен', '');
             updateButtonVisual();
         }
@@ -696,68 +666,75 @@
             try {
                 updateStatus('Запрашиваю микрофон...', '');
                 
+                // 1. Определяем ID выбранного микрофона
+                const micId = micSelect.value;
+                const constraints = { 
+                    audio: micId !== 'default' 
+                        ? { deviceId: { exact: micId } } 
+                        : true 
+                };
+                
+                // 2. Получаем поток с выбранного микрофона
+                mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
+                
+                // 3. Создаем аудиоконтекст
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
                 
-                mediaStream = await navigator.mediaDevices.getUserMedia({ 
-                    audio: {
-                        echoCancellation: false,
-                        noiseSuppression: false,
-                        autoGainControl: false,
-                    } 
-                });
-                
+                // 4. Источник из микрофона
                 sourceNode = audioContext.createMediaStreamSource(mediaStream);
                 
-                // Усилитель
+                // 5. Усилитель
                 gainNode = audioContext.createGain();
                 gainNode.gain.value = parseFloat(gainSlider.value);
                 
-                // СОЗДАЕМ ПРОМЕЖУТОЧНЫЙ УЗЕЛ ДЛЯ ПЕРЕНАПРАВЛЕНИЯ
-                // MediaStreamAudioDestinationNode создает stream, который можно
-                // воспроизвести через отдельный Audio элемент с setSinkId
+                // 6. КЛЮЧЕВОЙ МОМЕНТ: создаем промежуточный узел
+                // MediaStreamAudioDestinationNode позволяет "вытащить" аудио
+                // в виде отдельного MediaStream, который можно направить
+                // на любое устройство через HTML5 Audio + setSinkId
                 audioDestNode = audioContext.createMediaStreamDestination();
                 
-                // Подключаем: микрофон -> усилитель -> оба выхода
+                // 7. Подключаем цепочку:
+                // микрофон -> усилитель -> аудиовыход (промежуточный)
                 sourceNode.connect(gainNode);
-                
-                // 1. Основной выход (audioContext.destination)
-                gainNode.connect(audioContext.destination);
-                
-                // 2. Альтернативный выход через HTML5 Audio (для setSinkId)
                 gainNode.connect(audioDestNode);
                 
-                // Создаем скрытый audio элемент для управления выводом
-                audioEl = new Audio();
-                audioEl.srcObject = audioDestNode.stream;
-                audioEl.autoplay = true;
-                audioEl.muted = false;
+                // ВАЖНО: НЕ подключаем к audioContext.destination,
+                // потому что destination идет на "системный" выход
+                // а мы хотим на конкретную колонку
                 
-                // Перечисляем устройства и пытаемся применить выбранный режим
-                await enumerateAudioDevices();
-                if (selectedOutputMode !== 'auto') {
-                    await setAudioOutput(selectedOutputMode);
-                }
+                // 8. Создаем скрытый Audio элемент
+                outputAudioEl = new Audio();
+                outputAudioEl.srcObject = audioDestNode.stream;
+                outputAudioEl.autoplay = true;
+                outputAudioEl.muted = false;
+                outputAudioEl.volume = 1.0;
                 
+                // 9. Применяем выбранный выход (колонка)
+                await applySpeakerOutput();
+                
+                // 10. Приостанавливаем, ждем команды
                 await audioContext.suspend();
                 
                 isInitialized = true;
                 talkBtn.disabled = false;
-                updateStatus('✅ Готово!', '');
+                
+                const micName = micSelect.selectedOptions[0]?.textContent || 'микрофон';
+                const spName = speakerSelect.selectedOptions[0]?.textContent || 'динамик';
+                updateStatus(`✅ ${micName} → ${spName}`, '');
                 updateButtonVisual();
                 
             } catch (err) {
                 console.error(err);
                 let msg = 'Ошибка';
-                if (err.name === 'NotAllowedError') {
-                    msg = '❌ Доступ к микрофону отклонен';
-                } else if (err.name === 'NotFoundError') {
-                    msg = '❌ Микрофон не найден';
-                } else {
-                    msg = '❌ ' + err.message;
-                }
+                if (err.name === 'NotAllowedError') msg = '❌ Доступ к микрофону отклонен';
+                else if (err.name === 'NotFoundError') msg = '❌ Устройство не найдено';
+                else if (err.name === 'OverconstrainedError') msg = '❌ Выбранный микрофон недоступен';
+                else msg = '❌ ' + err.message;
                 updateStatus(msg, 'error');
             }
         }
+
+        // ==================== ОБРАБОТЧИКИ СОБЫТИЙ ====================
 
         // Кнопка
         talkBtn.addEventListener('pointerdown', (e) => {
@@ -793,10 +770,21 @@
         // Очистка
         window.addEventListener('beforeunload', () => {
             if (mediaStream) mediaStream.getTracks().forEach(t => t.stop());
+            if (outputAudioEl) { outputAudioEl.pause(); outputAudioEl.srcObject = null; }
             if (audioContext) audioContext.close();
         });
 
         document.addEventListener('dblclick', (e) => e.preventDefault(), {passive: false});
+
+        // ==================== ИНИЦИАЛИЗАЦИЯ ====================
+        // Сразу заполняем списки устройств при загрузке
+        populateDeviceLists().catch(err => console.warn('Не удалось заполнить списки:', err));
+        
+        // Обновляем списки при подключении/отключении устройств
+        navigator.mediaDevices?.addEventListener('devicechange', () => {
+            console.log('🔄 Устройства изменились, обновляю списки...');
+            populateDeviceLists().catch(() => {});
+        });
     </script>
 </body>
 </html>
