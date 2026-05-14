@@ -17,12 +17,14 @@
         
         :root {
             --bg: #0a0a0f;
-            --card: rgba(20, 20, 35, 0.8);
+            --card: rgba(20, 20, 35, 0.85);
             --card-border: rgba(255, 255, 255, 0.06);
             --text: #ffffff;
             --text-secondary: rgba(255, 255, 255, 0.5);
             --gradient: linear-gradient(135deg, #ff416c, #ff4b2b);
             --green: #00ff88;
+            --radius: 20px;
+            --radius-sm: 12px;
         }
         
         html, body {
@@ -56,12 +58,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
-            padding: 20px 16px;
+            gap: 14px;
+            padding: 16px;
         }
 
         .logo {
-            font-size: 32px;
+            font-size: 30px;
             font-weight: 900;
             letter-spacing: -1px;
             background: var(--gradient);
@@ -75,14 +77,14 @@
             color: var(--text-secondary);
             letter-spacing: 4px;
             text-transform: uppercase;
-            margin-top: -12px;
-            margin-bottom: 8px;
+            margin-top: -10px;
+            margin-bottom: 6px;
         }
 
         /* Кнопка */
         .talk-btn-wrap {
             position: relative;
-            margin: 8px 0;
+            margin: 6px 0;
         }
         
         .talk-btn-glow {
@@ -99,13 +101,13 @@
         .talk-btn-wrap.active .talk-btn-glow { opacity: 0.6; }
         
         .talk-btn {
-            width: 160px;
-            height: 160px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             background: rgba(20, 20, 35, 0.9);
             border: 2px solid rgba(255, 255, 255, 0.1);
             color: white;
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -140,11 +142,11 @@
         }
 
         .btn-text { z-index: 2; pointer-events: none; }
-        .talk-btn.active .btn-text { font-size: 30px; }
+        .talk-btn.active .btn-text { font-size: 28px; }
         
         .lock-badge {
             position: absolute;
-            top: 16px; right: 20px;
+            top: 14px; right: 18px;
             font-size: 14px;
             opacity: 0;
             z-index: 2;
@@ -210,12 +212,90 @@
             text-align: right;
         }
 
+        /* Карточка AirPlay */
+        .airplay-card {
+            width: 100%;
+            background: var(--card);
+            border: 2px solid rgba(255, 65, 108, 0.3);
+            border-radius: var(--radius);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .airplay-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .airplay-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .airplay-info {
+            flex: 1;
+        }
+
+        .airplay-title {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .airplay-subtitle {
+            font-size: 10px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .airplay-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--gradient);
+            border: none;
+            border-radius: var(--radius-sm);
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+            font-family: -apple-system, sans-serif;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 20px rgba(255, 65, 108, 0.3);
+        }
+        .airplay-btn:active {
+            transform: scale(0.97);
+            box-shadow: 0 2px 10px rgba(255, 65, 108, 0.2);
+        }
+
+        .airplay-status {
+            font-size: 10px;
+            color: var(--text-secondary);
+            text-align: center;
+            min-height: 14px;
+        }
+        .airplay-status.connected {
+            color: var(--green);
+            font-weight: 600;
+        }
+
         /* Карточки */
         .card {
             width: 100%;
             background: var(--card);
             border: 1px solid var(--card-border);
-            border-radius: 20px;
+            border-radius: var(--radius);
             padding: 16px 18px;
             display: flex;
             flex-direction: column;
@@ -333,37 +413,27 @@
             font-family: -apple-system, sans-serif;
         }
         .btn-outline:active { background: rgba(255, 255, 255, 0.05); color: white; }
-
-        .hint-card {
-            width: 100%;
-            background: rgba(255, 65, 108, 0.08);
-            border: 1px solid rgba(255, 65, 108, 0.15);
-            border-radius: 16px;
-            padding: 14px 16px;
-            text-align: center;
-        }
-        
-        .hint-card .icon {
-            font-size: 28px;
-            margin-bottom: 6px;
-        }
-        
-        .hint-card .text {
-            font-size: 12px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-        
-        .hint-card .text b {
-            color: #ff416c;
-            font-weight: 600;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="logo">MegaFon</div>
         <div class="logo-sub">Voice Amplifier</div>
+
+        <!-- AirPlay карточка -->
+        <div class="airplay-card" id="airplayCard">
+            <div class="airplay-header">
+                <div class="airplay-icon">📡</div>
+                <div class="airplay-info">
+                    <div class="airplay-title">Вывод звука</div>
+                    <div class="airplay-subtitle" id="airplaySubtitle">Выберите колонку</div>
+                </div>
+            </div>
+            <button class="airplay-btn" id="airplayBtn">
+                📡 Выбрать устройство
+            </button>
+            <div class="airplay-status" id="airplayStatus"></div>
+        </div>
 
         <div class="mode-card">
             <span class="mode-label-text">Режим</span>
@@ -382,17 +452,7 @@
             </button>
         </div>
 
-        <div class="status" id="status">Нажмите и говорите</div>
-
-        <!-- Как вывести на колонку -->
-        <div class="hint-card" id="hintCard">
-            <div class="icon">📡</div>
-            <div class="text" id="hintText">
-                <b>Перед запуском:</b><br>
-                Откройте Пункт управления →<br>
-                AirPlay → выберите <b>JBL Flip 5</b>
-            </div>
-        </div>
+        <div class="status" id="status">Выберите колонку и нажмите ГОВОРИ</div>
 
         <!-- Эхо -->
         <div class="card">
@@ -425,10 +485,19 @@
         <button class="btn-outline" id="resetBtn">🔄 Сброс</button>
     </div>
 
+    <!-- Скрытый video элемент для AirPlay -->
+    <video id="airplayVideo" 
+           style="display:none;position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none;"
+           playsinline 
+           webkit-playsinline 
+           x-webkit-airplay="allow"
+           src="data:video/mp4;base64,AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMWlzb28AAAAQaXNvbQAAAAAAABoAAACIAAAAAQAAAAAAAAA=">
+    </video>
+
     <script>
         // ==================== SERVICE WORKER ====================
         if ('serviceWorker' in navigator) {
-            const swCode = `const C='megafon-v6';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['/'])).then(()=>self.skipWaiting()))});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.map(k=>k!==C?caches.delete(k):null))).then(()=>self.clients.claim()))});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)))})`;
+            const swCode = `const C='megafon-v7';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['/'])).then(()=>self.skipWaiting()))});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.map(k=>k!==C?caches.delete(k):null))).then(()=>self.clients.claim()))});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)))})`;
             navigator.serviceWorker.register(URL.createObjectURL(new Blob([swCode],{type:'application/javascript'})),{scope:'/'});
         }
 
@@ -445,6 +514,10 @@
         const noiseGateValue = document.getElementById('noiseGateValue');
         const attackSlider = document.getElementById('attackSlider');
         const attackValue = document.getElementById('attackValue');
+        const airplayBtn = document.getElementById('airplayBtn');
+        const airplayStatus = document.getElementById('airplayStatus');
+        const airplaySubtitle = document.getElementById('airplaySubtitle');
+        const airplayVideo = document.getElementById('airplayVideo');
         const resetBtn = document.getElementById('resetBtn');
 
         // ==================== СОСТОЯНИЕ ====================
@@ -522,6 +595,56 @@
             if (keepAliveTimer) { clearInterval(keepAliveTimer); keepAliveTimer = null; }
         }
 
+        // ==================== AIRPLAY ====================
+        
+        function showAirPlayPicker() {
+            airplayStatus.textContent = 'Открываю меню выбора...';
+            airplayStatus.className = 'airplay-status';
+            
+            // Способ 1: через video элемент
+            if (airplayVideo.webkitShowPlaybackTargetPicker) {
+                airplayVideo.play().then(() => {
+                    airplayVideo.webkitShowPlaybackTargetPicker();
+                    airplayStatus.textContent = 'Выберите колонку в меню выше';
+                    airplayStatus.className = 'airplay-status';
+                }).catch(() => {
+                    // Способ 2: через временный элемент
+                    tryAlternativeAirPlay();
+                });
+            } else {
+                tryAlternativeAirPlay();
+            }
+        }
+        
+        function tryAlternativeAirPlay() {
+            const tv = document.createElement('video');
+            tv.setAttribute('playsinline', '');
+            tv.setAttribute('webkit-playsinline', '');
+            tv.setAttribute('x-webkit-airplay', 'allow');
+            tv.src = 'data:video/mp4;base64,AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMWlzb28AAAAQaXNvbQAAAAAAABoAAACIAAAAAQAAAAAAAAA=';
+            tv.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;';
+            document.body.appendChild(tv);
+            
+            tv.play().then(() => {
+                if (tv.webkitShowPlaybackTargetPicker) {
+                    tv.webkitShowPlaybackTargetPicker();
+                    airplayStatus.textContent = 'Выберите колонку в меню';
+                    airplayStatus.className = 'airplay-status';
+                } else {
+                    airplayStatus.textContent = '⚠️ Откройте Пункт управления → AirPlay';
+                    airplayStatus.className = 'airplay-status';
+                }
+            }).catch(() => {
+                airplayStatus.textContent = 'Смахните вниз → AirPlay → колонка';
+                airplayStatus.className = 'airplay-status';
+            });
+            
+            setTimeout(() => {
+                tv.pause();
+                document.body.removeChild(tv);
+            }, 3000);
+        }
+
         function micOn() {
             if (!audioContext || audioContext.state === 'closed') return;
             audioContext.resume().then(() => {
@@ -560,7 +683,6 @@
                 talkBtn.disabled = true;
                 btnText.textContent = '...';
                 
-                // Используем системный микрофон
                 mediaStream = await navigator.mediaDevices.getUserMedia({
                     audio: {
                         echoCancellation: false,
@@ -608,7 +730,7 @@
             sourceNode = gainNode = noiseGateNode = audioContext = null;
             isInitialized = false;
             talkBtn.disabled = false;
-            setStatus('Нажмите и говорите', '');
+            setStatus('Выберите колонку и нажмите ГОВОРИ', '');
             updateUI();
         }
 
@@ -618,6 +740,10 @@
         talkBtn.addEventListener('pointerleave', () => releaseButton());
         talkBtn.addEventListener('pointercancel', () => releaseButton());
         talkBtn.addEventListener('contextmenu', e => e.preventDefault());
+
+        airplayBtn.addEventListener('click', () => {
+            showAirPlayPicker();
+        });
 
         modeSwitch.addEventListener('change', () => {
             isLocked = modeSwitch.checked;
@@ -654,6 +780,15 @@
         
         if (localStorage.getItem('megafon_gainSlider')) {
             gainValue.textContent = parseFloat(localStorage.getItem('megafon_gainSlider')).toFixed(1) + 'x';
+        }
+
+        // Определяем платформу
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        
+        if (!isIOS) {
+            airplaySubtitle.textContent = 'Работает автоматически';
+            airplayBtn.textContent = '📡 Выбрать устройство';
         }
     </script>
 </body>
