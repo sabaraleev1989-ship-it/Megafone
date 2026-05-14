@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-title" content="Мегафон">
     <title>Мегафон Pro</title>
     
-    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D0%9C%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD%20Pro%22%2C%22short_name%22%3A%22%D0%9C%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%231a1a1a%22%2C%22theme_color%22%3A%22%231a1a1a%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%253E%253Crect%20width%3D'512'%20height%3D'512'%20rx%3D'100'%20fill%3D'%23e74c3c'%2F%253E%253Ccircle%20cx%3D'256'%20cy%3D'256'%20r%3D'120'%20fill%3D'white'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D0%9C%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD%22%2C%22short_name%22%3A%22%D0%9C%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%231a1a1a%22%2C%22theme_color%22%3A%22%231a1a1a%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%253E%253Crect%20width%3D'512'%20height%3D'512'%20rx%3D'100'%20fill%3D'%23e74c3c'%2F%253E%253Ccircle%20cx%3D'256'%20cy%3D'256'%20r%3D'120'%20fill%3D'white'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%23e74c3c'/%3E%3Ccircle cx='256' cy='256' r='120' fill='white'/%3E%3C/svg%3E">
     
     <style>
@@ -42,8 +42,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 14px;
-            padding: 20px;
+            gap: 12px;
+            padding: 16px;
         }
 
         .title {
@@ -54,10 +54,9 @@
             margin-bottom: 5px;
         }
 
-        /* Кнопка Говорить */
         .talk-btn {
-            width: 160px;
-            height: 160px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             background: #2c2c2c;
             border: 4px solid #555;
@@ -104,7 +103,6 @@
         }
         .talk-btn.locked .lock-icon { opacity: 1; }
 
-        /* Переключатель режима */
         .mode-row {
             display: flex;
             align-items: center;
@@ -152,15 +150,14 @@
             text-align: right;
         }
 
-        /* Блок выбора устройств */
         .devices-section {
             width: 100%;
             background: #2c2c2c;
-            border-radius: 16px;
-            padding: 16px 18px;
+            border-radius: 14px;
+            padding: 14px 16px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .section-title {
@@ -170,7 +167,7 @@
         }
         
         .section-title-text {
-            font-size: 11px;
+            font-size: 10px;
             color: #888;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -179,11 +176,11 @@
         .device-row {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 4px;
         }
 
         .device-label {
-            font-size: 11px;
+            font-size: 10px;
             color: #888;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -192,65 +189,122 @@
             gap: 6px;
         }
 
-        .device-icon { font-size: 16px; }
+        .device-icon { font-size: 14px; }
 
         .device-select {
             width: 100%;
-            padding: 12px 14px;
+            padding: 10px 12px;
             background: #1a1a1a;
             color: white;
             border: 1px solid #444;
-            border-radius: 10px;
-            font-size: 14px;
+            border-radius: 8px;
+            font-size: 13px;
             cursor: pointer;
             outline: none;
             -webkit-appearance: none;
             appearance: none;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%23888'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 14px center;
+            background-position: right 12px center;
         }
 
-        .device-select option {
-            background: #1a1a1a;
-            color: white;
-        }
+        .device-select option { background: #1a1a1a; color: white; }
 
-        /* AirPlay кнопка для iOS */
         .airplay-btn {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             background: #1a1a1a;
             border: 2px dashed #e67e22;
-            border-radius: 10px;
+            border-radius: 8px;
             color: #e67e22;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
             text-align: center;
             font-weight: bold;
             display: none;
         }
-        .airplay-btn:active {
-            background: #2c1a0a;
-        }
+        .airplay-btn:active { background: #2c1a0a; }
 
         .device-status {
-            font-size: 10px;
+            font-size: 9px;
             color: #666;
             min-height: 12px;
         }
         .device-status.ok { color: #2ecc71; }
         .device-status.warn { color: #e67e22; }
 
+        /* ЭХО-КОНТРОЛЬ */
+        .echo-section {
+            width: 100%;
+            background: #2c2c2c;
+            border-radius: 14px;
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .echo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .echo-title {
+            font-size: 10px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .echo-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .echo-label {
+            font-size: 11px;
+            color: #aaa;
+            min-width: 55px;
+        }
+
+        .echo-slider {
+            -webkit-appearance: none;
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: #444;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .echo-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #e67e22;
+            cursor: pointer;
+        }
+
+        .echo-value {
+            font-size: 11px;
+            color: #e67e22;
+            min-width: 30px;
+            text-align: right;
+            font-family: 'SF Mono', 'Menlo', monospace;
+        }
+
         /* Ползунок усиления */
         .gain-section {
             width: 100%;
             background: #2c2c2c;
-            border-radius: 16px;
-            padding: 16px 20px;
+            border-radius: 14px;
+            padding: 14px 16px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
         
         .gain-header {
@@ -260,14 +314,14 @@
         }
         
         .gain-title {
-            font-size: 12px;
+            font-size: 10px;
             color: #aaa;
             text-transform: uppercase;
             letter-spacing: 1.5px;
         }
         
         .gain-value {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             color: #f39c12;
             font-family: 'SF Mono', 'Menlo', monospace;
@@ -285,7 +339,7 @@
         
         .gain-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 32px; height: 32px;
+            width: 30px; height: 30px;
             border-radius: 50%;
             background: white;
             border: 3px solid #f39c12;
@@ -301,22 +355,22 @@
         }
 
         .status {
-            font-size: 13px;
+            font-size: 12px;
             color: #777;
             text-align: center;
-            min-height: 18px;
+            min-height: 16px;
             transition: 0.3s;
         }
         .status.active { color: #2ecc71; font-weight: bold; }
         .status.error { color: #e74c3c; }
 
         .hint {
-            font-size: 10px;
+            font-size: 9px;
             color: #e67e22;
             text-align: center;
-            line-height: 1.6;
+            line-height: 1.5;
             background: rgba(230, 126, 34, 0.1);
-            padding: 10px 14px;
+            padding: 8px 12px;
             border-radius: 8px;
             border-left: 3px solid #e67e22;
             width: 100%;
@@ -326,9 +380,9 @@
             background: none;
             border: 1px solid #555;
             color: #888;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 12px;
+            padding: 6px 16px;
+            border-radius: 16px;
+            font-size: 11px;
             cursor: pointer;
         }
         .reset-btn:active { background: #333; }
@@ -337,8 +391,8 @@
             background: none;
             border: 1px solid #444;
             color: #888;
-            padding: 6px 12px;
-            border-radius: 15px;
+            padding: 4px 10px;
+            border-radius: 12px;
             font-size: 10px;
             cursor: pointer;
         }
@@ -400,17 +454,15 @@
 
         <div class="status" id="status">Нажмите СТАРТ для активации</div>
 
-        <!-- ВЫБОР УСТРОЙСТВ -->
+        <!-- УСТРОЙСТВА -->
         <div class="devices-section">
             <div class="section-title">
                 <span class="section-title-text">Устройства</span>
-                <button class="refresh-btn" id="refreshDevices">🔄 Обновить</button>
+                <button class="refresh-btn" id="refreshDevices">🔄</button>
             </div>
             
             <div class="device-row">
-                <div class="device-label">
-                    <span class="device-icon">🎤</span> Микрофон (ВХОД)
-                </div>
+                <div class="device-label"><span class="device-icon">🎤</span> Микрофон (ВХОД)</div>
                 <select class="device-select" id="micSelect">
                     <option value="default">📱 По умолчанию</option>
                 </select>
@@ -418,18 +470,33 @@
             </div>
             
             <div class="device-row">
-                <div class="device-label">
-                    <span class="device-icon">🔊</span> Динамик (ВЫХОД)
-                </div>
+                <div class="device-label"><span class="device-icon">🔊</span> Динамик (ВЫХОД)</div>
                 <select class="device-select" id="speakerSelect">
                     <option value="default">🔊 По умолчанию</option>
                 </select>
                 <div class="device-status" id="speakerStatus"></div>
             </div>
             
-            <button class="airplay-btn" id="airplayBtn">
-                📡 Выбрать колонку через AirPlay
-            </button>
+            <button class="airplay-btn" id="airplayBtn">📡 AirPlay</button>
+        </div>
+
+        <!-- ЭХО-КОНТРОЛЬ -->
+        <div class="echo-section">
+            <div class="echo-header">
+                <span class="echo-title">🎛️ Подавление эха</span>
+            </div>
+            <div class="echo-row">
+                <span class="echo-label">Порог:</span>
+                <input type="range" class="echo-slider" id="noiseGateSlider" 
+                       min="0" max="100" value="25">
+                <span class="echo-value" id="noiseGateValue">25%</span>
+            </div>
+            <div class="echo-row">
+                <span class="echo-label">Спад:</span>
+                <input type="range" class="echo-slider" id="smoothingSlider" 
+                       min="0" max="100" value="60">
+                <span class="echo-value" id="smoothingValue">60%</span>
+            </div>
         </div>
 
         <!-- УСИЛЕНИЕ -->
@@ -441,18 +508,15 @@
             <input type="range" class="gain-slider" id="gainSlider" 
                    min="0.5" max="10.0" step="0.1" value="2.0">
             <div class="gain-labels">
-                <span>0.5x</span>
-                <span>Тихо</span>
-                <span>Громко</span>
-                <span>10x MAX</span>
+                <span>0.5x</span><span>5x</span><span>10x MAX</span>
             </div>
         </div>
 
         <div class="hint" id="hintText">
-            💡 Выберите микрофон и динамик, затем нажмите СТАРТ
+            💡 Выберите наушники как микрофон, колонку как выход
         </div>
         
-        <button class="reset-btn" id="resetBtn">🔄 Полный сброс</button>
+        <button class="reset-btn" id="resetBtn">🔄 Сброс</button>
     </div>
     
     <div class="install-prompt" id="installPrompt">
@@ -472,7 +536,7 @@
         // ==================== SERVICE WORKER ====================
         if ('serviceWorker' in navigator) {
             const swCode = `
-                const CACHE_NAME = 'megafon-pro-v2';
+                const CACHE_NAME = 'megafon-pro-v3';
                 self.addEventListener('install', e => {
                     e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(['/'])).then(() => self.skipWaiting()));
                 });
@@ -489,7 +553,7 @@
             );
         }
 
-        // ==================== PWA УСТАНОВКА ====================
+        // ==================== PWA ====================
         let deferredPrompt;
         const installPrompt = document.getElementById('installPrompt');
         window.addEventListener('beforeinstallprompt', (e) => {
@@ -520,6 +584,10 @@
         const speakerStatus = document.getElementById('speakerStatus');
         const airplayBtn = document.getElementById('airplayBtn');
         const refreshBtn = document.getElementById('refreshDevices');
+        const noiseGateSlider = document.getElementById('noiseGateSlider');
+        const noiseGateValue = document.getElementById('noiseGateValue');
+        const smoothingSlider = document.getElementById('smoothingSlider');
+        const smoothingValue = document.getElementById('smoothingValue');
         const hintText = document.getElementById('hintText');
         const resetBtn = document.getElementById('resetBtn');
 
@@ -528,6 +596,8 @@
         let mediaStream = null;
         let gainNode = null;
         let sourceNode = null;
+        let analyserNode = null;
+        let noiseGateNode = null; // ScriptProcessor для шумоподавления
         let audioDestNode = null;
         let outputAudioEl = null;
         let keepAliveTimer = null;
@@ -535,8 +605,8 @@
         let isLocked = false;
         let isMicOn = false;
         let isInitialized = false;
-        let selectedMicId = 'default';  // СОХРАНЯЕМ ВЫБРАННЫЙ МИКРОФОН
-        let selectedSpId = 'default';   // СОХРАНЯЕМ ВЫБРАННЫЙ ДИНАМИК
+        let selectedMicId = 'default';
+        let selectedSpId = 'default';
 
         // ==================== ФУНКЦИИ ====================
 
@@ -574,45 +644,36 @@
                 } catch(e) {}
                 
                 const devices = await navigator.mediaDevices.enumerateDevices();
+                if (tempStream) tempStream.getTracks().forEach(t => t.stop());
                 
-                if (tempStream) {
-                    tempStream.getTracks().forEach(t => t.stop());
-                }
-                
-                // Сохраняем текущий выбор
                 const currentMic = micSelect.value || selectedMicId;
                 const currentSp = speakerSelect.value || selectedSpId;
                 
-                // Микрофоны
                 const mics = devices.filter(d => d.kind === 'audioinput');
                 micSelect.innerHTML = '<option value="default">📱 По умолчанию</option>';
                 mics.forEach((mic, i) => {
                     const label = mic.label || `Микрофон ${i + 1}`;
-                    const isHeadphones = label.toLowerCase().includes('bluetooth') || 
-                                        label.toLowerCase().includes('наушник') || 
-                                        label.toLowerCase().includes('headphone') ||
-                                        label.toLowerCase().includes('airpod');
-                    const icon = isHeadphones ? '🎧 ' : '🎤 ';
-                    micSelect.innerHTML += `<option value="${mic.deviceId}">${icon}${label}</option>`;
+                    const isHP = label.toLowerCase().includes('bluetooth') || 
+                                label.toLowerCase().includes('наушник') || 
+                                label.toLowerCase().includes('headphone') ||
+                                label.toLowerCase().includes('airpod');
+                    micSelect.innerHTML += `<option value="${mic.deviceId}">${isHP ? '🎧' : '🎤'} ${label}</option>`;
                 });
                 
-                // Динамики
                 const speakers = devices.filter(d => d.kind === 'audiooutput');
                 speakerSelect.innerHTML = '<option value="default">🔊 По умолчанию</option>';
                 speakers.forEach((sp, i) => {
                     const label = sp.label || `Динамик ${i + 1}`;
-                    const isSpeaker = label.toLowerCase().includes('speaker') || 
-                                     label.toLowerCase().includes('колонк') ||
-                                     label.toLowerCase().includes('динамик') ||
-                                     label.toLowerCase().includes('jbl') ||
-                                     label.toLowerCase().includes('bose') ||
-                                     label.toLowerCase().includes('sony') ||
-                                     label.toLowerCase().includes('marshall');
-                    const icon = isSpeaker ? '🔊 ' : '🔈 ';
-                    speakerSelect.innerHTML += `<option value="${sp.deviceId}">${icon}${label}</option>`;
+                    const isSp = label.toLowerCase().includes('speaker') || 
+                                label.toLowerCase().includes('колонк') ||
+                                label.toLowerCase().includes('динамик') ||
+                                label.toLowerCase().includes('jbl') ||
+                                label.toLowerCase().includes('bose') ||
+                                label.toLowerCase().includes('sony') ||
+                                label.toLowerCase().includes('marshall');
+                    speakerSelect.innerHTML += `<option value="${sp.deviceId}">${isSp ? '🔊' : '🔈'} ${label}</option>`;
                 });
                 
-                // Восстанавливаем выбор
                 if (currentMic && micSelect.querySelector(`option[value="${currentMic}"]`)) {
                     micSelect.value = currentMic;
                 }
@@ -623,76 +684,82 @@
                 selectedMicId = micSelect.value;
                 selectedSpId = speakerSelect.value;
                 
-                console.log('📋 Устройства обновлены:', {
-                    микрофоны: mics.length,
-                    динамики: speakers.length
-                });
-                
                 updateDeviceStatus();
                 
             } catch (err) {
-                console.error('Ошибка enumerateDevices:', err);
+                console.error('enumerateDevices error:', err);
             }
         }
 
         function updateDeviceStatus() {
-            const micId = micSelect.value;
-            const spId = speakerSelect.value;
+            selectedMicId = micSelect.value;
+            selectedSpId = speakerSelect.value;
             
-            selectedMicId = micId;
-            selectedSpId = spId;
-            
-            if (micId === 'default') {
+            if (micSelect.value === 'default') {
                 micStatus.textContent = 'Системный микрофон';
                 micStatus.className = 'device-status';
             } else {
-                const opt = micSelect.selectedOptions[0];
-                const name = opt?.textContent?.replace(/^[🎤🎧]\s*/, '') || 'Выбран';
+                const name = micSelect.selectedOptions[0]?.textContent?.replace(/^[🎤🎧]\s*/, '') || 'Выбран';
                 micStatus.textContent = '✅ ' + name;
                 micStatus.className = 'device-status ok';
             }
             
-            if (spId === 'default') {
+            if (speakerSelect.value === 'default') {
                 speakerStatus.textContent = 'Системный динамик';
                 speakerStatus.className = 'device-status';
             } else {
-                const opt = speakerSelect.selectedOptions[0];
-                const name = opt?.textContent?.replace(/^[🔊🔈]\s*/, '') || 'Выбран';
+                const name = speakerSelect.selectedOptions[0]?.textContent?.replace(/^[🔊🔈]\s*/, '') || 'Выбран';
                 speakerStatus.textContent = '✅ ' + name;
                 speakerStatus.className = 'device-status ok';
             }
         }
 
-        // ==================== ПРИМЕНЕНИЕ ВЫХОДА ====================
-
         async function applySpeakerOutput() {
-            if (!outputAudioEl) return;
-            
-            const speakerId = speakerSelect.value;
-            
-            if (!hasSetSinkId) {
-                speakerStatus.textContent = isIOS ? '⚠️ Используйте AirPlay' : '⚠️ Браузер не поддерживает';
-                speakerStatus.className = 'device-status warn';
-                return;
-            }
-            
+            if (!outputAudioEl || !hasSetSinkId) return;
             try {
-                if (speakerId === 'default') {
-                    await outputAudioEl.setSinkId('');
-                } else {
-                    await outputAudioEl.setSinkId(speakerId);
+                await outputAudioEl.setSinkId(speakerSelect.value === 'default' ? '' : speakerSelect.value);
+            } catch(e) {}
+        }
+
+        // ==================== NOISE GATE (Подавление эха) ====================
+
+        function createNoiseGate(threshold, smoothing) {
+            // threshold: 0-1 (какая громкость считается "тишиной")
+            // smoothing: 0-1 (насколько плавно затухает)
+            
+            const bufferSize = 256;
+            const node = audioContext.createScriptProcessor(bufferSize, 1, 1);
+            
+            let envelope = 0;
+            const attackTime = 0.01;  // быстрое открытие
+            const releaseTime = smoothing * 0.5; // плавное закрытие (зависит от ползунка)
+            
+            const attackCoef = Math.exp(-1 / (audioContext.sampleRate * attackTime));
+            const releaseCoef = Math.exp(-1 / (audioContext.sampleRate * releaseTime));
+            
+            node.onaudioprocess = (event) => {
+                const input = event.inputBuffer.getChannelData(0);
+                const output = event.outputBuffer.getChannelData(0);
+                
+                for (let i = 0; i < bufferSize; i++) {
+                    // Вычисляем огибающую (envelope follower)
+                    const abs = Math.abs(input[i]);
+                    if (abs > envelope) {
+                        envelope = attackCoef * envelope + (1 - attackCoef) * abs;
+                    } else {
+                        envelope = releaseCoef * envelope + (1 - releaseCoef) * abs;
+                    }
+                    
+                    // Применяем noise gate
+                    if (envelope < threshold) {
+                        output[i] = input[i] * (envelope / threshold) * 0.3; // Сильно приглушаем
+                    } else {
+                        output[i] = input[i];
+                    }
                 }
-                
-                const opt = speakerSelect.selectedOptions[0];
-                const name = opt?.textContent?.replace(/^[🔊🔈]\s*/, '') || 'Колонка';
-                speakerStatus.textContent = '✅ Вывод: ' + name;
-                speakerStatus.className = 'device-status ok';
-                
-            } catch (err) {
-                console.error('❌ setSinkId error:', err);
-                speakerStatus.textContent = '❌ Не удалось переключить';
-                speakerStatus.className = 'device-status warn';
-            }
+            };
+            
+            return node;
         }
 
         // ==================== KEEP-ALIVE ====================
@@ -745,8 +812,8 @@
                 setStatus('📢 Говорите!', 'active');
                 updateUI();
             }).catch(err => {
-                console.error('❌ micOn error:', err);
-                setStatus('❌ Ошибка включения', 'error');
+                console.error('micOn error:', err);
+                setStatus('❌ Ошибка', 'error');
             });
         }
 
@@ -763,7 +830,7 @@
                 setStatus('🔇 Микрофон заглушен', '');
                 updateUI();
             }).catch(err => {
-                console.error('❌ micOff error:', err);
+                console.error('micOff error:', err);
             });
         }
 
@@ -775,6 +842,7 @@
                 return;
             }
             if (isLocked) {
+                // Переключаем: ВКЛ ↔ ВЫКЛ
                 isMicOn ? micOff() : micOn();
             } else {
                 micOn();
@@ -783,7 +851,7 @@
 
         function releaseButton() {
             if (!isInitialized) return;
-            if (isLocked) return;
+            if (isLocked) return; // В фиксации не выключаем
             micOff();
         }
 
@@ -797,35 +865,48 @@
                 talkBtn.disabled = true;
                 btnText.textContent = '...';
                 
-                // ИСПОЛЬЗУЕМ СОХРАНЕННЫЙ ВЫБОР МИКРОФОНА
                 const micId = selectedMicId;
                 const constraints = {
                     audio: micId !== 'default' 
-                        ? { deviceId: { exact: micId } } 
-                        : true
+                        ? { 
+                            deviceId: { exact: micId },
+                            echoCancellation: false,
+                            noiseSuppression: false,
+                            autoGainControl: false,
+                          } 
+                        : {
+                            echoCancellation: false,
+                            noiseSuppression: false,
+                            autoGainControl: false,
+                          }
                 };
-                
-                console.log('🎤 Инициализация с микрофоном:', micId === 'default' ? 'по умолчанию' : micId);
                 
                 mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
                 sourceNode = audioContext.createMediaStreamSource(mediaStream);
+                
+                // Создаём noise gate
+                const threshold = parseFloat(noiseGateSlider.value) / 100;
+                const smoothing = parseFloat(smoothingSlider.value) / 100;
+                noiseGateNode = createNoiseGate(threshold, smoothing);
+                
+                // Усилитель
                 gainNode = audioContext.createGain();
                 gainNode.gain.value = parseFloat(gainSlider.value);
                 
                 audioDestNode = audioContext.createMediaStreamDestination();
                 
-                sourceNode.connect(gainNode);
+                // Цепочка: микрофон → noise gate → усилитель → выход
+                sourceNode.connect(noiseGateNode);
+                noiseGateNode.connect(gainNode);
                 
                 if (hasSetSinkId && !isIOS) {
                     gainNode.connect(audioDestNode);
-                    
                     outputAudioEl = new Audio();
                     outputAudioEl.srcObject = audioDestNode.stream;
                     outputAudioEl.autoplay = true;
                     outputAudioEl.muted = false;
                     outputAudioEl.volume = 1.0;
-                    
                     await applySpeakerOutput();
                 } else {
                     gainNode.connect(audioContext.destination);
@@ -836,17 +917,25 @@
                 isInitialized = true;
                 talkBtn.disabled = false;
                 
+                // ЕСЛИ РЕЖИМ ФИКСАЦИИ — СРАЗУ ВКЛЮЧАЕМ МИКРОФОН
+                if (isLocked) {
+                    micOn();
+                }
+                
                 const micName = micSelect.selectedOptions[0]?.textContent?.replace(/^[🎤🎧]\s*/, '') || 'микрофон';
                 const spName = speakerSelect.selectedOptions[0]?.textContent?.replace(/^[🔊🔈]\s*/, '') || 'динамик';
-                setStatus(`✅ ${micName} → ${spName}`, '');
+                
+                if (!isLocked) {
+                    setStatus(`✅ ${micName} → ${spName}`, '');
+                }
                 updateUI();
                 
             } catch (err) {
-                console.error('❌ initAudio error:', err);
+                console.error('initAudio error:', err);
                 let msg = 'Ошибка';
                 if (err.name === 'NotAllowedError') msg = '❌ Доступ отклонен';
                 else if (err.name === 'NotFoundError') msg = '❌ Устройство не найдено';
-                else if (err.name === 'OverconstrainedError') msg = '❌ Выбранный микрофон недоступен';
+                else if (err.name === 'OverconstrainedError') msg = '❌ Микрофон недоступен';
                 else msg = '❌ ' + err.message;
                 setStatus(msg, 'error');
                 talkBtn.disabled = false;
@@ -859,8 +948,6 @@
         function fullReset() {
             stopKeepAlive();
             isMicOn = false;
-            isLocked = false;
-            modeSwitch.checked = false;
             
             if (outputAudioEl) {
                 outputAudioEl.pause();
@@ -878,6 +965,7 @@
             
             sourceNode = null;
             gainNode = null;
+            noiseGateNode = null;
             audioDestNode = null;
             isInitialized = false;
             talkBtn.disabled = true;
@@ -905,10 +993,16 @@
         modeSwitch.addEventListener('change', () => {
             isLocked = modeSwitch.checked;
             if (isMicOn) micOff();
-            setStatus(isLocked ? '🔒 Фиксация: нажмите ВКЛ' : '📻 Рация: держите кнопку', '');
+            
+            if (isLocked) {
+                setStatus('🔒 Фиксация: нажмите ВКЛ', '');
+            } else {
+                setStatus('📻 Рация: держите кнопку', '');
+            }
             updateUI();
         });
 
+        // Усиление
         gainSlider.addEventListener('input', () => {
             const v = parseFloat(gainSlider.value);
             gainValue.textContent = v.toFixed(1) + 'x';
@@ -920,70 +1014,48 @@
             else gainValue.style.color = '#2ecc71';
         });
 
-        // При изменении микрофона НЕ сбрасываем, а сохраняем выбор
+        // Noise Gate порог
+        noiseGateSlider.addEventListener('input', () => {
+            const v = parseInt(noiseGateSlider.value);
+            noiseGateValue.textContent = v + '%';
+        });
+
+        // Сглаживание
+        smoothingSlider.addEventListener('input', () => {
+            const v = parseInt(smoothingSlider.value);
+            smoothingValue.textContent = v + '%';
+        });
+
         micSelect.addEventListener('change', () => {
             selectedMicId = micSelect.value;
             updateDeviceStatus();
-            
-            // Если уже инициализировано — предлагаем перезапустить
             if (isInitialized) {
-                setStatus('⚠️ Микрофон изменен. Нажмите СТАРТ заново', '');
-                // Мягкий сброс без потери выбора
-                stopKeepAlive();
-                isMicOn = false;
-                if (outputAudioEl) {
-                    outputAudioEl.pause();
-                    outputAudioEl.srcObject = null;
-                    outputAudioEl = null;
-                }
-                if (mediaStream) {
-                    mediaStream.getTracks().forEach(t => t.stop());
-                    mediaStream = null;
-                }
-                if (audioContext && audioContext.state !== 'closed') {
-                    audioContext.close();
-                    audioContext = null;
-                }
-                sourceNode = null;
-                gainNode = null;
-                audioDestNode = null;
-                isInitialized = false;
-                updateUI();
+                setStatus('⚠️ Микрофон изменен. Нажмите СТАРТ', '');
+                fullReset();
             }
         });
 
         speakerSelect.addEventListener('change', () => {
             selectedSpId = speakerSelect.value;
             updateDeviceStatus();
-            if (isInitialized) {
-                applySpeakerOutput();
-            }
+            if (isInitialized) applySpeakerOutput();
         });
 
-        // AirPlay для iOS
         airplayBtn.addEventListener('click', () => {
-            const tempVideo = document.createElement('video');
-            tempVideo.setAttribute('playsinline', '');
-            tempVideo.setAttribute('webkit-playsinline', '');
-            tempVideo.setAttribute('x-webkit-airplay', 'allow');
-            tempVideo.style.display = 'none';
-            document.body.appendChild(tempVideo);
-            
-            if (tempVideo.webkitShowPlaybackTargetPicker) {
-                tempVideo.webkitShowPlaybackTargetPicker();
-            }
-            
-            setTimeout(() => {
-                document.body.removeChild(tempVideo);
-            }, 1000);
-            
-            hintText.innerHTML = '📡 Выберите колонку в открывшемся меню AirPlay';
+            const tv = document.createElement('video');
+            tv.setAttribute('playsinline', '');
+            tv.setAttribute('webkit-playsinline', '');
+            tv.setAttribute('x-webkit-airplay', 'allow');
+            tv.style.display = 'none';
+            document.body.appendChild(tv);
+            if (tv.webkitShowPlaybackTargetPicker) tv.webkitShowPlaybackTargetPicker();
+            setTimeout(() => document.body.removeChild(tv), 1000);
         });
 
         refreshBtn.addEventListener('click', async () => {
-            setStatus('Обновляю список устройств...', '');
+            setStatus('Обновляю...', '');
             await enumerateDevices();
-            setStatus('✅ Список обновлен', '');
+            setStatus('✅ Готово', '');
         });
 
         resetBtn.addEventListener('click', fullReset);
@@ -995,25 +1067,18 @@
             if (audioContext && audioContext.state !== 'closed') audioContext.close();
         });
 
-        navigator.mediaDevices?.addEventListener('devicechange', () => {
-            console.log('🔄 Обнаружено изменение устройств');
-            enumerateDevices();
-        });
-
+        navigator.mediaDevices?.addEventListener('devicechange', () => enumerateDevices());
         document.addEventListener('dblclick', (e) => e.preventDefault(), {passive: false});
 
         // ==================== ЗАПУСК ====================
         
         if (isIOS) {
             airplayBtn.style.display = 'block';
-            hintText.innerHTML = '💡 <b>iOS:</b> выберите микрофон ниже, затем нажмите AirPlay для выбора колонки';
+            hintText.innerHTML = '💡 Выберите наушники → AirPlay → СТАРТ';
         }
         
-        enumerateDevices().then(() => {
-            console.log('✅ Начальный список устройств загружен');
-        });
-
-        console.log('✅ Мегафон Pro загружен');
+        enumerateDevices().then(() => console.log('✅ Устройства загружены'));
+        console.log('✅ Мегафон Pro v3 загружен');
     </script>
 </body>
 </html>
