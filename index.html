@@ -13,8 +13,6 @@
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ff416c'/%3E%3Cstop offset='100%25' style='stop-color:%23ff4b2b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='120' fill='url(%23g)'/%3E%3Ccircle cx='256' cy='220' r='80' fill='white'/%3E%3Cpath d='M180 340c0-42 34-76 76-76s76 34 76 76v40H180v-40z' fill='white'/%3E%3C/svg%3E">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         :root {
@@ -25,7 +23,6 @@
             --text-secondary: rgba(255, 255, 255, 0.5);
             --gradient: linear-gradient(135deg, #ff416c, #ff4b2b);
             --green: #00ff88;
-            --orange: #ff9f43;
         }
         
         html, body {
@@ -45,11 +42,12 @@
             justify-content: center;
             min-height: 100vh;
             color: var(--text);
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             touch-action: manipulation;
             -webkit-user-select: none;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
@@ -58,12 +56,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
             padding: 20px 16px;
         }
 
         .logo {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 900;
             letter-spacing: -1px;
             background: var(--gradient);
@@ -77,7 +75,7 @@
             color: var(--text-secondary);
             letter-spacing: 4px;
             text-transform: uppercase;
-            margin-top: -8px;
+            margin-top: -12px;
             margin-bottom: 8px;
         }
 
@@ -101,13 +99,13 @@
         .talk-btn-wrap.active .talk-btn-glow { opacity: 0.6; }
         
         .talk-btn {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             background: rgba(20, 20, 35, 0.9);
             border: 2px solid rgba(255, 255, 255, 0.1);
             color: white;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -142,7 +140,7 @@
         }
 
         .btn-text { z-index: 2; pointer-events: none; }
-        .talk-btn.active .btn-text { font-size: 28px; }
+        .talk-btn.active .btn-text { font-size: 30px; }
         
         .lock-badge {
             position: absolute;
@@ -168,10 +166,9 @@
             border-radius: 50px;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            width: fit-content;
         }
         
-        .mode-label-text { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+        .mode-label-text { font-size: 13px; color: var(--text-secondary); font-weight: 500; }
         
         .switch {
             position: relative;
@@ -203,7 +200,7 @@
         input:checked + .slider:before { transform: translateX(22px); }
         
         .mode-indicator {
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 700;
             background: var(--gradient);
             -webkit-background-clip: text;
@@ -227,85 +224,12 @@
             -webkit-backdrop-filter: blur(20px);
         }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
         .card-title {
             font-size: 10px;
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 600;
-        }
-
-        .device-row {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .device-label {
-            font-size: 10px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .device-select {
-            width: 100%;
-            padding: 12px 14px;
-            background: rgba(255, 255, 255, 0.03);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            font-size: 13px;
-            font-family: 'Inter', sans-serif;
-            cursor: pointer;
-            outline: none;
-            -webkit-appearance: none;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%23ffffff80'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 14px center;
-        }
-
-        .device-select option { background: #1a1a2e; color: white; }
-
-        .device-status {
-            font-size: 9px;
-            font-weight: 500;
-            min-height: 12px;
-        }
-        .device-status.ok { color: var(--green); }
-        .device-status.warn { color: var(--orange); }
-
-        /* Кнопка AirPlay */
-        .airplay-btn {
-            width: 100%;
-            padding: 14px;
-            background: rgba(255, 65, 108, 0.1);
-            border: 2px dashed rgba(255, 65, 108, 0.4);
-            border-radius: 12px;
-            color: #ff416c;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            text-align: center;
-            display: none;
-            transition: all 0.2s;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 1px;
-        }
-        .airplay-btn:active {
-            background: rgba(255, 65, 108, 0.2);
-            border-color: rgba(255, 65, 108, 0.7);
         }
 
         /* Эхо */
@@ -388,27 +312,14 @@
         }
 
         .status {
-            font-size: 12px;
+            font-size: 13px;
             color: var(--text-secondary);
             text-align: center;
-            min-height: 16px;
+            min-height: 18px;
             font-weight: 500;
         }
         .status.active { color: var(--green); font-weight: 600; }
         .status.error { color: #ff416c; font-weight: 600; }
-
-        .btn-sm {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: var(--text-secondary);
-            padding: 7px 14px;
-            border-radius: 50px;
-            font-size: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-        }
-        .btn-sm:active { background: rgba(255, 255, 255, 0.08); color: white; }
 
         .btn-outline {
             background: transparent;
@@ -419,32 +330,32 @@
             font-size: 11px;
             font-weight: 600;
             cursor: pointer;
-            font-family: 'Inter', sans-serif;
+            font-family: -apple-system, sans-serif;
         }
         .btn-outline:active { background: rgba(255, 255, 255, 0.05); color: white; }
 
-        .hint {
-            font-size: 10px;
-            color: var(--text-secondary);
+        .hint-card {
+            width: 100%;
+            background: rgba(255, 65, 108, 0.08);
+            border: 1px solid rgba(255, 65, 108, 0.15);
+            border-radius: 16px;
+            padding: 14px 16px;
             text-align: center;
-            line-height: 1.6;
-            opacity: 0.7;
         }
-        .hint b { color: #ff416c; font-weight: 600; }
-
-        /* Инструкция */
-        .instructions {
-            font-size: 10px;
+        
+        .hint-card .icon {
+            font-size: 28px;
+            margin-bottom: 6px;
+        }
+        
+        .hint-card .text {
+            font-size: 12px;
             color: var(--text-secondary);
-            text-align: left;
-            line-height: 1.8;
-            opacity: 0.8;
-            padding: 12px;
-            background: rgba(255,255,255,0.02);
-            border-radius: 10px;
+            line-height: 1.6;
         }
-        .instructions span {
-            color: var(--green);
+        
+        .hint-card .text b {
+            color: #ff416c;
             font-weight: 600;
         }
     </style>
@@ -465,59 +376,32 @@
 
         <div class="talk-btn-wrap" id="talkBtnWrap">
             <div class="talk-btn-glow"></div>
-            <button id="talkBtn" class="talk-btn" disabled>
-                <span class="btn-text">СТАРТ</span>
+            <button id="talkBtn" class="talk-btn">
+                <span class="btn-text">ГОВОРИ</span>
                 <span class="lock-badge">🔒</span>
             </button>
         </div>
 
-        <div class="status" id="status">Нажмите СТАРТ</div>
+        <div class="status" id="status">Нажмите и говорите</div>
 
-        <!-- Устройства -->
-        <div class="card">
-            <div class="card-header">
-                <span class="card-title">🎛️ Устройства</span>
-                <button class="btn-sm" id="refreshDevices">Обновить</button>
-            </div>
-            
-            <div class="device-row">
-                <div class="device-label">🎤 Микрофон (вход)</div>
-                <select class="device-select" id="micSelect">
-                    <option value="default">По умолчанию</option>
-                </select>
-                <div class="device-status" id="micStatus"></div>
-            </div>
-            
-            <div class="device-row">
-                <div class="device-label">🔊 Динамик (выход)</div>
-                <select class="device-select" id="speakerSelect">
-                    <option value="default">По умолчанию</option>
-                </select>
-                <div class="device-status" id="speakerStatus"></div>
-            </div>
-            
-            <button class="airplay-btn" id="airplayBtn">
-                📡 ВЫБРАТЬ КОЛОНКУ ЧЕРЕЗ AIRPLAY
-            </button>
-            
-            <div class="instructions" id="instructionsText">
-                <span>1.</span> Подключите наушники и колонку к iPhone<br>
-                <span>2.</span> Выберите наушники как микрофон<br>
-                <span>3.</span> Нажмите кнопку AirPlay и выберите колонку<br>
-                <span>4.</span> Нажмите СТАРТ и говорите
+        <!-- Как вывести на колонку -->
+        <div class="hint-card" id="hintCard">
+            <div class="icon">📡</div>
+            <div class="text" id="hintText">
+                <b>Перед запуском:</b><br>
+                Откройте Пункт управления →<br>
+                AirPlay → выберите <b>JBL Flip 5</b>
             </div>
         </div>
 
         <!-- Эхо -->
         <div class="card">
-            <div class="card-header">
-                <span class="card-title">🔇 Подавление эха</span>
-            </div>
+            <div class="card-title">🔇 Подавление эха</div>
             <div class="echo-slider-row">
                 <span class="echo-label">Порог</span>
                 <input type="range" class="echo-slider" id="noiseGateSlider" 
-                       min="1" max="80" value="15">
-                <span class="echo-value" id="noiseGateValue">15%</span>
+                       min="1" max="80" value="20">
+                <span class="echo-value" id="noiseGateValue">20%</span>
             </div>
             <div class="echo-slider-row">
                 <span class="echo-label">Атака</span>
@@ -529,10 +413,8 @@
 
         <!-- Усиление -->
         <div class="card">
-            <div class="card-header">
-                <span class="card-title">🔊 Усиление</span>
-                <span class="gain-value" id="gainValue">1.5x</span>
-            </div>
+            <div class="card-title">🔊 Усиление</div>
+            <span class="gain-value" id="gainValue">1.5x</span>
             <input type="range" class="gain-slider" id="gainSlider" 
                    min="0.5" max="10.0" step="0.1" value="1.5">
             <div class="gain-labels">
@@ -544,16 +426,9 @@
     </div>
 
     <script>
-        // ==================== ПЛАТФОРМА ====================
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-        const hasSetSinkId = typeof HTMLAudioElement.prototype.setSinkId === 'function';
-        
-        console.log('📱 iOS:', isIOS, '| setSinkId:', hasSetSinkId);
-
-        // ==================== SW ====================
+        // ==================== SERVICE WORKER ====================
         if ('serviceWorker' in navigator) {
-            const swCode = `const C='megafon-v5';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['/'])).then(()=>self.skipWaiting()))});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.map(k=>k!==C?caches.delete(k):null))).then(()=>self.clients.claim()))});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)))})`;
+            const swCode = `const C='megafon-v6';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['/'])).then(()=>self.skipWaiting()))});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.map(k=>k!==C?caches.delete(k):null))).then(()=>self.clients.claim()))});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)))})`;
             navigator.serviceWorker.register(URL.createObjectURL(new Blob([swCode],{type:'application/javascript'})),{scope:'/'});
         }
 
@@ -566,12 +441,6 @@
         const modeIndicator = document.getElementById('modeIndicator');
         const gainSlider = document.getElementById('gainSlider');
         const gainValue = document.getElementById('gainValue');
-        const micSelect = document.getElementById('micSelect');
-        const speakerSelect = document.getElementById('speakerSelect');
-        const micStatus = document.getElementById('micStatus');
-        const speakerStatus = document.getElementById('speakerStatus');
-        const airplayBtn = document.getElementById('airplayBtn');
-        const refreshBtn = document.getElementById('refreshDevices');
         const noiseGateSlider = document.getElementById('noiseGateSlider');
         const noiseGateValue = document.getElementById('noiseGateValue');
         const attackSlider = document.getElementById('attackSlider');
@@ -584,16 +453,11 @@
         let gainNode = null;
         let sourceNode = null;
         let noiseGateNode = null;
-        let audioDestNode = null;
-        let outputAudioEl = null;
         let keepAliveTimer = null;
-        let silentOscNode = null; // Постоянный осциллятор для удержания аудиоканала
         
         let isLocked = false;
         let isMicOn = false;
         let isInitialized = false;
-        let selectedMicId = 'default';
-        let selectedSpId = 'default';
 
         // ==================== ФУНКЦИИ ====================
         function setStatus(text, cls = '') {
@@ -606,9 +470,7 @@
             talkBtn.classList.toggle('locked', isMicOn && isLocked);
             talkBtnWrap.classList.toggle('active', isMicOn);
             
-            if (!isInitialized) {
-                btnText.textContent = 'СТАРТ';
-            } else if (isLocked && isMicOn) {
+            if (isLocked && isMicOn) {
                 btnText.textContent = '📢';
             } else if (isLocked && !isMicOn) {
                 btnText.textContent = 'ВКЛ';
@@ -621,92 +483,13 @@
             modeIndicator.textContent = isLocked ? 'Фикс' : 'Рация';
         }
 
-        // ==================== УСТРОЙСТВА ====================
-        async function enumerateDevices() {
-            try {
-                let ts = null;
-                try { ts = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch(e) {}
-                const devices = await navigator.mediaDevices.enumerateDevices();
-                if (ts) ts.getTracks().forEach(t => t.stop());
-                
-                const cm = micSelect.value || selectedMicId;
-                const cs = speakerSelect.value || selectedSpId;
-                
-                const mics = devices.filter(d => d.kind === 'audioinput');
-                micSelect.innerHTML = '<option value="default">По умолчанию</option>';
-                mics.forEach((m, i) => {
-                    const l = m.label || `Микрофон ${i+1}`;
-                    const hp = /bluetooth|наушник|headphone|airpod/i.test(l);
-                    micSelect.innerHTML += `<option value="${m.deviceId}">${hp?'🎧':'🎤'} ${l}</option>`;
-                });
-                
-                const sps = devices.filter(d => d.kind === 'audiooutput');
-                speakerSelect.innerHTML = '<option value="default">По умолчанию (системный)</option>';
-                sps.forEach((s, i) => {
-                    const l = s.label || `Динамик ${i+1}`;
-                    speakerSelect.innerHTML += `<option value="${s.deviceId}">🔊 ${l}</option>`;
-                });
-                
-                if (cm && micSelect.querySelector(`option[value="${cm}"]`)) micSelect.value = cm;
-                if (cs && speakerSelect.querySelector(`option[value="${cs}"]`)) speakerSelect.value = cs;
-                
-                selectedMicId = micSelect.value;
-                selectedSpId = speakerSelect.value;
-                
-                updateDeviceStatus();
-                
-                // На iOS предупреждаем
-                if (isIOS && sps.length === 0) {
-                    speakerStatus.textContent = 'Используйте AirPlay для колонки';
-                    speakerStatus.className = 'device-status warn';
-                }
-            } catch(e) { console.error(e); }
-        }
-
-        function updateDeviceStatus() {
-            selectedMicId = micSelect.value;
-            selectedSpId = speakerSelect.value;
-            
-            if (micSelect.value === 'default') {
-                micStatus.textContent = 'Системный микрофон';
-                micStatus.className = 'device-status';
-            } else {
-                const n = micSelect.selectedOptions[0]?.textContent?.replace(/^[🎤🎧]\s*/, '') || 'Выбран';
-                micStatus.textContent = '✅ ' + n;
-                micStatus.className = 'device-status ok';
-            }
-            
-            if (speakerSelect.value === 'default') {
-                speakerStatus.textContent = isIOS ? 'Системный (наушники/динамик)' : 'Системный динамик';
-                speakerStatus.className = 'device-status';
-            } else {
-                const n = speakerSelect.selectedOptions[0]?.textContent?.replace(/^🔊\s*/, '') || 'Выбран';
-                speakerStatus.textContent = '✅ ' + n;
-                speakerStatus.className = 'device-status ok';
-            }
-        }
-
-        async function applySpeakerOutput() {
-            if (!outputAudioEl || !hasSetSinkId) return;
-            try {
-                await outputAudioEl.setSinkId(speakerSelect.value === 'default' ? '' : speakerSelect.value);
-                const n = speakerSelect.selectedOptions[0]?.textContent?.replace(/^🔊\s*/, '') || 'Колонка';
-                speakerStatus.textContent = '✅ ' + n;
-                speakerStatus.className = 'device-status ok';
-            } catch(e) {
-                speakerStatus.textContent = '❌ Ошибка';
-                speakerStatus.className = 'device-status warn';
-            }
-        }
-
-        // ==================== NOISE GATE ====================
         function createNoiseGate(threshold, attackMs) {
             const bufferSize = 512;
             const node = audioContext.createScriptProcessor(bufferSize, 1, 1);
             
             let envelope = 0;
             const attackCoef = Math.exp(-1 / (audioContext.sampleRate * (attackMs / 1000)));
-            const releaseCoef = Math.exp(-1 / (audioContext.sampleRate * 0.15));
+            const releaseCoef = Math.exp(-1 / (audioContext.sampleRate * 0.12));
             
             node.onaudioprocess = (event) => {
                 const input = event.inputBuffer.getChannelData(0);
@@ -725,44 +508,8 @@
             return node;
         }
 
-        // ==================== СИСТЕМА УДЕРЖАНИЯ АУДИОКАНАЛА ====================
-        // iOS "засыпает" аудио если нет постоянного сигнала
-        // Создаём ультразвуковой тон, который держит канал открытым
-        
-        function startSilentTone() {
-            if (!audioContext || audioContext.state === 'closed') return;
-            if (silentOscNode) return;
-            
-            try {
-                silentOscNode = audioContext.createOscillator();
-                const silentGain = audioContext.createGain();
-                silentGain.gain.value = 0.00001; // Практически тишина
-                silentOscNode.connect(silentGain);
-                
-                // Подключаем к тому же выходу что и микрофон
-                if (audioDestNode && outputAudioEl) {
-                    silentGain.connect(audioDestNode);
-                } else {
-                    silentGain.connect(audioContext.destination);
-                }
-                
-                silentOscNode.frequency.value = 20000; // Ультразвук
-                silentOscNode.start();
-            } catch(e) {}
-        }
-        
-        function stopSilentTone() {
-            if (silentOscNode) {
-                try { silentOscNode.stop(); } catch(e) {}
-                silentOscNode.disconnect();
-                silentOscNode = null;
-            }
-        }
-
-        // ==================== KEEP-ALIVE ====================
         function startKeepAlive() {
             stopKeepAlive();
-            startSilentTone();
             keepAliveTimer = setInterval(() => {
                 if (!isMicOn || !audioContext || audioContext.state === 'closed') return;
                 if (audioContext.state === 'suspended') {
@@ -773,33 +520,28 @@
 
         function stopKeepAlive() {
             if (keepAliveTimer) { clearInterval(keepAliveTimer); keepAliveTimer = null; }
-            stopSilentTone();
         }
 
-        // ==================== МИКРОФОН ====================
         function micOn() {
-            if (!isInitialized || !audioContext || audioContext.state === 'closed') return;
+            if (!audioContext || audioContext.state === 'closed') return;
             audioContext.resume().then(() => {
                 isMicOn = true;
-                if (outputAudioEl?.paused) outputAudioEl.play().catch(()=>{});
                 startKeepAlive();
-                setStatus('📢 Эфир!', 'active');
+                setStatus('📢 Говорите!', 'active');
                 updateUI();
             }).catch(e => setStatus('❌ Ошибка', 'error'));
         }
 
         function micOff() {
-            if (!isInitialized || !audioContext || audioContext.state === 'closed') return;
+            if (!audioContext || audioContext.state === 'closed') return;
             audioContext.suspend().then(() => {
                 isMicOn = false;
-                if (outputAudioEl && !outputAudioEl.paused) outputAudioEl.pause();
                 stopKeepAlive();
-                setStatus('🔇 Заглушен', '');
+                setStatus(isLocked ? '🔒 Нажмите ВКЛ' : '🎤 Нажмите и говорите', '');
                 updateUI();
             }).catch(e => {});
         }
 
-        // ==================== КНОПКА ====================
         function pressButton() {
             if (!isInitialized) { initAudio(); return; }
             if (isLocked) { isMicOn ? micOff() : micOn(); }
@@ -811,25 +553,22 @@
             micOff();
         }
 
-        // ==================== ИНИЦИАЛИЗАЦИЯ ====================
         async function initAudio() {
             if (isInitialized) return;
             try {
-                setStatus('Подключение...', '');
+                setStatus('Запуск...', '');
                 talkBtn.disabled = true;
                 btnText.textContent = '...';
                 
-                const micId = selectedMicId;
-                const constraints = {
+                // Используем системный микрофон
+                mediaStream = await navigator.mediaDevices.getUserMedia({
                     audio: {
-                        ...(micId !== 'default' && { deviceId: { exact: micId } }),
                         echoCancellation: false,
                         noiseSuppression: false,
                         autoGainControl: false,
                     }
-                };
+                });
                 
-                mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
                 sourceNode = audioContext.createMediaStreamSource(mediaStream);
                 
@@ -842,33 +581,7 @@
                 
                 sourceNode.connect(noiseGateNode);
                 noiseGateNode.connect(gainNode);
-                
-                if (hasSetSinkId && !isIOS) {
-                    // Android Chrome с setSinkId
-                    audioDestNode = audioContext.createMediaStreamDestination();
-                    gainNode.connect(audioDestNode);
-                    outputAudioEl = new Audio();
-                    outputAudioEl.srcObject = audioDestNode.stream;
-                    outputAudioEl.autoplay = true;
-                    outputAudioEl.muted = false;
-                    outputAudioEl.volume = 1.0;
-                    await applySpeakerOutput();
-                } else {
-                    // iOS или нет setSinkId
-                    audioDestNode = audioContext.createMediaStreamDestination();
-                    gainNode.connect(audioContext.destination);
-                    gainNode.connect(audioDestNode);
-                    
-                    // Создаём аудио элемент для AirPlay
-                    outputAudioEl = new Audio();
-                    outputAudioEl.srcObject = audioDestNode.stream;
-                    outputAudioEl.autoplay = true;
-                    outputAudioEl.muted = false;
-                    outputAudioEl.volume = 1.0;
-                    outputAudioEl.setAttribute('playsinline', '');
-                    outputAudioEl.setAttribute('webkit-playsinline', '');
-                    outputAudioEl.setAttribute('x-webkit-airplay', 'allow');
-                }
+                gainNode.connect(audioContext.destination);
                 
                 await audioContext.suspend();
                 
@@ -876,27 +589,26 @@
                 talkBtn.disabled = false;
                 
                 if (isLocked) micOn();
-                else setStatus('✅ Готово', '');
+                else setStatus('✅ Готово! Говорите', '');
                 
                 updateUI();
             } catch(err) {
                 console.error(err);
                 setStatus('❌ ' + (err.name === 'NotAllowedError' ? 'Доступ отклонен' : err.message), 'error');
                 talkBtn.disabled = false;
-                btnText.textContent = 'СТАРТ';
+                btnText.textContent = 'ГОВОРИ';
             }
         }
 
         function fullReset() {
             stopKeepAlive();
             isMicOn = false;
-            if (outputAudioEl) { outputAudioEl.pause(); outputAudioEl.srcObject = null; outputAudioEl = null; }
             if (mediaStream) { mediaStream.getTracks().forEach(t => t.stop()); mediaStream = null; }
             if (audioContext?.state !== 'closed') audioContext?.close();
-            sourceNode = gainNode = noiseGateNode = audioDestNode = audioContext = null;
+            sourceNode = gainNode = noiseGateNode = audioContext = null;
             isInitialized = false;
-            talkBtn.disabled = true;
-            setStatus('Нажмите СТАРТ', '');
+            talkBtn.disabled = false;
+            setStatus('Нажмите и говорите', '');
             updateUI();
         }
 
@@ -910,7 +622,7 @@
         modeSwitch.addEventListener('change', () => {
             isLocked = modeSwitch.checked;
             if (isMicOn) micOff();
-            setStatus(isLocked ? '🔒 Фиксация' : '📻 Рация', '');
+            setStatus(isLocked ? '🔒 Фиксация: нажмите ВКЛ' : '📻 Рация: держите кнопку', '');
             updateUI();
         });
 
@@ -923,61 +635,15 @@
         noiseGateSlider.addEventListener('input', () => noiseGateValue.textContent = noiseGateSlider.value + '%');
         attackSlider.addEventListener('input', () => attackValue.textContent = attackSlider.value + 'ms');
 
-        micSelect.addEventListener('change', () => {
-            selectedMicId = micSelect.value;
-            updateDeviceStatus();
-            if (isInitialized) { setStatus('⚠️ Нажмите СТАРТ'); fullReset(); }
-        });
-
-        speakerSelect.addEventListener('change', () => {
-            selectedSpId = speakerSelect.value;
-            updateDeviceStatus();
-            if (isInitialized) applySpeakerOutput();
-        });
-
-        // AirPlay — теперь с поддержкой аудиоэлемента
-        airplayBtn.addEventListener('click', () => {
-            if (outputAudioEl && outputAudioEl.webkitShowPlaybackTargetPicker) {
-                // Показываем AirPlay picker для нашего аудио элемента
-                outputAudioEl.webkitShowPlaybackTargetPicker();
-            } else {
-                // Fallback: создаём временный video элемент
-                const tv = document.createElement('video');
-                tv.setAttribute('playsinline', '');
-                tv.setAttribute('webkit-playsinline', '');
-                tv.setAttribute('x-webkit-airplay', 'allow');
-                tv.style.display = 'none';
-                document.body.appendChild(tv);
-                if (tv.webkitShowPlaybackTargetPicker) tv.webkitShowPlaybackTargetPicker();
-                setTimeout(() => document.body.removeChild(tv), 1000);
-            }
-        });
-
-        refreshBtn.addEventListener('click', async () => {
-            setStatus('Обновление...', '');
-            await enumerateDevices();
-            setStatus('✅ Готово', '');
-        });
-
         resetBtn.addEventListener('click', fullReset);
 
         window.addEventListener('beforeunload', () => {
             stopKeepAlive();
-            if (outputAudioEl) { outputAudioEl.pause(); outputAudioEl.srcObject = null; }
             if (mediaStream) mediaStream.getTracks().forEach(t => t.stop());
             audioContext?.close();
         });
 
-        navigator.mediaDevices?.addEventListener('devicechange', () => enumerateDevices());
         document.addEventListener('dblclick', e => e.preventDefault(), {passive: false});
-
-        // ==================== СТАРТ ====================
-        if (isIOS) {
-            airplayBtn.style.display = 'block';
-            speakerSelect.style.display = 'none';
-        }
-        
-        enumerateDevices().then(() => console.log('✅ Готово'));
 
         // Сохраняем настройки
         [gainSlider, noiseGateSlider, attackSlider].forEach(s => {
@@ -986,7 +652,6 @@
             s.addEventListener('input', () => localStorage.setItem('megafon_' + s.id, s.value));
         });
         
-        // Восстановление gain
         if (localStorage.getItem('megafon_gainSlider')) {
             gainValue.textContent = parseFloat(localStorage.getItem('megafon_gainSlider')).toFixed(1) + 'x';
         }
