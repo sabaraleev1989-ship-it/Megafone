@@ -9,7 +9,8 @@
     <meta name="apple-mobile-web-app-title" content="MegaFon">
     <title>MegaFon</title>
     
-    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22MegaFon%22%2C%22short_name%22%3A%22MegaFon%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230a0a0f%22%2C%22theme_color%22%3A%22%230a0a0f%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%253E%253Cdefs%253E%253ClinearGradient%20id%3D'g'%20x1%3D'0%25'%20y1%3D'0%25'%20x2%3D'100%25'%20y2%3D'100%25'%253E%253Cstop%20offset%3D'0%25'%20style%3D'stop-color%3A%23ff416c'%2F%253E%253Cstop%20offset%3D'100%25'%20style%3D'stop-color%3A%23ff4b2b'%2F%253E%253C%2FlinearGradient%253E%253C%2Fdefs%253E%253Crect%20width%3D'512'%20height%3D'512'%20rx%3D'120'%20fill%3D'url(%23g)'%2F%253E%253Cpath%20d%3D'M256%20160c-53%200-96%2043-96%2096s43%2096%2096%2096%2096-43%2096-96-43-96-96-96zm56%2080h-72v72h-24v-72h-72v-24h72v-72h24v72h72v24z'%20fill%3D'white'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22MegaFon%22%2C%22short_name%22%3A%22MegaFon%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230a0a0f%22%2C%22theme_color%22%3A%22%230a0a0f%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%253E%253Cdefs%253E%253ClinearGradient%20id%3D'g'%20x1%3D'0%25'%20y1%3D'0%25'%20x2%3D'100%25'%20y2%3D'100%25'%253E%253Cstop%20offset%3D'0%25'%20style%3D'stop-color%3A%23ff416c'%2F%253E%253Cstop%20offset%3D'100%25'%20style%3D'stop-color%3A%23ff4b2b'%2F%253E%253C%2FlinearGradient%253E%253C%2Fdefs%253E%253Crect%20width%3D'512'%20height%3D'512'%20rx%3D'120'%20fill%3D'url(%23g)'%2F%253E%253Ccircle%20cx%3D'256'%20cy%3D'220'%20r%3D'80'%20fill%3D'white'%2F%253E%253Cpath%20d%3D'M180%20340c0-42%2034-76%2076-76s76%2034%2076%2076v40H180v-40z'%20fill%3D'white'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ff416c'/%3E%3Cstop offset='100%25' style='stop-color:%23ff4b2b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='120' fill='url(%23g)'/%3E%3Ccircle cx='256' cy='220' r='80' fill='white'/%3E%3Cpath d='M180 340c0-42 34-76 76-76s76 34 76 76v40H180v-40z' fill='white'/%3E%3C/svg%3E">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
@@ -22,16 +23,9 @@
             --card-border: rgba(255, 255, 255, 0.06);
             --text: #ffffff;
             --text-secondary: rgba(255, 255, 255, 0.5);
-            --accent: #ff416c;
-            --accent2: #ff4b2b;
             --gradient: linear-gradient(135deg, #ff416c, #ff4b2b);
             --green: #00ff88;
             --orange: #ff9f43;
-            --purple: #a855f7;
-            --blue: #3b82f6;
-            --radius: 20px;
-            --radius-sm: 12px;
-            --blur: blur(20px);
         }
         
         html, body {
@@ -39,11 +33,9 @@
             background: var(--bg);
             background-image: 
                 radial-gradient(ellipse at 20% 50%, rgba(255, 65, 108, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+                radial-gradient(ellipse at 80% 20%, rgba(168, 85, 247, 0.06) 0%, transparent 50%);
             padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
             overflow-y: auto;
-            overflow-x: hidden;
         }
         
         body {
@@ -53,12 +45,11 @@
             justify-content: center;
             min-height: 100vh;
             color: var(--text);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             touch-action: manipulation;
             -webkit-user-select: none;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
-            -webkit-font-smoothing: antialiased;
         }
 
         .container {
@@ -71,7 +62,6 @@
             padding: 20px 16px;
         }
 
-        /* Логотип */
         .logo {
             font-size: 28px;
             font-weight: 900;
@@ -80,7 +70,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 4px;
         }
         
         .logo-sub {
@@ -92,7 +81,7 @@
             margin-bottom: 8px;
         }
 
-        /* Кнопка-мегафон */
+        /* Кнопка */
         .talk-btn-wrap {
             position: relative;
             margin: 8px 0;
@@ -105,13 +94,11 @@
             background: var(--gradient);
             opacity: 0;
             filter: blur(30px);
-            transition: opacity 0.4s ease;
+            transition: opacity 0.4s;
             pointer-events: none;
         }
         
-        .talk-btn-wrap.active .talk-btn-glow {
-            opacity: 0.6;
-        }
+        .talk-btn-wrap.active .talk-btn-glow { opacity: 0.6; }
         
         .talk-btn {
             width: 150px;
@@ -131,20 +118,12 @@
             outline: none;
             -webkit-touch-callout: none;
             -webkit-tap-highlight-color: transparent;
-            user-select: none;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             z-index: 1;
         }
         
-        .talk-btn:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .talk-btn:active {
-            transform: scale(0.94);
-            transition: transform 0.1s ease;
-        }
+        .talk-btn:active { transform: scale(0.94); }
         
         .talk-btn.active {
             background: var(--gradient);
@@ -154,35 +133,22 @@
         }
         
         .talk-btn.locked {
-            animation: pulse-glow 2s ease-in-out infinite;
+            animation: pulse-glow 2s infinite;
         }
         
         @keyframes pulse-glow {
-            0%, 100% { 
-                box-shadow: 0 0 40px rgba(255, 65, 108, 0.3), 0 0 80px rgba(255, 75, 43, 0.2); 
-            }
-            50% { 
-                box-shadow: 0 0 70px rgba(255, 65, 108, 0.6), 0 0 140px rgba(255, 75, 43, 0.4); 
-            }
+            0%, 100% { box-shadow: 0 0 40px rgba(255, 65, 108, 0.3), 0 0 80px rgba(255, 75, 43, 0.2); }
+            50% { box-shadow: 0 0 70px rgba(255, 65, 108, 0.6), 0 0 140px rgba(255, 75, 43, 0.4); }
         }
 
-        .btn-text { 
-            z-index: 2; 
-            pointer-events: none;
-            transition: all 0.3s ease;
-        }
-        
-        .talk-btn.active .btn-text {
-            font-size: 28px;
-        }
+        .btn-text { z-index: 2; pointer-events: none; }
+        .talk-btn.active .btn-text { font-size: 28px; }
         
         .lock-badge {
             position: absolute;
-            top: 16px;
-            right: 20px;
+            top: 16px; right: 20px;
             font-size: 14px;
             opacity: 0;
-            transition: all 0.3s ease;
             z-index: 2;
             pointer-events: none;
             background: rgba(0,0,0,0.3);
@@ -200,16 +166,12 @@
             border: 1px solid var(--card-border);
             padding: 10px 18px;
             border-radius: 50px;
-            backdrop-filter: var(--blur);
-            -webkit-backdrop-filter: var(--blur);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             width: fit-content;
         }
         
-        .mode-label-text { 
-            font-size: 12px; 
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
+        .mode-label-text { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
         
         .switch {
             position: relative;
@@ -234,7 +196,7 @@
             left: 3px; bottom: 3px;
             background: white;
             border-radius: 50%;
-            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: 0.3s;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         input:checked + .slider { background: var(--gradient); }
@@ -256,13 +218,13 @@
             width: 100%;
             background: var(--card);
             border: 1px solid var(--card-border);
-            border-radius: var(--radius);
+            border-radius: 20px;
             padding: 16px 18px;
             display: flex;
             flex-direction: column;
             gap: 12px;
-            backdrop-filter: var(--blur);
-            -webkit-backdrop-filter: var(--blur);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
 
         .card-header {
@@ -296,15 +258,13 @@
             gap: 6px;
         }
 
-        .device-icon { font-size: 15px; }
-
         .device-select {
             width: 100%;
             padding: 12px 14px;
             background: rgba(255, 255, 255, 0.03);
             color: white;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: var(--radius-sm);
+            border-radius: 12px;
             font-size: 13px;
             font-family: 'Inter', sans-serif;
             cursor: pointer;
@@ -314,12 +274,6 @@
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%23ffffff80'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 14px center;
-            transition: all 0.2s ease;
-        }
-        
-        .device-select:focus {
-            border-color: rgba(255, 65, 108, 0.5);
-            box-shadow: 0 0 0 3px rgba(255, 65, 108, 0.1);
         }
 
         .device-select option { background: #1a1a2e; color: white; }
@@ -332,25 +286,26 @@
         .device-status.ok { color: var(--green); }
         .device-status.warn { color: var(--orange); }
 
-        /* AirPlay */
+        /* Кнопка AirPlay */
         .airplay-btn {
             width: 100%;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px dashed rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius-sm);
-            color: white;
-            font-size: 12px;
-            font-weight: 600;
+            padding: 14px;
+            background: rgba(255, 65, 108, 0.1);
+            border: 2px dashed rgba(255, 65, 108, 0.4);
+            border-radius: 12px;
+            color: #ff416c;
+            font-size: 14px;
+            font-weight: 700;
             cursor: pointer;
             text-align: center;
             display: none;
-            transition: all 0.2s ease;
+            transition: all 0.2s;
             font-family: 'Inter', sans-serif;
+            letter-spacing: 1px;
         }
         .airplay-btn:active {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 65, 108, 0.2);
+            border-color: rgba(255, 65, 108, 0.7);
         }
 
         /* Эхо */
@@ -382,21 +337,15 @@
             width: 22px; height: 22px;
             border-radius: 50%;
             background: white;
-            border: 2px solid var(--accent);
+            border: 2px solid #ff416c;
             cursor: pointer;
             box-shadow: 0 0 10px rgba(255, 65, 108, 0.3);
-            transition: all 0.2s ease;
-        }
-        
-        .echo-slider::-webkit-slider-thumb:active {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 65, 108, 0.5);
         }
 
         .echo-value {
             font-size: 11px;
             font-weight: 600;
-            color: var(--accent);
+            color: #ff416c;
             min-width: 30px;
             text-align: right;
         }
@@ -417,15 +366,9 @@
             width: 28px; height: 28px;
             border-radius: 50%;
             background: white;
-            border: 3px solid var(--accent);
+            border: 3px solid #ff416c;
             cursor: pointer;
             box-shadow: 0 0 15px rgba(255, 65, 108, 0.4);
-            transition: all 0.2s ease;
-        }
-        
-        .gain-slider::-webkit-slider-thumb:active {
-            transform: scale(1.15);
-            box-shadow: 0 0 25px rgba(255, 65, 108, 0.6);
         }
 
         .gain-value {
@@ -442,22 +385,18 @@
             justify-content: space-between;
             font-size: 9px;
             color: rgba(255, 255, 255, 0.3);
-            margin-top: 2px;
         }
 
-        /* Статус */
         .status {
-            font-size: 11px;
+            font-size: 12px;
             color: var(--text-secondary);
             text-align: center;
             min-height: 16px;
-            transition: all 0.3s ease;
             font-weight: 500;
         }
         .status.active { color: var(--green); font-weight: 600; }
         .status.error { color: #ff416c; font-weight: 600; }
 
-        /* Кнопки */
         .btn-sm {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -467,13 +406,9 @@
             font-size: 10px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
             font-family: 'Inter', sans-serif;
         }
-        .btn-sm:active {
-            background: rgba(255, 255, 255, 0.08);
-            color: white;
-        }
+        .btn-sm:active { background: rgba(255, 255, 255, 0.08); color: white; }
 
         .btn-outline {
             background: transparent;
@@ -484,25 +419,32 @@
             font-size: 11px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
             font-family: 'Inter', sans-serif;
         }
-        .btn-outline:active {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.3);
-            color: white;
-        }
+        .btn-outline:active { background: rgba(255, 255, 255, 0.05); color: white; }
 
         .hint {
-            font-size: 9px;
+            font-size: 10px;
             color: var(--text-secondary);
             text-align: center;
             line-height: 1.6;
             opacity: 0.7;
         }
+        .hint b { color: #ff416c; font-weight: 600; }
 
-        .hint b {
-            color: var(--accent);
+        /* Инструкция */
+        .instructions {
+            font-size: 10px;
+            color: var(--text-secondary);
+            text-align: left;
+            line-height: 1.8;
+            opacity: 0.8;
+            padding: 12px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 10px;
+        }
+        .instructions span {
+            color: var(--green);
             font-weight: 600;
         }
     </style>
@@ -512,7 +454,6 @@
         <div class="logo">MegaFon</div>
         <div class="logo-sub">Voice Amplifier</div>
 
-        <!-- Режим -->
         <div class="mode-card">
             <span class="mode-label-text">Режим</span>
             <label class="switch">
@@ -522,7 +463,6 @@
             <span class="mode-indicator" id="modeIndicator">Рация</span>
         </div>
 
-        <!-- Кнопка -->
         <div class="talk-btn-wrap" id="talkBtnWrap">
             <div class="talk-btn-glow"></div>
             <button id="talkBtn" class="talk-btn" disabled>
@@ -541,7 +481,7 @@
             </div>
             
             <div class="device-row">
-                <div class="device-label"><span class="device-icon">🎤</span> Микрофон (вход)</div>
+                <div class="device-label">🎤 Микрофон (вход)</div>
                 <select class="device-select" id="micSelect">
                     <option value="default">По умолчанию</option>
                 </select>
@@ -549,17 +489,26 @@
             </div>
             
             <div class="device-row">
-                <div class="device-label"><span class="device-icon">🔊</span> Динамик (выход)</div>
+                <div class="device-label">🔊 Динамик (выход)</div>
                 <select class="device-select" id="speakerSelect">
                     <option value="default">По умолчанию</option>
                 </select>
                 <div class="device-status" id="speakerStatus"></div>
             </div>
             
-            <button class="airplay-btn" id="airplayBtn">📡 Выбрать колонку через AirPlay</button>
+            <button class="airplay-btn" id="airplayBtn">
+                📡 ВЫБРАТЬ КОЛОНКУ ЧЕРЕЗ AIRPLAY
+            </button>
+            
+            <div class="instructions" id="instructionsText">
+                <span>1.</span> Подключите наушники и колонку к iPhone<br>
+                <span>2.</span> Выберите наушники как микрофон<br>
+                <span>3.</span> Нажмите кнопку AirPlay и выберите колонку<br>
+                <span>4.</span> Нажмите СТАРТ и говорите
+            </div>
         </div>
 
-        <!-- Подавление эха -->
+        <!-- Эхо -->
         <div class="card">
             <div class="card-header">
                 <span class="card-title">🔇 Подавление эха</span>
@@ -582,7 +531,7 @@
         <div class="card">
             <div class="card-header">
                 <span class="card-title">🔊 Усиление</span>
-                <span class="gain-value" id="gainValue">2.0x</span>
+                <span class="gain-value" id="gainValue">1.5x</span>
             </div>
             <input type="range" class="gain-slider" id="gainSlider" 
                    min="0.5" max="10.0" step="0.1" value="1.5">
@@ -592,7 +541,6 @@
         </div>
 
         <button class="btn-outline" id="resetBtn">🔄 Сброс</button>
-        <div class="hint" id="hintText">Выберите <b>наушники</b> → <b>колонку</b> → СТАРТ</div>
     </div>
 
     <script>
@@ -605,7 +553,7 @@
 
         // ==================== SW ====================
         if ('serviceWorker' in navigator) {
-            const swCode = `const C='megafon-v4';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['/'])).then(()=>self.skipWaiting()))});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.map(k=>k!==C?caches.delete(k):null))).then(()=>self.clients.claim()))});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)))})`;
+            const swCode = `const C='megafon-v5';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['/'])).then(()=>self.skipWaiting()))});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.map(k=>k!==C?caches.delete(k):null))).then(()=>self.clients.claim()))});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)))})`;
             navigator.serviceWorker.register(URL.createObjectURL(new Blob([swCode],{type:'application/javascript'})),{scope:'/'});
         }
 
@@ -628,7 +576,6 @@
         const noiseGateValue = document.getElementById('noiseGateValue');
         const attackSlider = document.getElementById('attackSlider');
         const attackValue = document.getElementById('attackValue');
-        const hintText = document.getElementById('hintText');
         const resetBtn = document.getElementById('resetBtn');
 
         // ==================== СОСТОЯНИЕ ====================
@@ -640,6 +587,7 @@
         let audioDestNode = null;
         let outputAudioEl = null;
         let keepAliveTimer = null;
+        let silentOscNode = null; // Постоянный осциллятор для удержания аудиоканала
         
         let isLocked = false;
         let isMicOn = false;
@@ -693,11 +641,10 @@
                 });
                 
                 const sps = devices.filter(d => d.kind === 'audiooutput');
-                speakerSelect.innerHTML = '<option value="default">По умолчанию</option>';
+                speakerSelect.innerHTML = '<option value="default">По умолчанию (системный)</option>';
                 sps.forEach((s, i) => {
                     const l = s.label || `Динамик ${i+1}`;
-                    const sp = /speaker|колонк|динамик|jbl|bose|sony|marshall|flip|charge/i.test(l);
-                    speakerSelect.innerHTML += `<option value="${s.deviceId}">${sp?'🔊':'🔈'} ${l}</option>`;
+                    speakerSelect.innerHTML += `<option value="${s.deviceId}">🔊 ${l}</option>`;
                 });
                 
                 if (cm && micSelect.querySelector(`option[value="${cm}"]`)) micSelect.value = cm;
@@ -706,14 +653,13 @@
                 selectedMicId = micSelect.value;
                 selectedSpId = speakerSelect.value;
                 
-                // Авто-выбор JBL если найдена
-                const jblOpt = Array.from(speakerSelect.options).find(o => /jbl|flip/i.test(o.textContent));
-                if (jblOpt && speakerSelect.value === 'default') {
-                    speakerSelect.value = jblOpt.value;
-                    selectedSpId = jblOpt.value;
-                }
-                
                 updateDeviceStatus();
+                
+                // На iOS предупреждаем
+                if (isIOS && sps.length === 0) {
+                    speakerStatus.textContent = 'Используйте AirPlay для колонки';
+                    speakerStatus.className = 'device-status warn';
+                }
             } catch(e) { console.error(e); }
         }
 
@@ -731,42 +677,36 @@
             }
             
             if (speakerSelect.value === 'default') {
-                speakerStatus.textContent = 'Системный динамик';
+                speakerStatus.textContent = isIOS ? 'Системный (наушники/динамик)' : 'Системный динамик';
                 speakerStatus.className = 'device-status';
             } else {
-                const n = speakerSelect.selectedOptions[0]?.textContent?.replace(/^[🔊🔈]\s*/, '') || 'Выбран';
+                const n = speakerSelect.selectedOptions[0]?.textContent?.replace(/^🔊\s*/, '') || 'Выбран';
                 speakerStatus.textContent = '✅ ' + n;
                 speakerStatus.className = 'device-status ok';
             }
         }
 
         async function applySpeakerOutput() {
-            if (!outputAudioEl || !hasSetSinkId) {
-                if (!hasSetSinkId && speakerSelect.value !== 'default') {
-                    speakerStatus.textContent = '⚠️ Нажмите AirPlay';
-                    speakerStatus.className = 'device-status warn';
-                }
-                return;
-            }
+            if (!outputAudioEl || !hasSetSinkId) return;
             try {
                 await outputAudioEl.setSinkId(speakerSelect.value === 'default' ? '' : speakerSelect.value);
-                const n = speakerSelect.selectedOptions[0]?.textContent?.replace(/^[🔊🔈]\s*/, '') || 'Колонка';
-                speakerStatus.textContent = '✅ Вывод: ' + n;
+                const n = speakerSelect.selectedOptions[0]?.textContent?.replace(/^🔊\s*/, '') || 'Колонка';
+                speakerStatus.textContent = '✅ ' + n;
                 speakerStatus.className = 'device-status ok';
             } catch(e) {
-                speakerStatus.textContent = '❌ Ошибка вывода';
+                speakerStatus.textContent = '❌ Ошибка';
                 speakerStatus.className = 'device-status warn';
             }
         }
 
-        // ==================== АГРЕССИВНЫЙ NOISE GATE ====================
+        // ==================== NOISE GATE ====================
         function createNoiseGate(threshold, attackMs) {
             const bufferSize = 512;
             const node = audioContext.createScriptProcessor(bufferSize, 1, 1);
             
             let envelope = 0;
             const attackCoef = Math.exp(-1 / (audioContext.sampleRate * (attackMs / 1000)));
-            const releaseCoef = Math.exp(-1 / (audioContext.sampleRate * 0.15)); // Быстрый спад 150ms
+            const releaseCoef = Math.exp(-1 / (audioContext.sampleRate * 0.15));
             
             node.onaudioprocess = (event) => {
                 const input = event.inputBuffer.getChannelData(0);
@@ -778,40 +718,62 @@
                         ? attackCoef * envelope + (1 - attackCoef) * abs 
                         : releaseCoef * envelope;
                     
-                    // ЖЁСТКИЙ гейт: ниже порога = ТИШИНА
-                    if (envelope < threshold) {
-                        output[i] = 0; // ПОЛНАЯ тишина
-                    } else {
-                        output[i] = input[i];
-                    }
+                    output[i] = envelope < threshold ? 0 : input[i];
                 }
             };
             
             return node;
         }
 
+        // ==================== СИСТЕМА УДЕРЖАНИЯ АУДИОКАНАЛА ====================
+        // iOS "засыпает" аудио если нет постоянного сигнала
+        // Создаём ультразвуковой тон, который держит канал открытым
+        
+        function startSilentTone() {
+            if (!audioContext || audioContext.state === 'closed') return;
+            if (silentOscNode) return;
+            
+            try {
+                silentOscNode = audioContext.createOscillator();
+                const silentGain = audioContext.createGain();
+                silentGain.gain.value = 0.00001; // Практически тишина
+                silentOscNode.connect(silentGain);
+                
+                // Подключаем к тому же выходу что и микрофон
+                if (audioDestNode && outputAudioEl) {
+                    silentGain.connect(audioDestNode);
+                } else {
+                    silentGain.connect(audioContext.destination);
+                }
+                
+                silentOscNode.frequency.value = 20000; // Ультразвук
+                silentOscNode.start();
+            } catch(e) {}
+        }
+        
+        function stopSilentTone() {
+            if (silentOscNode) {
+                try { silentOscNode.stop(); } catch(e) {}
+                silentOscNode.disconnect();
+                silentOscNode = null;
+            }
+        }
+
         // ==================== KEEP-ALIVE ====================
         function startKeepAlive() {
             stopKeepAlive();
+            startSilentTone();
             keepAliveTimer = setInterval(() => {
                 if (!isMicOn || !audioContext || audioContext.state === 'closed') return;
-                if (audioContext.state === 'suspended') audioContext.resume().catch(()=>{});
-                if (audioContext.state === 'running') {
-                    try {
-                        const o = audioContext.createOscillator();
-                        const g = audioContext.createGain();
-                        g.gain.value = 0.0001;
-                        o.connect(g); g.connect(audioContext.destination);
-                        o.frequency.value = 25;
-                        o.start(); o.stop(audioContext.currentTime + 0.02);
-                        o.onended = () => { o.disconnect(); g.disconnect(); };
-                    } catch(e) {}
+                if (audioContext.state === 'suspended') {
+                    audioContext.resume().catch(()=>{});
                 }
-            }, 1500);
+            }, 2000);
         }
 
         function stopKeepAlive() {
             if (keepAliveTimer) { clearInterval(keepAliveTimer); keepAliveTimer = null; }
+            stopSilentTone();
         }
 
         // ==================== МИКРОФОН ====================
@@ -871,7 +833,6 @@
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
                 sourceNode = audioContext.createMediaStreamSource(mediaStream);
                 
-                // Noise Gate с текущими настройками
                 const thresh = parseInt(noiseGateSlider.value) / 100;
                 const attack = parseInt(attackSlider.value);
                 noiseGateNode = createNoiseGate(thresh, attack);
@@ -879,13 +840,12 @@
                 gainNode = audioContext.createGain();
                 gainNode.gain.value = parseFloat(gainSlider.value);
                 
-                audioDestNode = audioContext.createMediaStreamDestination();
-                
-                // Цепочка
                 sourceNode.connect(noiseGateNode);
                 noiseGateNode.connect(gainNode);
                 
                 if (hasSetSinkId && !isIOS) {
+                    // Android Chrome с setSinkId
+                    audioDestNode = audioContext.createMediaStreamDestination();
                     gainNode.connect(audioDestNode);
                     outputAudioEl = new Audio();
                     outputAudioEl.srcObject = audioDestNode.stream;
@@ -894,7 +854,20 @@
                     outputAudioEl.volume = 1.0;
                     await applySpeakerOutput();
                 } else {
+                    // iOS или нет setSinkId
+                    audioDestNode = audioContext.createMediaStreamDestination();
                     gainNode.connect(audioContext.destination);
+                    gainNode.connect(audioDestNode);
+                    
+                    // Создаём аудио элемент для AirPlay
+                    outputAudioEl = new Audio();
+                    outputAudioEl.srcObject = audioDestNode.stream;
+                    outputAudioEl.autoplay = true;
+                    outputAudioEl.muted = false;
+                    outputAudioEl.volume = 1.0;
+                    outputAudioEl.setAttribute('playsinline', '');
+                    outputAudioEl.setAttribute('webkit-playsinline', '');
+                    outputAudioEl.setAttribute('x-webkit-airplay', 'allow');
                 }
                 
                 await audioContext.suspend();
@@ -902,7 +875,6 @@
                 isInitialized = true;
                 talkBtn.disabled = false;
                 
-                // Фиксация = сразу в эфир
                 if (isLocked) micOn();
                 else setStatus('✅ Готово', '');
                 
@@ -948,13 +920,8 @@
             if (gainNode) gainNode.gain.value = v;
         });
 
-        noiseGateSlider.addEventListener('input', () => {
-            noiseGateValue.textContent = noiseGateSlider.value + '%';
-        });
-
-        attackSlider.addEventListener('input', () => {
-            attackValue.textContent = attackSlider.value + 'ms';
-        });
+        noiseGateSlider.addEventListener('input', () => noiseGateValue.textContent = noiseGateSlider.value + '%');
+        attackSlider.addEventListener('input', () => attackValue.textContent = attackSlider.value + 'ms');
 
         micSelect.addEventListener('change', () => {
             selectedMicId = micSelect.value;
@@ -968,15 +935,22 @@
             if (isInitialized) applySpeakerOutput();
         });
 
+        // AirPlay — теперь с поддержкой аудиоэлемента
         airplayBtn.addEventListener('click', () => {
-            const tv = document.createElement('video');
-            tv.setAttribute('playsinline', '');
-            tv.setAttribute('webkit-playsinline', '');
-            tv.setAttribute('x-webkit-airplay', 'allow');
-            tv.style.display = 'none';
-            document.body.appendChild(tv);
-            if (tv.webkitShowPlaybackTargetPicker) tv.webkitShowPlaybackTargetPicker();
-            setTimeout(() => document.body.removeChild(tv), 1000);
+            if (outputAudioEl && outputAudioEl.webkitShowPlaybackTargetPicker) {
+                // Показываем AirPlay picker для нашего аудио элемента
+                outputAudioEl.webkitShowPlaybackTargetPicker();
+            } else {
+                // Fallback: создаём временный video элемент
+                const tv = document.createElement('video');
+                tv.setAttribute('playsinline', '');
+                tv.setAttribute('webkit-playsinline', '');
+                tv.setAttribute('x-webkit-airplay', 'allow');
+                tv.style.display = 'none';
+                document.body.appendChild(tv);
+                if (tv.webkitShowPlaybackTargetPicker) tv.webkitShowPlaybackTargetPicker();
+                setTimeout(() => document.body.removeChild(tv), 1000);
+            }
         });
 
         refreshBtn.addEventListener('click', async () => {
@@ -1000,18 +974,22 @@
         // ==================== СТАРТ ====================
         if (isIOS) {
             airplayBtn.style.display = 'block';
-            hintText.innerHTML = 'Выберите <b>наушники</b> → нажмите <b>AirPlay</b> → выберите колонку → СТАРТ';
+            speakerSelect.style.display = 'none';
         }
         
         enumerateDevices().then(() => console.log('✅ Готово'));
 
         // Сохраняем настройки
         [gainSlider, noiseGateSlider, attackSlider].forEach(s => {
-            const key = s.id;
-            const saved = localStorage.getItem('megafon_' + key);
+            const saved = localStorage.getItem('megafon_' + s.id);
             if (saved) s.value = saved;
-            s.addEventListener('input', () => localStorage.setItem('megafon_' + key, s.value));
+            s.addEventListener('input', () => localStorage.setItem('megafon_' + s.id, s.value));
         });
+        
+        // Восстановление gain
+        if (localStorage.getItem('megafon_gainSlider')) {
+            gainValue.textContent = parseFloat(localStorage.getItem('megafon_gainSlider')).toFixed(1) + 'x';
+        }
     </script>
 </body>
 </html>
