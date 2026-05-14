@@ -3,23 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="theme-color" content="#1a1a1a">
+    <meta name="theme-color" content="#0a0a0f">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Мегафон">
-    <title>Мегафон Pro</title>
+    <meta name="apple-mobile-web-app-title" content="MegaFon">
+    <title>MegaFon</title>
     
-    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D0%9C%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD%22%2C%22short_name%22%3A%22%D0%9C%D0%B5%D0%B3%D0%B0%D1%84%D0%BE%D0%BD%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%231a1a1a%22%2C%22theme_color%22%3A%22%231a1a1a%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%253E%253Crect%20width%3D'512'%20height%3D'512'%20rx%3D'100'%20fill%3D'%23e74c3c'%2F%253E%253Ccircle%20cx%3D'256'%20cy%3D'256'%20r%3D'120'%20fill%3D'white'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%23e74c3c'/%3E%3Ccircle cx='256' cy='256' r='120' fill='white'/%3E%3C/svg%3E">
+    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22MegaFon%22%2C%22short_name%22%3A%22MegaFon%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230a0a0f%22%2C%22theme_color%22%3A%22%230a0a0f%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%253E%253Cdefs%253E%253ClinearGradient%20id%3D'g'%20x1%3D'0%25'%20y1%3D'0%25'%20x2%3D'100%25'%20y2%3D'100%25'%253E%253Cstop%20offset%3D'0%25'%20style%3D'stop-color%3A%23ff416c'%2F%253E%253Cstop%20offset%3D'100%25'%20style%3D'stop-color%3A%23ff4b2b'%2F%253E%253C%2FlinearGradient%253E%253C%2Fdefs%253E%253Crect%20width%3D'512'%20height%3D'512'%20rx%3D'120'%20fill%3D'url(%23g)'%2F%253E%253Cpath%20d%3D'M256%20160c-53%200-96%2043-96%2096s43%2096%2096%2096%2096-43%2096-96-43-96-96-96zm56%2080h-72v72h-24v-72h-72v-24h72v-72h24v72h72v24z'%20fill%3D'white'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
     
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --card: rgba(20, 20, 35, 0.8);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --text: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.5);
+            --accent: #ff416c;
+            --accent2: #ff4b2b;
+            --gradient: linear-gradient(135deg, #ff416c, #ff4b2b);
+            --green: #00ff88;
+            --orange: #ff9f43;
+            --purple: #a855f7;
+            --blue: #3b82f6;
+            --radius: 20px;
+            --radius-sm: 12px;
+            --blur: blur(20px);
+        }
         
         html, body {
             height: 100%;
-            background: #1a1a1a;
+            background: var(--bg);
+            background-image: 
+                radial-gradient(ellipse at 20% 50%, rgba(255, 65, 108, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
             padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
             overflow-y: auto;
+            overflow-x: hidden;
         }
         
         body {
@@ -28,43 +52,78 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            color: white;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             touch-action: manipulation;
             -webkit-user-select: none;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
             width: 100%;
-            max-width: 420px;
+            max-width: 400px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
-            padding: 16px;
+            gap: 14px;
+            padding: 20px 16px;
         }
 
-        .title {
-            font-size: 12px;
-            color: #888;
-            letter-spacing: 3px;
+        /* Логотип */
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+        }
+        
+        .logo-sub {
+            font-size: 10px;
+            color: var(--text-secondary);
+            letter-spacing: 4px;
             text-transform: uppercase;
-            margin-bottom: 5px;
+            margin-top: -8px;
+            margin-bottom: 8px;
         }
 
+        /* Кнопка-мегафон */
+        .talk-btn-wrap {
+            position: relative;
+            margin: 8px 0;
+        }
+        
+        .talk-btn-glow {
+            position: absolute;
+            inset: -15px;
+            border-radius: 50%;
+            background: var(--gradient);
+            opacity: 0;
+            filter: blur(30px);
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        
+        .talk-btn-wrap.active .talk-btn-glow {
+            opacity: 0.6;
+        }
+        
         .talk-btn {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            background: #2c2c2c;
-            border: 4px solid #555;
+            background: rgba(20, 20, 35, 0.9);
+            border: 2px solid rgba(255, 255, 255, 0.1);
             color: white;
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 16px;
+            font-weight: 700;
             cursor: pointer;
-            transition: 0.15s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -73,52 +132,90 @@
             -webkit-touch-callout: none;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1;
+        }
+        
+        .talk-btn:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .talk-btn:active {
+            transform: scale(0.94);
+            transition: transform 0.1s ease;
         }
         
         .talk-btn.active {
-            background: #e74c3c;
-            border-color: #ff6b6b;
-            transform: scale(0.95);
-            box-shadow: 0 0 50px rgba(231, 76, 60, 0.7);
+            background: var(--gradient);
+            border-color: transparent;
+            box-shadow: 0 0 60px rgba(255, 65, 108, 0.5), 0 0 120px rgba(255, 75, 43, 0.3);
+            transform: scale(0.96);
         }
         
         .talk-btn.locked {
-            animation: pulse 1.8s infinite;
+            animation: pulse-glow 2s ease-in-out infinite;
         }
         
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(231, 76, 60, 0.3); }
-            50% { box-shadow: 0 0 60px rgba(231, 76, 60, 0.9); }
+        @keyframes pulse-glow {
+            0%, 100% { 
+                box-shadow: 0 0 40px rgba(255, 65, 108, 0.3), 0 0 80px rgba(255, 75, 43, 0.2); 
+            }
+            50% { 
+                box-shadow: 0 0 70px rgba(255, 65, 108, 0.6), 0 0 140px rgba(255, 75, 43, 0.4); 
+            }
         }
 
-        .btn-text { z-index: 1; pointer-events: none; }
-        
-        .lock-icon {
-            position: absolute;
-            top: 10px;
-            right: 16px;
-            font-size: 18px;
-            opacity: 0;
+        .btn-text { 
+            z-index: 2; 
             pointer-events: none;
+            transition: all 0.3s ease;
         }
-        .talk-btn.locked .lock-icon { opacity: 1; }
+        
+        .talk-btn.active .btn-text {
+            font-size: 28px;
+        }
+        
+        .lock-badge {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 14px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 2;
+            pointer-events: none;
+            background: rgba(0,0,0,0.3);
+            padding: 4px 8px;
+            border-radius: 10px;
+        }
+        .talk-btn.locked .lock-badge { opacity: 1; }
 
-        .mode-row {
+        /* Режим */
+        .mode-card {
             display: flex;
             align-items: center;
-            gap: 10px;
-            background: #2c2c2c;
-            padding: 8px 16px;
-            border-radius: 25px;
+            gap: 12px;
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            padding: 10px 18px;
+            border-radius: 50px;
+            backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
+            width: fit-content;
         }
         
-        .mode-label-text { font-size: 12px; color: #aaa; }
+        .mode-label-text { 
+            font-size: 12px; 
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
         
         .switch {
             position: relative;
             display: inline-block;
-            width: 44px;
-            height: 24px;
+            width: 48px;
+            height: 26px;
         }
         .switch input { opacity: 0; width: 0; height: 0; }
         
@@ -126,320 +223,298 @@
             position: absolute;
             cursor: pointer;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #444;
-            border-radius: 24px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 26px;
             transition: 0.3s;
         }
         .slider:before {
             content: "";
             position: absolute;
-            height: 18px; width: 18px;
+            height: 20px; width: 20px;
             left: 3px; bottom: 3px;
-            background-color: white;
+            background: white;
             border-radius: 50%;
-            transition: 0.3s;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
-        input:checked + .slider { background-color: #e67e22; }
-        input:checked + .slider:before { transform: translateX(20px); }
+        input:checked + .slider { background: var(--gradient); }
+        input:checked + .slider:before { transform: translateX(22px); }
         
         .mode-indicator {
-            font-size: 11px;
-            font-weight: bold;
-            color: #e67e22;
-            min-width: 35px;
+            font-size: 12px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            min-width: 40px;
             text-align: right;
         }
 
-        .devices-section {
+        /* Карточки */
+        .card {
             width: 100%;
-            background: #2c2c2c;
-            border-radius: 14px;
-            padding: 14px 16px;
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 16px 18px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
+            backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
         }
 
-        .section-title {
+        .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
-        .section-title-text {
+
+        .card-title {
             font-size: 10px;
-            color: #888;
+            color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-weight: 600;
         }
 
         .device-row {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 5px;
         }
 
         .device-label {
             font-size: 10px;
-            color: #888;
+            color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            font-weight: 500;
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
-        .device-icon { font-size: 14px; }
+        .device-icon { font-size: 15px; }
 
         .device-select {
             width: 100%;
-            padding: 10px 12px;
-            background: #1a1a1a;
+            padding: 12px 14px;
+            background: rgba(255, 255, 255, 0.03);
             color: white;
-            border: 1px solid #444;
-            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-sm);
             font-size: 13px;
+            font-family: 'Inter', sans-serif;
             cursor: pointer;
             outline: none;
             -webkit-appearance: none;
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%23888'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%23ffffff80'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 12px center;
+            background-position: right 14px center;
+            transition: all 0.2s ease;
+        }
+        
+        .device-select:focus {
+            border-color: rgba(255, 65, 108, 0.5);
+            box-shadow: 0 0 0 3px rgba(255, 65, 108, 0.1);
         }
 
-        .device-select option { background: #1a1a1a; color: white; }
-
-        .airplay-btn {
-            width: 100%;
-            padding: 10px;
-            background: #1a1a1a;
-            border: 2px dashed #e67e22;
-            border-radius: 8px;
-            color: #e67e22;
-            font-size: 12px;
-            cursor: pointer;
-            text-align: center;
-            font-weight: bold;
-            display: none;
-        }
-        .airplay-btn:active { background: #2c1a0a; }
+        .device-select option { background: #1a1a2e; color: white; }
 
         .device-status {
             font-size: 9px;
-            color: #666;
+            font-weight: 500;
             min-height: 12px;
         }
-        .device-status.ok { color: #2ecc71; }
-        .device-status.warn { color: #e67e22; }
+        .device-status.ok { color: var(--green); }
+        .device-status.warn { color: var(--orange); }
 
-        /* ЭХО-КОНТРОЛЬ */
-        .echo-section {
+        /* AirPlay */
+        .airplay-btn {
             width: 100%;
-            background: #2c2c2c;
-            border-radius: 14px;
-            padding: 14px 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-sm);
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            display: none;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        .airplay-btn:active {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
-        .echo-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .echo-title {
-            font-size: 10px;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .echo-row {
+        /* Эхо */
+        .echo-slider-row {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .echo-label {
             font-size: 11px;
-            color: #aaa;
-            min-width: 55px;
+            color: var(--text-secondary);
+            min-width: 45px;
+            font-weight: 500;
         }
 
         .echo-slider {
             -webkit-appearance: none;
             flex: 1;
-            height: 6px;
-            border-radius: 3px;
-            background: #444;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.1);
             outline: none;
             cursor: pointer;
         }
 
         .echo-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 24px; height: 24px;
+            width: 22px; height: 22px;
             border-radius: 50%;
             background: white;
-            border: 2px solid #e67e22;
+            border: 2px solid var(--accent);
             cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 65, 108, 0.3);
+            transition: all 0.2s ease;
+        }
+        
+        .echo-slider::-webkit-slider-thumb:active {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 65, 108, 0.5);
         }
 
         .echo-value {
             font-size: 11px;
-            color: #e67e22;
+            font-weight: 600;
+            color: var(--accent);
             min-width: 30px;
             text-align: right;
-            font-family: 'SF Mono', 'Menlo', monospace;
         }
 
-        /* Ползунок усиления */
-        .gain-section {
-            width: 100%;
-            background: #2c2c2c;
-            border-radius: 14px;
-            padding: 14px 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        .gain-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .gain-title {
-            font-size: 10px;
-            color: #aaa;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-        
-        .gain-value {
-            font-size: 16px;
-            font-weight: bold;
-            color: #f39c12;
-            font-family: 'SF Mono', 'Menlo', monospace;
-        }
-        
+        /* Усиление */
         .gain-slider {
             -webkit-appearance: none;
             width: 100%;
-            height: 8px;
-            border-radius: 4px;
-            background: linear-gradient(to right, #27ae60, #f39c12 30%, #e74c3c 60%, #ff0000);
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(to right, #00ff88, #ff9f43 40%, #ff416c 70%, #ff0000);
             outline: none;
             cursor: pointer;
         }
         
         .gain-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 30px; height: 30px;
+            width: 28px; height: 28px;
             border-radius: 50%;
             background: white;
-            border: 3px solid #f39c12;
+            border: 3px solid var(--accent);
             cursor: pointer;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 0 15px rgba(255, 65, 108, 0.4);
+            transition: all 0.2s ease;
+        }
+        
+        .gain-slider::-webkit-slider-thumb:active {
+            transform: scale(1.15);
+            box-shadow: 0 0 25px rgba(255, 65, 108, 0.6);
+        }
+
+        .gain-value {
+            font-size: 16px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .gain-labels {
             display: flex;
             justify-content: space-between;
             font-size: 9px;
-            color: #555;
+            color: rgba(255, 255, 255, 0.3);
+            margin-top: 2px;
         }
 
+        /* Статус */
         .status {
-            font-size: 12px;
-            color: #777;
+            font-size: 11px;
+            color: var(--text-secondary);
             text-align: center;
             min-height: 16px;
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            font-weight: 500;
         }
-        .status.active { color: #2ecc71; font-weight: bold; }
-        .status.error { color: #e74c3c; }
+        .status.active { color: var(--green); font-weight: 600; }
+        .status.error { color: #ff416c; font-weight: 600; }
+
+        /* Кнопки */
+        .btn-sm {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-secondary);
+            padding: 7px 14px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-sm:active {
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-secondary);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-outline:active {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
 
         .hint {
             font-size: 9px;
-            color: #e67e22;
+            color: var(--text-secondary);
             text-align: center;
-            line-height: 1.5;
-            background: rgba(230, 126, 34, 0.1);
-            padding: 8px 12px;
-            border-radius: 8px;
-            border-left: 3px solid #e67e22;
-            width: 100%;
+            line-height: 1.6;
+            opacity: 0.7;
         }
 
-        .reset-btn {
-            background: none;
-            border: 1px solid #555;
-            color: #888;
-            padding: 6px 16px;
-            border-radius: 16px;
-            font-size: 11px;
-            cursor: pointer;
-        }
-        .reset-btn:active { background: #333; }
-
-        .refresh-btn {
-            background: none;
-            border: 1px solid #444;
-            color: #888;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 10px;
-            cursor: pointer;
-        }
-        .refresh-btn:active { background: #333; }
-
-        .install-prompt {
-            position: fixed;
-            bottom: 25px;
-            left: 20px; right: 20px;
-            background: #2c3e50;
-            color: white;
-            padding: 14px 18px;
-            border-radius: 12px;
-            display: none;
-            align-items: center;
-            gap: 10px;
-            z-index: 1000;
-            font-size: 13px;
-            max-width: 380px;
-            margin: 0 auto;
-        }
-        .install-btn {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 13px;
-            margin-left: auto;
-        }
-        .close-install {
-            background: none;
-            border: none;
-            color: #aaa;
-            font-size: 18px;
-            cursor: pointer;
+        .hint b {
+            color: var(--accent);
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="title">📢 МЕГАФОН PRO</div>
+        <div class="logo">MegaFon</div>
+        <div class="logo-sub">Voice Amplifier</div>
 
-        <div class="mode-row">
-            <span class="mode-label-text">Режим:</span>
+        <!-- Режим -->
+        <div class="mode-card">
+            <span class="mode-label-text">Режим</span>
             <label class="switch">
                 <input type="checkbox" id="modeSwitch">
                 <span class="slider"></span>
@@ -447,82 +522,77 @@
             <span class="mode-indicator" id="modeIndicator">Рация</span>
         </div>
 
-        <button id="talkBtn" class="talk-btn" disabled>
-            <span class="btn-text">СТАРТ</span>
-            <span class="lock-icon">🔒</span>
-        </button>
+        <!-- Кнопка -->
+        <div class="talk-btn-wrap" id="talkBtnWrap">
+            <div class="talk-btn-glow"></div>
+            <button id="talkBtn" class="talk-btn" disabled>
+                <span class="btn-text">СТАРТ</span>
+                <span class="lock-badge">🔒</span>
+            </button>
+        </div>
 
-        <div class="status" id="status">Нажмите СТАРТ для активации</div>
+        <div class="status" id="status">Нажмите СТАРТ</div>
 
-        <!-- УСТРОЙСТВА -->
-        <div class="devices-section">
-            <div class="section-title">
-                <span class="section-title-text">Устройства</span>
-                <button class="refresh-btn" id="refreshDevices">🔄</button>
+        <!-- Устройства -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">🎛️ Устройства</span>
+                <button class="btn-sm" id="refreshDevices">Обновить</button>
             </div>
             
             <div class="device-row">
-                <div class="device-label"><span class="device-icon">🎤</span> Микрофон (ВХОД)</div>
+                <div class="device-label"><span class="device-icon">🎤</span> Микрофон (вход)</div>
                 <select class="device-select" id="micSelect">
-                    <option value="default">📱 По умолчанию</option>
+                    <option value="default">По умолчанию</option>
                 </select>
                 <div class="device-status" id="micStatus"></div>
             </div>
             
             <div class="device-row">
-                <div class="device-label"><span class="device-icon">🔊</span> Динамик (ВЫХОД)</div>
+                <div class="device-label"><span class="device-icon">🔊</span> Динамик (выход)</div>
                 <select class="device-select" id="speakerSelect">
-                    <option value="default">🔊 По умолчанию</option>
+                    <option value="default">По умолчанию</option>
                 </select>
                 <div class="device-status" id="speakerStatus"></div>
             </div>
             
-            <button class="airplay-btn" id="airplayBtn">📡 AirPlay</button>
+            <button class="airplay-btn" id="airplayBtn">📡 Выбрать колонку через AirPlay</button>
         </div>
 
-        <!-- ЭХО-КОНТРОЛЬ -->
-        <div class="echo-section">
-            <div class="echo-header">
-                <span class="echo-title">🎛️ Подавление эха</span>
+        <!-- Подавление эха -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">🔇 Подавление эха</span>
             </div>
-            <div class="echo-row">
-                <span class="echo-label">Порог:</span>
+            <div class="echo-slider-row">
+                <span class="echo-label">Порог</span>
                 <input type="range" class="echo-slider" id="noiseGateSlider" 
-                       min="0" max="100" value="25">
-                <span class="echo-value" id="noiseGateValue">25%</span>
+                       min="1" max="80" value="15">
+                <span class="echo-value" id="noiseGateValue">15%</span>
             </div>
-            <div class="echo-row">
-                <span class="echo-label">Спад:</span>
-                <input type="range" class="echo-slider" id="smoothingSlider" 
-                       min="0" max="100" value="60">
-                <span class="echo-value" id="smoothingValue">60%</span>
+            <div class="echo-slider-row">
+                <span class="echo-label">Атака</span>
+                <input type="range" class="echo-slider" id="attackSlider" 
+                       min="1" max="50" value="5">
+                <span class="echo-value" id="attackValue">5ms</span>
             </div>
         </div>
 
-        <!-- УСИЛЕНИЕ -->
-        <div class="gain-section">
-            <div class="gain-header">
-                <span class="gain-title">🔊 Усиление</span>
+        <!-- Усиление -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">🔊 Усиление</span>
                 <span class="gain-value" id="gainValue">2.0x</span>
             </div>
             <input type="range" class="gain-slider" id="gainSlider" 
-                   min="0.5" max="10.0" step="0.1" value="2.0">
+                   min="0.5" max="10.0" step="0.1" value="1.5">
             <div class="gain-labels">
                 <span>0.5x</span><span>5x</span><span>10x MAX</span>
             </div>
         </div>
 
-        <div class="hint" id="hintText">
-            💡 Выберите наушники как микрофон, колонку как выход
-        </div>
-        
-        <button class="reset-btn" id="resetBtn">🔄 Сброс</button>
-    </div>
-    
-    <div class="install-prompt" id="installPrompt">
-        <button class="close-install" id="closeInstall">✕</button>
-        <span>Установить приложение</span>
-        <button class="install-btn" id="installBtn">Установить</button>
+        <button class="btn-outline" id="resetBtn">🔄 Сброс</button>
+        <div class="hint" id="hintText">Выберите <b>наушники</b> → <b>колонку</b> → СТАРТ</div>
     </div>
 
     <script>
@@ -533,44 +603,14 @@
         
         console.log('📱 iOS:', isIOS, '| setSinkId:', hasSetSinkId);
 
-        // ==================== SERVICE WORKER ====================
+        // ==================== SW ====================
         if ('serviceWorker' in navigator) {
-            const swCode = `
-                const CACHE_NAME = 'megafon-pro-v3';
-                self.addEventListener('install', e => {
-                    e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(['/'])).then(() => self.skipWaiting()));
-                });
-                self.addEventListener('activate', e => {
-                    e.waitUntil(caches.keys().then(keys => Promise.all(keys.map(k => k !== CACHE_NAME ? caches.delete(k) : null))).then(() => self.clients.claim()));
-                });
-                self.addEventListener('fetch', e => {
-                    e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
-                });
-            `;
-            navigator.serviceWorker.register(
-                URL.createObjectURL(new Blob([swCode], {type: 'application/javascript'})), 
-                {scope: '/'}
-            );
+            const swCode = `const C='megafon-v4';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['/'])).then(()=>self.skipWaiting()))});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.map(k=>k!==C?caches.delete(k):null))).then(()=>self.clients.claim()))});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)))})`;
+            navigator.serviceWorker.register(URL.createObjectURL(new Blob([swCode],{type:'application/javascript'})),{scope:'/'});
         }
 
-        // ==================== PWA ====================
-        let deferredPrompt;
-        const installPrompt = document.getElementById('installPrompt');
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installPrompt.style.display = 'flex';
-        });
-        document.getElementById('installBtn').addEventListener('click', async () => {
-            if (!deferredPrompt) return;
-            deferredPrompt.prompt();
-            await deferredPrompt.userChoice;
-            deferredPrompt = null;
-            installPrompt.style.display = 'none';
-        });
-        document.getElementById('closeInstall').addEventListener('click', () => installPrompt.style.display = 'none');
-
         // ==================== DOM ====================
+        const talkBtnWrap = document.getElementById('talkBtnWrap');
         const talkBtn = document.getElementById('talkBtn');
         const btnText = talkBtn.querySelector('.btn-text');
         const statusDiv = document.getElementById('status');
@@ -586,8 +626,8 @@
         const refreshBtn = document.getElementById('refreshDevices');
         const noiseGateSlider = document.getElementById('noiseGateSlider');
         const noiseGateValue = document.getElementById('noiseGateValue');
-        const smoothingSlider = document.getElementById('smoothingSlider');
-        const smoothingValue = document.getElementById('smoothingValue');
+        const attackSlider = document.getElementById('attackSlider');
+        const attackValue = document.getElementById('attackValue');
         const hintText = document.getElementById('hintText');
         const resetBtn = document.getElementById('resetBtn');
 
@@ -596,8 +636,7 @@
         let mediaStream = null;
         let gainNode = null;
         let sourceNode = null;
-        let analyserNode = null;
-        let noiseGateNode = null; // ScriptProcessor для шумоподавления
+        let noiseGateNode = null;
         let audioDestNode = null;
         let outputAudioEl = null;
         let keepAliveTimer = null;
@@ -609,7 +648,6 @@
         let selectedSpId = 'default';
 
         // ==================== ФУНКЦИИ ====================
-
         function setStatus(text, cls = '') {
             statusDiv.textContent = text;
             statusDiv.className = 'status ' + cls;
@@ -618,11 +656,12 @@
         function updateUI() {
             talkBtn.classList.toggle('active', isMicOn);
             talkBtn.classList.toggle('locked', isMicOn && isLocked);
+            talkBtnWrap.classList.toggle('active', isMicOn);
             
             if (!isInitialized) {
                 btnText.textContent = 'СТАРТ';
             } else if (isLocked && isMicOn) {
-                btnText.textContent = 'ВЫКЛ';
+                btnText.textContent = '📢';
             } else if (isLocked && !isMicOn) {
                 btnText.textContent = 'ВКЛ';
             } else if (!isLocked && isMicOn) {
@@ -634,61 +673,48 @@
             modeIndicator.textContent = isLocked ? 'Фикс' : 'Рация';
         }
 
-        // ==================== ПЕРЕЧИСЛЕНИЕ УСТРОЙСТВ ====================
-
+        // ==================== УСТРОЙСТВА ====================
         async function enumerateDevices() {
             try {
-                let tempStream = null;
-                try {
-                    tempStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                } catch(e) {}
-                
+                let ts = null;
+                try { ts = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch(e) {}
                 const devices = await navigator.mediaDevices.enumerateDevices();
-                if (tempStream) tempStream.getTracks().forEach(t => t.stop());
+                if (ts) ts.getTracks().forEach(t => t.stop());
                 
-                const currentMic = micSelect.value || selectedMicId;
-                const currentSp = speakerSelect.value || selectedSpId;
+                const cm = micSelect.value || selectedMicId;
+                const cs = speakerSelect.value || selectedSpId;
                 
                 const mics = devices.filter(d => d.kind === 'audioinput');
-                micSelect.innerHTML = '<option value="default">📱 По умолчанию</option>';
-                mics.forEach((mic, i) => {
-                    const label = mic.label || `Микрофон ${i + 1}`;
-                    const isHP = label.toLowerCase().includes('bluetooth') || 
-                                label.toLowerCase().includes('наушник') || 
-                                label.toLowerCase().includes('headphone') ||
-                                label.toLowerCase().includes('airpod');
-                    micSelect.innerHTML += `<option value="${mic.deviceId}">${isHP ? '🎧' : '🎤'} ${label}</option>`;
+                micSelect.innerHTML = '<option value="default">По умолчанию</option>';
+                mics.forEach((m, i) => {
+                    const l = m.label || `Микрофон ${i+1}`;
+                    const hp = /bluetooth|наушник|headphone|airpod/i.test(l);
+                    micSelect.innerHTML += `<option value="${m.deviceId}">${hp?'🎧':'🎤'} ${l}</option>`;
                 });
                 
-                const speakers = devices.filter(d => d.kind === 'audiooutput');
-                speakerSelect.innerHTML = '<option value="default">🔊 По умолчанию</option>';
-                speakers.forEach((sp, i) => {
-                    const label = sp.label || `Динамик ${i + 1}`;
-                    const isSp = label.toLowerCase().includes('speaker') || 
-                                label.toLowerCase().includes('колонк') ||
-                                label.toLowerCase().includes('динамик') ||
-                                label.toLowerCase().includes('jbl') ||
-                                label.toLowerCase().includes('bose') ||
-                                label.toLowerCase().includes('sony') ||
-                                label.toLowerCase().includes('marshall');
-                    speakerSelect.innerHTML += `<option value="${sp.deviceId}">${isSp ? '🔊' : '🔈'} ${label}</option>`;
+                const sps = devices.filter(d => d.kind === 'audiooutput');
+                speakerSelect.innerHTML = '<option value="default">По умолчанию</option>';
+                sps.forEach((s, i) => {
+                    const l = s.label || `Динамик ${i+1}`;
+                    const sp = /speaker|колонк|динамик|jbl|bose|sony|marshall|flip|charge/i.test(l);
+                    speakerSelect.innerHTML += `<option value="${s.deviceId}">${sp?'🔊':'🔈'} ${l}</option>`;
                 });
                 
-                if (currentMic && micSelect.querySelector(`option[value="${currentMic}"]`)) {
-                    micSelect.value = currentMic;
-                }
-                if (currentSp && speakerSelect.querySelector(`option[value="${currentSp}"]`)) {
-                    speakerSelect.value = currentSp;
-                }
+                if (cm && micSelect.querySelector(`option[value="${cm}"]`)) micSelect.value = cm;
+                if (cs && speakerSelect.querySelector(`option[value="${cs}"]`)) speakerSelect.value = cs;
                 
                 selectedMicId = micSelect.value;
                 selectedSpId = speakerSelect.value;
                 
-                updateDeviceStatus();
+                // Авто-выбор JBL если найдена
+                const jblOpt = Array.from(speakerSelect.options).find(o => /jbl|flip/i.test(o.textContent));
+                if (jblOpt && speakerSelect.value === 'default') {
+                    speakerSelect.value = jblOpt.value;
+                    selectedSpId = jblOpt.value;
+                }
                 
-            } catch (err) {
-                console.error('enumerateDevices error:', err);
-            }
+                updateDeviceStatus();
+            } catch(e) { console.error(e); }
         }
 
         function updateDeviceStatus() {
@@ -699,8 +725,8 @@
                 micStatus.textContent = 'Системный микрофон';
                 micStatus.className = 'device-status';
             } else {
-                const name = micSelect.selectedOptions[0]?.textContent?.replace(/^[🎤🎧]\s*/, '') || 'Выбран';
-                micStatus.textContent = '✅ ' + name;
+                const n = micSelect.selectedOptions[0]?.textContent?.replace(/^[🎤🎧]\s*/, '') || 'Выбран';
+                micStatus.textContent = '✅ ' + n;
                 micStatus.className = 'device-status ok';
             }
             
@@ -708,51 +734,53 @@
                 speakerStatus.textContent = 'Системный динамик';
                 speakerStatus.className = 'device-status';
             } else {
-                const name = speakerSelect.selectedOptions[0]?.textContent?.replace(/^[🔊🔈]\s*/, '') || 'Выбран';
-                speakerStatus.textContent = '✅ ' + name;
+                const n = speakerSelect.selectedOptions[0]?.textContent?.replace(/^[🔊🔈]\s*/, '') || 'Выбран';
+                speakerStatus.textContent = '✅ ' + n;
                 speakerStatus.className = 'device-status ok';
             }
         }
 
         async function applySpeakerOutput() {
-            if (!outputAudioEl || !hasSetSinkId) return;
+            if (!outputAudioEl || !hasSetSinkId) {
+                if (!hasSetSinkId && speakerSelect.value !== 'default') {
+                    speakerStatus.textContent = '⚠️ Нажмите AirPlay';
+                    speakerStatus.className = 'device-status warn';
+                }
+                return;
+            }
             try {
                 await outputAudioEl.setSinkId(speakerSelect.value === 'default' ? '' : speakerSelect.value);
-            } catch(e) {}
+                const n = speakerSelect.selectedOptions[0]?.textContent?.replace(/^[🔊🔈]\s*/, '') || 'Колонка';
+                speakerStatus.textContent = '✅ Вывод: ' + n;
+                speakerStatus.className = 'device-status ok';
+            } catch(e) {
+                speakerStatus.textContent = '❌ Ошибка вывода';
+                speakerStatus.className = 'device-status warn';
+            }
         }
 
-        // ==================== NOISE GATE (Подавление эха) ====================
-
-        function createNoiseGate(threshold, smoothing) {
-            // threshold: 0-1 (какая громкость считается "тишиной")
-            // smoothing: 0-1 (насколько плавно затухает)
-            
-            const bufferSize = 256;
+        // ==================== АГРЕССИВНЫЙ NOISE GATE ====================
+        function createNoiseGate(threshold, attackMs) {
+            const bufferSize = 512;
             const node = audioContext.createScriptProcessor(bufferSize, 1, 1);
             
             let envelope = 0;
-            const attackTime = 0.01;  // быстрое открытие
-            const releaseTime = smoothing * 0.5; // плавное закрытие (зависит от ползунка)
-            
-            const attackCoef = Math.exp(-1 / (audioContext.sampleRate * attackTime));
-            const releaseCoef = Math.exp(-1 / (audioContext.sampleRate * releaseTime));
+            const attackCoef = Math.exp(-1 / (audioContext.sampleRate * (attackMs / 1000)));
+            const releaseCoef = Math.exp(-1 / (audioContext.sampleRate * 0.15)); // Быстрый спад 150ms
             
             node.onaudioprocess = (event) => {
                 const input = event.inputBuffer.getChannelData(0);
                 const output = event.outputBuffer.getChannelData(0);
                 
                 for (let i = 0; i < bufferSize; i++) {
-                    // Вычисляем огибающую (envelope follower)
                     const abs = Math.abs(input[i]);
-                    if (abs > envelope) {
-                        envelope = attackCoef * envelope + (1 - attackCoef) * abs;
-                    } else {
-                        envelope = releaseCoef * envelope + (1 - releaseCoef) * abs;
-                    }
+                    envelope = abs > envelope 
+                        ? attackCoef * envelope + (1 - attackCoef) * abs 
+                        : releaseCoef * envelope;
                     
-                    // Применяем noise gate
+                    // ЖЁСТКИЙ гейт: ниже порога = ТИШИНА
                     if (envelope < threshold) {
-                        output[i] = input[i] * (envelope / threshold) * 0.3; // Сильно приглушаем
+                        output[i] = 0; // ПОЛНАЯ тишина
                     } else {
                         output[i] = input[i];
                     }
@@ -763,140 +791,97 @@
         }
 
         // ==================== KEEP-ALIVE ====================
-
         function startKeepAlive() {
             stopKeepAlive();
             keepAliveTimer = setInterval(() => {
-                if (!isMicOn) return;
-                if (!audioContext || audioContext.state === 'closed') return;
-                
-                if (audioContext.state === 'suspended') {
-                    audioContext.resume().catch(() => {});
-                }
-                
+                if (!isMicOn || !audioContext || audioContext.state === 'closed') return;
+                if (audioContext.state === 'suspended') audioContext.resume().catch(()=>{});
                 if (audioContext.state === 'running') {
                     try {
-                        const osc = audioContext.createOscillator();
+                        const o = audioContext.createOscillator();
                         const g = audioContext.createGain();
-                        g.gain.value = 0.001;
-                        osc.connect(g);
-                        g.connect(audioContext.destination);
-                        osc.frequency.value = 30;
-                        osc.start();
-                        osc.stop(audioContext.currentTime + 0.03);
-                        osc.onended = () => { osc.disconnect(); g.disconnect(); };
+                        g.gain.value = 0.0001;
+                        o.connect(g); g.connect(audioContext.destination);
+                        o.frequency.value = 25;
+                        o.start(); o.stop(audioContext.currentTime + 0.02);
+                        o.onended = () => { o.disconnect(); g.disconnect(); };
                     } catch(e) {}
                 }
             }, 1500);
         }
 
         function stopKeepAlive() {
-            if (keepAliveTimer) {
-                clearInterval(keepAliveTimer);
-                keepAliveTimer = null;
-            }
+            if (keepAliveTimer) { clearInterval(keepAliveTimer); keepAliveTimer = null; }
         }
 
-        // ==================== МИКРОФОН ВКЛ/ВЫКЛ ====================
-
+        // ==================== МИКРОФОН ====================
         function micOn() {
-            if (!isInitialized) return;
-            if (!audioContext || audioContext.state === 'closed') return;
-            
+            if (!isInitialized || !audioContext || audioContext.state === 'closed') return;
             audioContext.resume().then(() => {
                 isMicOn = true;
-                if (outputAudioEl && outputAudioEl.paused) {
-                    outputAudioEl.play().catch(() => {});
-                }
+                if (outputAudioEl?.paused) outputAudioEl.play().catch(()=>{});
                 startKeepAlive();
-                setStatus('📢 Говорите!', 'active');
+                setStatus('📢 Эфир!', 'active');
                 updateUI();
-            }).catch(err => {
-                console.error('micOn error:', err);
-                setStatus('❌ Ошибка', 'error');
-            });
+            }).catch(e => setStatus('❌ Ошибка', 'error'));
         }
 
         function micOff() {
-            if (!isInitialized) return;
-            if (!audioContext || audioContext.state === 'closed') return;
-            
+            if (!isInitialized || !audioContext || audioContext.state === 'closed') return;
             audioContext.suspend().then(() => {
                 isMicOn = false;
-                if (outputAudioEl && !outputAudioEl.paused) {
-                    outputAudioEl.pause();
-                }
+                if (outputAudioEl && !outputAudioEl.paused) outputAudioEl.pause();
                 stopKeepAlive();
-                setStatus('🔇 Микрофон заглушен', '');
+                setStatus('🔇 Заглушен', '');
                 updateUI();
-            }).catch(err => {
-                console.error('micOff error:', err);
-            });
+            }).catch(e => {});
         }
 
-        // ==================== ОБРАБОТЧИКИ КНОПКИ ====================
-
+        // ==================== КНОПКА ====================
         function pressButton() {
-            if (!isInitialized) {
-                initAudio();
-                return;
-            }
-            if (isLocked) {
-                // Переключаем: ВКЛ ↔ ВЫКЛ
-                isMicOn ? micOff() : micOn();
-            } else {
-                micOn();
-            }
+            if (!isInitialized) { initAudio(); return; }
+            if (isLocked) { isMicOn ? micOff() : micOn(); }
+            else { micOn(); }
         }
 
         function releaseButton() {
-            if (!isInitialized) return;
-            if (isLocked) return; // В фиксации не выключаем
+            if (!isInitialized || isLocked) return;
             micOff();
         }
 
         // ==================== ИНИЦИАЛИЗАЦИЯ ====================
-
         async function initAudio() {
             if (isInitialized) return;
-            
             try {
-                setStatus('Инициализация...', '');
+                setStatus('Подключение...', '');
                 talkBtn.disabled = true;
                 btnText.textContent = '...';
                 
                 const micId = selectedMicId;
                 const constraints = {
-                    audio: micId !== 'default' 
-                        ? { 
-                            deviceId: { exact: micId },
-                            echoCancellation: false,
-                            noiseSuppression: false,
-                            autoGainControl: false,
-                          } 
-                        : {
-                            echoCancellation: false,
-                            noiseSuppression: false,
-                            autoGainControl: false,
-                          }
+                    audio: {
+                        ...(micId !== 'default' && { deviceId: { exact: micId } }),
+                        echoCancellation: false,
+                        noiseSuppression: false,
+                        autoGainControl: false,
+                    }
                 };
                 
                 mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
                 sourceNode = audioContext.createMediaStreamSource(mediaStream);
                 
-                // Создаём noise gate
-                const threshold = parseFloat(noiseGateSlider.value) / 100;
-                const smoothing = parseFloat(smoothingSlider.value) / 100;
-                noiseGateNode = createNoiseGate(threshold, smoothing);
+                // Noise Gate с текущими настройками
+                const thresh = parseInt(noiseGateSlider.value) / 100;
+                const attack = parseInt(attackSlider.value);
+                noiseGateNode = createNoiseGate(thresh, attack);
                 
-                // Усилитель
                 gainNode = audioContext.createGain();
                 gainNode.gain.value = parseFloat(gainSlider.value);
                 
                 audioDestNode = audioContext.createMediaStreamDestination();
                 
-                // Цепочка: микрофон → noise gate → усилитель → выход
+                // Цепочка
                 sourceNode.connect(noiseGateNode);
                 noiseGateNode.connect(gainNode);
                 
@@ -917,122 +902,64 @@
                 isInitialized = true;
                 talkBtn.disabled = false;
                 
-                // ЕСЛИ РЕЖИМ ФИКСАЦИИ — СРАЗУ ВКЛЮЧАЕМ МИКРОФОН
-                if (isLocked) {
-                    micOn();
-                }
+                // Фиксация = сразу в эфир
+                if (isLocked) micOn();
+                else setStatus('✅ Готово', '');
                 
-                const micName = micSelect.selectedOptions[0]?.textContent?.replace(/^[🎤🎧]\s*/, '') || 'микрофон';
-                const spName = speakerSelect.selectedOptions[0]?.textContent?.replace(/^[🔊🔈]\s*/, '') || 'динамик';
-                
-                if (!isLocked) {
-                    setStatus(`✅ ${micName} → ${spName}`, '');
-                }
                 updateUI();
-                
-            } catch (err) {
-                console.error('initAudio error:', err);
-                let msg = 'Ошибка';
-                if (err.name === 'NotAllowedError') msg = '❌ Доступ отклонен';
-                else if (err.name === 'NotFoundError') msg = '❌ Устройство не найдено';
-                else if (err.name === 'OverconstrainedError') msg = '❌ Микрофон недоступен';
-                else msg = '❌ ' + err.message;
-                setStatus(msg, 'error');
+            } catch(err) {
+                console.error(err);
+                setStatus('❌ ' + (err.name === 'NotAllowedError' ? 'Доступ отклонен' : err.message), 'error');
                 talkBtn.disabled = false;
                 btnText.textContent = 'СТАРТ';
             }
         }
 
-        // ==================== СБРОС ====================
-
         function fullReset() {
             stopKeepAlive();
             isMicOn = false;
-            
-            if (outputAudioEl) {
-                outputAudioEl.pause();
-                outputAudioEl.srcObject = null;
-                outputAudioEl = null;
-            }
-            if (mediaStream) {
-                mediaStream.getTracks().forEach(t => t.stop());
-                mediaStream = null;
-            }
-            if (audioContext && audioContext.state !== 'closed') {
-                audioContext.close();
-                audioContext = null;
-            }
-            
-            sourceNode = null;
-            gainNode = null;
-            noiseGateNode = null;
-            audioDestNode = null;
+            if (outputAudioEl) { outputAudioEl.pause(); outputAudioEl.srcObject = null; outputAudioEl = null; }
+            if (mediaStream) { mediaStream.getTracks().forEach(t => t.stop()); mediaStream = null; }
+            if (audioContext?.state !== 'closed') audioContext?.close();
+            sourceNode = gainNode = noiseGateNode = audioDestNode = audioContext = null;
             isInitialized = false;
             talkBtn.disabled = true;
-            
-            setStatus('Нажмите СТАРТ для активации', '');
+            setStatus('Нажмите СТАРТ', '');
             updateUI();
-            updateDeviceStatus();
         }
 
         // ==================== СОБЫТИЯ ====================
-
-        talkBtn.addEventListener('pointerdown', (e) => {
-            e.preventDefault();
-            talkBtn.setPointerCapture(e.pointerId);
-            pressButton();
-        });
-        talkBtn.addEventListener('pointerup', (e) => {
-            e.preventDefault();
-            releaseButton();
-        });
+        talkBtn.addEventListener('pointerdown', e => { e.preventDefault(); talkBtn.setPointerCapture(e.pointerId); pressButton(); });
+        talkBtn.addEventListener('pointerup', e => { e.preventDefault(); releaseButton(); });
         talkBtn.addEventListener('pointerleave', () => releaseButton());
         talkBtn.addEventListener('pointercancel', () => releaseButton());
-        talkBtn.addEventListener('contextmenu', (e) => e.preventDefault());
+        talkBtn.addEventListener('contextmenu', e => e.preventDefault());
 
         modeSwitch.addEventListener('change', () => {
             isLocked = modeSwitch.checked;
             if (isMicOn) micOff();
-            
-            if (isLocked) {
-                setStatus('🔒 Фиксация: нажмите ВКЛ', '');
-            } else {
-                setStatus('📻 Рация: держите кнопку', '');
-            }
+            setStatus(isLocked ? '🔒 Фиксация' : '📻 Рация', '');
             updateUI();
         });
 
-        // Усиление
         gainSlider.addEventListener('input', () => {
             const v = parseFloat(gainSlider.value);
             gainValue.textContent = v.toFixed(1) + 'x';
             if (gainNode) gainNode.gain.value = v;
-            
-            if (v > 7) gainValue.style.color = '#ff0000';
-            else if (v > 4) gainValue.style.color = '#e74c3c';
-            else if (v > 2) gainValue.style.color = '#f39c12';
-            else gainValue.style.color = '#2ecc71';
         });
 
-        // Noise Gate порог
         noiseGateSlider.addEventListener('input', () => {
-            const v = parseInt(noiseGateSlider.value);
-            noiseGateValue.textContent = v + '%';
+            noiseGateValue.textContent = noiseGateSlider.value + '%';
         });
 
-        // Сглаживание
-        smoothingSlider.addEventListener('input', () => {
-            const v = parseInt(smoothingSlider.value);
-            smoothingValue.textContent = v + '%';
+        attackSlider.addEventListener('input', () => {
+            attackValue.textContent = attackSlider.value + 'ms';
         });
 
         micSelect.addEventListener('change', () => {
             selectedMicId = micSelect.value;
             updateDeviceStatus();
-            if (isInitialized) {
-                setStatus('⚠️ Микрофон изменен. Нажмите СТАРТ', '');
-                fullReset();
-            }
+            if (isInitialized) { setStatus('⚠️ Нажмите СТАРТ'); fullReset(); }
         });
 
         speakerSelect.addEventListener('change', () => {
@@ -1053,7 +980,7 @@
         });
 
         refreshBtn.addEventListener('click', async () => {
-            setStatus('Обновляю...', '');
+            setStatus('Обновление...', '');
             await enumerateDevices();
             setStatus('✅ Готово', '');
         });
@@ -1064,21 +991,27 @@
             stopKeepAlive();
             if (outputAudioEl) { outputAudioEl.pause(); outputAudioEl.srcObject = null; }
             if (mediaStream) mediaStream.getTracks().forEach(t => t.stop());
-            if (audioContext && audioContext.state !== 'closed') audioContext.close();
+            audioContext?.close();
         });
 
         navigator.mediaDevices?.addEventListener('devicechange', () => enumerateDevices());
-        document.addEventListener('dblclick', (e) => e.preventDefault(), {passive: false});
+        document.addEventListener('dblclick', e => e.preventDefault(), {passive: false});
 
-        // ==================== ЗАПУСК ====================
-        
+        // ==================== СТАРТ ====================
         if (isIOS) {
             airplayBtn.style.display = 'block';
-            hintText.innerHTML = '💡 Выберите наушники → AirPlay → СТАРТ';
+            hintText.innerHTML = 'Выберите <b>наушники</b> → нажмите <b>AirPlay</b> → выберите колонку → СТАРТ';
         }
         
-        enumerateDevices().then(() => console.log('✅ Устройства загружены'));
-        console.log('✅ Мегафон Pro v3 загружен');
+        enumerateDevices().then(() => console.log('✅ Готово'));
+
+        // Сохраняем настройки
+        [gainSlider, noiseGateSlider, attackSlider].forEach(s => {
+            const key = s.id;
+            const saved = localStorage.getItem('megafon_' + key);
+            if (saved) s.value = saved;
+            s.addEventListener('input', () => localStorage.setItem('megafon_' + key, s.value));
+        });
     </script>
 </body>
 </html>
